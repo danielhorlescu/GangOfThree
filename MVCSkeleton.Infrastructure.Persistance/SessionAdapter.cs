@@ -36,9 +36,6 @@ namespace MVCSkeleton.Infrastructure.Persistance
                                             "thread_static");
                         }
                 ).BuildSessionFactory();
-            ISession session = sessionFactory.OpenSession();
-            session.BeginTransaction();
-            CurrentSessionContext.Bind(session);
         }
 
         private ITransaction CurrentTransaction
@@ -48,7 +45,16 @@ namespace MVCSkeleton.Infrastructure.Persistance
 
         internal ISession CurrentSession
         {
-            get { return SessionFactory.GetCurrentSession(); }
+            get
+            {
+                if (!CurrentSessionContext.HasBind(SessionFactory))
+                {
+                    ISession session = SessionFactory.OpenSession();
+                    session.BeginTransaction();
+                    CurrentSessionContext.Bind(session);
+                }
+                return SessionFactory.GetCurrentSession();
+            }
         }
 
         public void Commit()
@@ -58,6 +64,7 @@ namespace MVCSkeleton.Infrastructure.Persistance
                 return;
             }
             CurrentTransaction.Commit();
+            CurrentSession.Close();
             CurrentSessionContext.Unbind(sessionFactory);
         }
 

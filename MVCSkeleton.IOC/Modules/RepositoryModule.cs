@@ -10,7 +10,7 @@ namespace MVCSkeleton.IOC.Modules
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {
-            initializationExpression.For<ISessionAdapter>().HybridHttpOrThreadLocalScoped().Use
+            initializationExpression.For<ISessionAdapter>().Singleton().Use
                 <SessionAdapter>();
             initializationExpression.For<IUserRepository>().Singleton().Use<UserRepository>();
         }

@@ -46,6 +46,12 @@ namespace MVCSkeleton.Controllers
             return Url.IsLocalUrl(returnUrl) ? (ActionResult) Redirect(returnUrl) : RedirectToAction("Index", "Home");
         }
 
+        [AllowAnonymous]
+        public ActionResult Manage()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
@@ -56,41 +62,14 @@ namespace MVCSkeleton.Controllers
                 try
                 {
                     userService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
-                    return RedirectToAction("Manage", new {Message = "Password was successfullychanged ."});
+                    ViewBag.Message = "Password was successfullychanged .";
+                    return RedirectToAction("Manage");
                 }
                 catch (Exception e)
                 {
                     ModelState.AddModelError("", e.Message);
                 }
-
-                // ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
             }
-
-            ////  else
-            //{
-            //    // User does not have a local password so remove any validation errors caused by a missing
-            //    // OldPassword field
-            //    ModelState state = ModelState["OldPassword"];
-            //    if (state != null)
-            //    {
-            //        state.Errors.Clear();
-            //    }
-
-            //    if (ModelState.IsValid)
-            //    {
-            //        try
-            //        {
-            //            //    WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-            //            //     return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            ModelState.AddModelError("", e);
-            //        }
-            //    }
-            //}
-
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
