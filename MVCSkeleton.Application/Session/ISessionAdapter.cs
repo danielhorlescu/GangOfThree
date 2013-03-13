@@ -1,0 +1,9 @@
+﻿namespace MVCSkeleton.Application.Session
+{
+    public interface ISessionAdapter
+    {
+        void Commit();
+
+        void Rollback();
+    }
+}
