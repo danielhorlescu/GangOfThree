@@ -54,7 +54,7 @@ namespace MVCSkeleton.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(LocalPasswordModel model)
+        public ActionResult Manage(PasswordModel model)
         {
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (ModelState.IsValid)

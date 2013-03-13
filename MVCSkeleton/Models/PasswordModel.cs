@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace MVCSkeleton.Models
 {
-    public class LocalPasswordModel
+    public class PasswordModel
     {
         [Required]
         [DataType(DataType.Password)]
