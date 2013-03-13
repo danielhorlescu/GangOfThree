@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Binaries\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,6 +34,30 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="MVCSkeleton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Infrastracture.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Infrastructure.Persistance, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.IOC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.IOC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,20 +73,6 @@
     <Compile Include="MapperConfigurator.cs" />
     <Compile Include="MapperImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
-      <Project>{6D845853-16D3-4802-A8E9-0E97DA53AF69}</Project>
-      <Name>MVCSkeleton.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
-      <Project>{803B97EB-41E8-4B5C-9DA8-EFD41CCCBA65}</Project>
-      <Name>MVCSkeleton.Infrastracture.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton\MVCSkeleton.Presentation.csproj">
-      <Project>{795E0097-E308-41CB-B5C6-1A52CF97526A}</Project>
-      <Name>MVCSkeleton.Presentation</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

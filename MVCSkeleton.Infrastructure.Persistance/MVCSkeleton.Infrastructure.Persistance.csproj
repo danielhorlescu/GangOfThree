@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Binaries\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,6 +37,18 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Infrastracture.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
@@ -54,20 +66,6 @@
     <Compile Include="SessionAdapter.cs" />
     <Compile Include="FluentMappings\UserMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">
-      <Project>{988C1CEE-B25A-4485-B871-1DFEBFA88846}</Project>
-      <Name>MVCSkeleton.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
-      <Project>{6D845853-16D3-4802-A8E9-0E97DA53AF69}</Project>
-      <Name>MVCSkeleton.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
-      <Project>{803B97EB-41E8-4B5C-9DA8-EFD41CCCBA65}</Project>
-      <Name>MVCSkeleton.Infrastracture.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

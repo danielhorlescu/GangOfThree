@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Binaries\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,6 +33,30 @@
   <ItemGroup>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Infrastracture.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Infrastructure.Persistance, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\MVCSkeleton.Mapper.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
@@ -62,32 +86,6 @@
     <Compile Include="StructureMapControllerActivator.cs" />
     <Compile Include="StructureMapDependencyResolver.cs" />
     <Compile Include="StructureMapDependencyScope.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">
-      <Project>{988C1CEE-B25A-4485-B871-1DFEBFA88846}</Project>
-      <Name>MVCSkeleton.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
-      <Project>{6D845853-16D3-4802-A8E9-0E97DA53AF69}</Project>
-      <Name>MVCSkeleton.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
-      <Project>{803B97EB-41E8-4B5C-9DA8-EFD41CCCBA65}</Project>
-      <Name>MVCSkeleton.Infrastracture.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Infrastructure.Persistance\MVCSkeleton.Infrastructure.Persistance.csproj">
-      <Project>{74F2FD9D-E064-4BA5-B9B1-A1D4D7B3F18F}</Project>
-      <Name>MVCSkeleton.Infrastructure.Persistance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.Mapper\MVCSkeleton.Mapper.csproj">
-      <Project>{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}</Project>
-      <Name>MVCSkeleton.Mapper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton\MVCSkeleton.Presentation.csproj">
-      <Project>{795E0097-E308-41CB-B5C6-1A52CF97526A}</Project>
-      <Name>MVCSkeleton.Presentation</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
