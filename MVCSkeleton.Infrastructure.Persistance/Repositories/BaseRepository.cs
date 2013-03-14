@@ -1,4 +1,5 @@
 using MVCSkeleton.Application.Repository;
+using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 using NHibernate;
@@ -9,13 +10,13 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
     {
         private readonly SessionAdapter _sessionAdapter;
 
-        protected BaseRepository(): this(IOCProvider.Instance.Get<SessionAdapter>())
+        protected BaseRepository(): this(IOCProvider.Instance.Get<ISessionAdapter>())
         {
         }
 
-        private BaseRepository(SessionAdapter sessionAdapter)
+        private BaseRepository(ISessionAdapter sessionAdapter)
         {
-            _sessionAdapter = sessionAdapter;
+            _sessionAdapter = (SessionAdapter) sessionAdapter;
         }
 
         protected ISession Session
@@ -26,6 +27,16 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
         public void Save(T domainObject) 
         {
             Session.Save(domainObject);
+        }
+
+        public T Get(long id)
+        {
+            return Session.Get<T>(id);
+        }
+
+        public void Delete(T domainObject)
+        {
+            Session.Delete(domainObject);
         }
     }
 }

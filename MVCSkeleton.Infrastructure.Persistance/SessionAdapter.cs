@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Configuration;
+using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using MVCSkeleton.Application.Session;
@@ -27,7 +29,9 @@ namespace MVCSkeleton.Infrastructure.Persistance
         {
             sessionFactory = Fluently.Configure().
                 Database(MsSqlConfiguration.MsSql2008.
-                             ConnectionString(@"Server=.;Database=MVCSkeleton;Trusted_Connection=True;").ShowSql())
+                             ConnectionString(
+                                 ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString
+                             ).ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly())).ExposeConfiguration(
                     cfg =>
                         {
@@ -63,9 +67,20 @@ namespace MVCSkeleton.Infrastructure.Persistance
             {
                 return;
             }
-            CurrentTransaction.Commit();
-            CurrentSession.Close();
-            CurrentSessionContext.Unbind(sessionFactory);
+            ISession session = CurrentSessionContext.Unbind(sessionFactory);
+            try
+            {
+                session.Transaction.Commit();
+            }
+            catch (Exception)
+            {
+                session.Transaction.Rollback();
+            }
+            finally
+            {
+                session.Close();
+                session.Dispose();
+            }
         }
 
         public void Rollback()
@@ -74,8 +89,19 @@ namespace MVCSkeleton.Infrastructure.Persistance
             {
                 return;
             }
-            CurrentSession.Flush();
-            CurrentSessionContext.Unbind(sessionFactory);
+            ISession session = CurrentSessionContext.Unbind(sessionFactory);
+            try
+            {
+                session.Transaction.Rollback();
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                session.Close();
+                session.Dispose();
+            }
         }
     }
 }

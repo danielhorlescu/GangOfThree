@@ -5,5 +5,9 @@ namespace MVCSkeleton.Application.Repository
     public interface IBaseRepository<T> where T : IAggregateRoot
     {
         void Save(T domainObject);
+
+        T Get(long id);
+
+        void Delete(T user);
     }
 }
