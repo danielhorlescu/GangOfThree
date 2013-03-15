@@ -68,6 +68,10 @@ namespace MVCSkeleton.Infrastructure.Persistance
                 return;
             }
             ISession session = CurrentSessionContext.Unbind(sessionFactory);
+            if(session == null)
+            {
+                return;
+            }
             try
             {
                 session.Transaction.Commit();
@@ -90,6 +94,10 @@ namespace MVCSkeleton.Infrastructure.Persistance
                 return;
             }
             ISession session = CurrentSessionContext.Unbind(sessionFactory);
+            if (session == null)
+            {
+                return;
+            }
             try
             {
                 session.Transaction.Rollback();
