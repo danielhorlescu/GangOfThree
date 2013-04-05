@@ -8,7 +8,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : IAggregateRoot
     {
-        private readonly SessionAdapter _sessionAdapter;
+        private readonly NHiberanteSessionAdapter _nHiberanteSessionAdapter;
 
         protected BaseRepository(): this(IOCProvider.Instance.Get<ISessionAdapter>())
         {
@@ -16,12 +16,12 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
 
         private BaseRepository(ISessionAdapter sessionAdapter)
         {
-            _sessionAdapter = (SessionAdapter) sessionAdapter;
+            _nHiberanteSessionAdapter = (NHiberanteSessionAdapter) sessionAdapter;
         }
 
         protected ISession Session
         {
-            get { return _sessionAdapter.CurrentSession; }
+            get { return _nHiberanteSessionAdapter.CurrentSession; }
         }
 
         public void Save(T domainObject) 

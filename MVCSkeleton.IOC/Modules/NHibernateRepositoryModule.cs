@@ -6,12 +6,12 @@ using StructureMap;
 
 namespace MVCSkeleton.IOC.Modules
 {
-    internal class RepositoryModule
+    internal class NHibernateRepositoryModule
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {
             initializationExpression.For<ISessionAdapter>().Singleton().Use
-                <SessionAdapter>();
+                <NHiberanteSessionAdapter>();
             initializationExpression.For<IUserRepository>().Singleton().Use<UserRepository>();
         }
     }

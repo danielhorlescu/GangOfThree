@@ -5,7 +5,7 @@ using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MVCSkeleton.IntegrationTests.Repository
+namespace MVCSkeleton.IntegrationTests.EntityFrameworkRepository
 {
     [TestClass]
     public class UserRepositoryTests

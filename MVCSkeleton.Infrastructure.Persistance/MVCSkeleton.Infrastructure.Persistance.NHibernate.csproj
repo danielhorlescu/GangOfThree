@@ -64,7 +64,7 @@
   <ItemGroup>
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="SessionAdapter.cs" />
+    <Compile Include="NHiberanteSessionAdapter.cs" />
     <Compile Include="FluentMappings\UserMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

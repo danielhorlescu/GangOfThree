@@ -9,7 +9,7 @@ using NHibernate.Context;
 
 namespace MVCSkeleton.Infrastructure.Persistance
 {
-    public class SessionAdapter : ISessionAdapter
+    public class NHiberanteSessionAdapter : ISessionAdapter
     {
         private ISessionFactory sessionFactory;
 

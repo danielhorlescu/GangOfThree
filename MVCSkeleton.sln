@@ -7,17 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.UnitTests", "MV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Domain", "MVCSkeleton.Domain\MVCSkeleton.Domain.csproj", "{6D845853-16D3-4802-A8E9-0E97DA53AF69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Infrastructure.Persistance", "MVCSkeleton.Infrastructure.Persistance\MVCSkeleton.Infrastructure.Persistance.csproj", "{74F2FD9D-E064-4BA5-B9B1-A1D4D7B3F18F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Infrastructure.Persistance.NHibernate", "MVCSkeleton.Infrastructure.Persistance\MVCSkeleton.Infrastructure.Persistance.NHibernate.csproj", "{74F2FD9D-E064-4BA5-B9B1-A1D4D7B3F18F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Infrastracture.Utils", "MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj", "{803B97EB-41E8-4B5C-9DA8-EFD41CCCBA65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.IOC", "MVCSkeleton.IOC\MVCSkeleton.IOC.csproj", "{DB067A7F-4348-48A3-BBAF-0A8AECD477D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.IOC.StructureMap", "MVCSkeleton.IOC\MVCSkeleton.IOC.StructureMap.csproj", "{DB067A7F-4348-48A3-BBAF-0A8AECD477D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Application", "MVCSkeleton.Application\MVCSkeleton.Application.csproj", "{988C1CEE-B25A-4485-B871-1DFEBFA88846}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.IntegrationTests", "MVCSkeleton.IntegrationTests\MVCSkeleton.IntegrationTests.csproj", "{C9EBBBA9-064D-434D-9E35-8BE79EBB07AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Mapper", "MVCSkeleton.Mapper\MVCSkeleton.Mapper.csproj", "{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Infrastructure.Persistance.EntityFramework", "MVCSkeleton.Infrastructure.Persistance.EntityFramework\MVCSkeleton.Infrastructure.Persistance.EntityFramework.csproj", "{F7D8FC67-7939-4D66-B589-25FC97FD99D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D8FC67-7939-4D66-B589-25FC97FD99D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D8FC67-7939-4D66-B589-25FC97FD99D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D8FC67-7939-4D66-B589-25FC97FD99D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D8FC67-7939-4D66-B589-25FC97FD99D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

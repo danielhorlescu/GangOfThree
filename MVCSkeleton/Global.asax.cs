@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Transactions;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -30,6 +31,7 @@ namespace MVCSkeleton
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
+
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)

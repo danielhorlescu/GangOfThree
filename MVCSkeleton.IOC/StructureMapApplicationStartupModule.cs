@@ -22,7 +22,8 @@ namespace MVCSkeleton.IOC
                                          {
                                              new PresentationModule().Initialize(x);
                                              new ApplicationModule().Initialize(x);
-                                             new RepositoryModule().Initialize(x);
+                                             new NHibernateRepositoryModule().Initialize(x);
+                                           //  new EntityFrameworkRepositoryModule().Initialize(x);
                                              new InfrastructureModule().Initialize(x);
                                          });
 
