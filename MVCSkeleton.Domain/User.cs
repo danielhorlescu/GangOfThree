@@ -8,4 +8,5 @@
 
         public virtual string Password { get; set; }
     }
+
 }

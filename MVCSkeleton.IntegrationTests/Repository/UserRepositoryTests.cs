@@ -3,30 +3,30 @@ using MVCSkeleton.Application.Session;
 using MVCSkeleton.ApplicationStartup;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.IOC;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
-namespace MVCSkeleton.IntegrationTests.EntityFrameworkRepository
+namespace MVCSkeleton.IntegrationTests.Repository
 {
-    [TestClass]
+    [TestFixture]
     public class UserRepositoryTests
     {
         private IUserRepository _userRepository;
 
-        [TestInitialize]
-        public void Initialize()
+        [SetUp]
+        public void Setup() 
         {
             ApplicationStartupModuleContainer.Instance.RegisterModulesFromConfigurationFile();
             ApplicationStartupModuleContainer.Instance.LoadRegisteredModules();
             _userRepository = IOCProvider.Instance.Get<IUserRepository>();
         }
-
-        [TestCleanup]
+       
+        [TearDown]
         public void CleanUp()
         {
             IOCProvider.Instance.Get<ISessionAdapter>().Rollback();
         }
 
-        [TestMethod]
+        [Test]
         public void Should_Save_A_User()
         {
             var expectedUser = CreateUser();
@@ -38,7 +38,7 @@ namespace MVCSkeleton.IntegrationTests.EntityFrameworkRepository
             Assert.AreEqual(expectedUser.Id, actualUser.Id);
         }
 
-        [TestMethod]
+        [Test]
         public void Should_Update_A_User_Password()
         {
             var expectedUser = CreateUser();
@@ -50,7 +50,7 @@ namespace MVCSkeleton.IntegrationTests.EntityFrameworkRepository
             Assert.AreEqual(expectedPassword, actualUser.Password);
         }
 
-        [TestMethod]
+        [Test]
         public void Should_Delete_A_User()
         {
             var user = CreateUser();

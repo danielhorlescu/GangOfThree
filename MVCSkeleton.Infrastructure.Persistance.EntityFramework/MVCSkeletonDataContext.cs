@@ -1,5 +1,6 @@
 using System.Configuration;
 using System.Data.Entity;
+using System.Threading;
 using System.Transactions;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastructure.Persistance.EntityFramework.FluentMappings;
@@ -27,12 +28,16 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+            int managedThreadId = Thread.CurrentThread.ManagedThreadId;
+            int hashCode = this.GetHashCode();
             _transactionScope.Dispose();
         }
 
         public void Commit()
         {
-            _transactionScope.Complete();
+            int managedThreadId = Thread.CurrentThread.ManagedThreadId;
+            int hashCode = this.GetHashCode();
+           _transactionScope.Complete();
         }
     }
 }

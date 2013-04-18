@@ -10,9 +10,9 @@ namespace MVCSkeleton.IOC.Modules
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {
-            initializationExpression.For<ISessionAdapter>().Singleton().Use
+            initializationExpression.For<ISessionAdapter>().HybridHttpOrThreadLocalScoped().Use
                 <NHiberanteSessionAdapter>();
-            initializationExpression.For<IUserRepository>().Singleton().Use<UserRepository>();
+            initializationExpression.For<IUserRepository>().Use<UserRepository>();
         }
     }
 }

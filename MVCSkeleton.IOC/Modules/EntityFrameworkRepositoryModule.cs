@@ -9,9 +9,9 @@ namespace MVCSkeleton.IOC.Modules
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {
-            initializationExpression.For<ISessionAdapter>().Singleton().Use
+            initializationExpression.For<ISessionAdapter>().HybridHttpOrThreadLocalScoped().Use
                 <EntityFrameworkSessionAdapter>();
-            initializationExpression.For<IUserRepository>().Singleton().Use<Infrastructure.Persistance.EntityFramework.Repositories.UserRepository>();
+            initializationExpression.For<IUserRepository>().Use<Infrastructure.Persistance.EntityFramework.Repositories.UserRepository>();
         }
     }
 }

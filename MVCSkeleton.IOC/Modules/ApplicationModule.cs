@@ -9,8 +9,8 @@ namespace MVCSkeleton.IOC.Modules
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {
-            initializationExpression.For<ISessionService>().Singleton().Use<SessionService>();
-            initializationExpression.For<IUserService>().Singleton().Use<UserService>();
+            initializationExpression.For<ISessionService>().Use<SessionService>();
+            initializationExpression.For<IUserService>().Use<UserService>();
         }
     }
 }

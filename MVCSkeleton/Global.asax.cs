@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Transactions;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -26,12 +25,11 @@ namespace MVCSkeleton
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
@@ -41,6 +39,7 @@ namespace MVCSkeleton
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            Exception lastError = Server.GetLastError();
             IOCProvider.Instance.Get<ISessionService>().Rollback();
         }
     }

@@ -6,6 +6,11 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
     {
         private IDatabaseFactory sessionFactory;
 
+        public EntityFrameworkSessionAdapter()
+        {
+            int a = 0;
+        }
+
         private IDatabaseFactory SessionFactory
         {
             get

@@ -8,28 +8,36 @@ using MVCSkeleton.Infrastracture.Utils.IOC;
 
 namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T :class, IAggregateRoot
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class, IAggregateRoot
     {
-        protected readonly MVCSkeletonDataContext context;
+        private readonly ISessionAdapter _sessionAdapter;
+        protected MVCSkeletonDataContext context;
         private IDbSet<T> _dbSet;
 
-        protected BaseRepository(): this(IOCProvider.Instance.Get<ISessionAdapter>())
+        protected BaseRepository() : this(IOCProvider.Instance.Get<ISessionAdapter>())
         {
         }
 
         private BaseRepository(ISessionAdapter sessionAdapter)
         {
-            context = ((EntityFrameworkSessionAdapter)sessionAdapter).CurrentSession;
-            context.Configuration.AutoDetectChangesEnabled = true;
-            _dbSet = context.Set<T>();
+            _sessionAdapter = sessionAdapter;
         }
 
         public IDbSet<T> Session
         {
-            get { return _dbSet; }
+            get
+            {
+                if (context == null)
+                {
+                    context = ((EntityFrameworkSessionAdapter) _sessionAdapter).CurrentSession;
+                    context.Configuration.AutoDetectChangesEnabled = true;
+                    _dbSet = context.Set<T>();
+                }
+                return _dbSet;
+            }
         }
 
-        public void Save(T domainObject) 
+        public void Save(T domainObject)
         {
             Session.Add(domainObject);
             context.SaveChanges();

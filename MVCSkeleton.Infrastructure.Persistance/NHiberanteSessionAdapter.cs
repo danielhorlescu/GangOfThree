@@ -6,6 +6,7 @@ using FluentNHibernate.Cfg.Db;
 using MVCSkeleton.Application.Session;
 using NHibernate;
 using NHibernate.Context;
+using NHibernate.Tool.hbm2ddl;
 
 namespace MVCSkeleton.Infrastructure.Persistance
 {
@@ -35,7 +36,7 @@ namespace MVCSkeleton.Infrastructure.Persistance
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly())).ExposeConfiguration(
                     cfg =>
                         {
-                            //new SchemaExport(cfg).Create(true, false);
+                            new SchemaExport(cfg).Create(true, true);
                             cfg.SetProperty("current_session_context_class",
                                             "thread_static");
                         }
