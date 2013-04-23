@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using MVCSkeleton.Controllers;
+using MVCSkeleton.Presentation.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MVCSkeleton.Tests.Controllers

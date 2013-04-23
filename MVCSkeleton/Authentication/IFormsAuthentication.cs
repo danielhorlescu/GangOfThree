@@ -1,4 +1,4 @@
-namespace MVCSkeleton.Authentication
+namespace MVCSkeleton.Presentation.Authentication
 {
     public interface IFormsAuthentication
     {

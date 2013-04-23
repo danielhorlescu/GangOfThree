@@ -1,4 +1,4 @@
-﻿namespace MVCSkeleton.DTOs
+﻿namespace MVCSkeleton.Presentation.DTOs
 {
     public class UserDTO
     {

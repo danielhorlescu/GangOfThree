@@ -4,7 +4,7 @@ using StructureMap;
 
 namespace MVCSkeleton.IOC.Modules
 {
-    internal class InfrastructureModule
+    public class InfrastructureModule
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {

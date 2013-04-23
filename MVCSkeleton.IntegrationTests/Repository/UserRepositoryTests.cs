@@ -1,8 +1,8 @@
-﻿using MVCSkeleton.Application.Repository;
-using MVCSkeleton.Application.Session;
+﻿using MVCSkeleton.Application.Session;
 using MVCSkeleton.ApplicationStartup;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.IOC;
+using MVCSkeleton.Infrastructure.Persistance.Repositories;
 using NUnit.Framework;
 
 namespace MVCSkeleton.IntegrationTests.Repository
@@ -10,16 +10,18 @@ namespace MVCSkeleton.IntegrationTests.Repository
     [TestFixture]
     public class UserRepositoryTests
     {
-        private IUserRepository _userRepository;
-
         [SetUp]
-        public void Setup() 
+        public void Setup()
         {
             ApplicationStartupModuleContainer.Instance.RegisterModulesFromConfigurationFile();
             ApplicationStartupModuleContainer.Instance.LoadRegisteredModules();
-            _userRepository = IOCProvider.Instance.Get<IUserRepository>();
         }
-       
+
+        private UserRepository CreateSUT()
+        {
+            return new UserRepository();
+        }
+
         [TearDown]
         public void CleanUp()
         {
@@ -31,9 +33,10 @@ namespace MVCSkeleton.IntegrationTests.Repository
         {
             var expectedUser = CreateUser();
 
-            _userRepository.Save(expectedUser);
+            UserRepository userRepository = CreateSUT();
+            userRepository.Save(expectedUser);
+            User actualUser = userRepository.Get(expectedUser.Id);
 
-            User actualUser = _userRepository.Get(expectedUser.Id);
             Assert.IsNotNull(actualUser);
             Assert.AreEqual(expectedUser.Id, actualUser.Id);
         }
@@ -41,13 +44,15 @@ namespace MVCSkeleton.IntegrationTests.Repository
         [Test]
         public void Should_Update_A_User_Password()
         {
-            var expectedUser = CreateUser();
-            string expectedPassword = "newPassword";
+            var user = CreateUser();
+            UserRepository userRepository = CreateSUT();
+            userRepository.Save(user);
 
-            _userRepository.Save(expectedUser);
-            _userRepository.ChangePassword(expectedUser.Name, expectedUser.Password, expectedPassword);
-            User actualUser = _userRepository.Get(expectedUser.Id);
-            Assert.AreEqual(expectedPassword, actualUser.Password);
+            var newPassword = "testPass";
+            userRepository.ChangePassword(user.Name, user.Password, newPassword);
+            User actualUser = userRepository.Get(user.Id);
+
+            Assert.AreEqual(newPassword, actualUser.Password);
         }
 
         [Test]
@@ -55,9 +60,13 @@ namespace MVCSkeleton.IntegrationTests.Repository
         {
             var user = CreateUser();
 
-            _userRepository.Save(user);
-            _userRepository.Delete(user);
-            User actualUser = _userRepository.Get(user.Id);
+            UserRepository userRepository = CreateSUT();
+            userRepository.Save(user);
+            IOCProvider.Instance.Get<ISessionAdapter>().Commit();
+            userRepository.Delete(user);
+            IOCProvider.Instance.Get<ISessionAdapter>().Commit();
+
+            User actualUser = userRepository.Get(user.Id);
             Assert.IsNull(actualUser);
         }
 

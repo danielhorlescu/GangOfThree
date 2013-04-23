@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace MVCSkeleton.IOC.Modules
 {
-    internal class NHibernateRepositoryModule
+    public class NHibernateRepositoryModule
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {

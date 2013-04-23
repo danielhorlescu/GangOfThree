@@ -2,7 +2,7 @@ using System;
 using System.Web;
 using System.Web.Security;
 
-namespace MVCSkeleton.Authentication
+namespace MVCSkeleton.Presentation.Authentication
 {
     public class FormsAuthenticationService : IFormsAuthentication
     {
@@ -17,7 +17,10 @@ namespace MVCSkeleton.Authentication
                 userName); //since Classic logins don't have a "Friendly Name".  OpenID logins are handled in the AuthController.
 
             string encTicket = FormsAuthentication.Encrypt(authTicket);
-            HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+            if (HttpContext.Current != null)
+            {
+                HttpContext.Current.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+            }
         }
         public void SignOut()
         {

@@ -1,5 +1,5 @@
-﻿using MVCSkeleton.ApplicationStartup;
-using MVCSkeleton.Mapper.Modules;
+﻿using MVCSkeleton.Mapper.Modules;
+using MVCSkeleton.Presentation.ApplicationStartup;
 
 namespace MVCSkeleton.Mapper
 {

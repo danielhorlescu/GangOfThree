@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MVCSkeleton.Models
+namespace MVCSkeleton.Presentation.Models
 {
     public class LoginModel
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
-using MVCSkeleton.ApplicationInterfaces;
-using MVCSkeleton.Authentication;
-using MVCSkeleton.DTOs;
-using MVCSkeleton.Models;
+using MVCSkeleton.Presentation.ApplicationInterfaces;
+using MVCSkeleton.Presentation.Authentication;
+using MVCSkeleton.Presentation.DTOs;
+using MVCSkeleton.Presentation.Models;
 
-namespace MVCSkeleton.Controllers
+namespace MVCSkeleton.Presentation.Controllers
 {
     public class UserController : Controller
     {
@@ -54,15 +54,15 @@ namespace MVCSkeleton.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(PasswordModel model)
+        public ActionResult Manage(PasswordModel model, string userName = null)
         {
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            SetReturnUrl();
             if (ModelState.IsValid)
             {
                 try
                 {
-                    userService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
-                    ViewBag.Message = "Password was successfullychanged .";
+                    userService.ChangePassword(userName??User.Identity.Name, model.OldPassword, model.NewPassword);
+                    ViewBag.Message = "Password was successfully changed.";
                     return RedirectToAction("Manage");
                 }
                 catch (Exception e)
@@ -71,6 +71,12 @@ namespace MVCSkeleton.Controllers
                 }
             }
             return View(model);
+        }
+
+        private void SetReturnUrl()
+        {
+            if (Url != null)
+                ViewBag.ReturnUrl = Url.Action("Manage");
         }
 
         public ActionResult Register()

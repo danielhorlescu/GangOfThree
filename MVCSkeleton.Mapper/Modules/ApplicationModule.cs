@@ -1,5 +1,5 @@
-using MVCSkeleton.DTOs;
 using MVCSkeleton.Domain;
+using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Mapper.Modules
 {

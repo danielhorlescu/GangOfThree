@@ -1,6 +1,6 @@
-using MVCSkeleton.DTOs;
+using MVCSkeleton.Presentation.DTOs;
 
-namespace MVCSkeleton.ApplicationInterfaces
+namespace MVCSkeleton.Presentation.ApplicationInterfaces
 {
     public interface IUserService
     {

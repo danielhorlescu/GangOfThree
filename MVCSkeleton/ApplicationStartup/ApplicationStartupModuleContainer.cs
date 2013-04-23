@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Reflection;
 
-namespace MVCSkeleton.ApplicationStartup
+namespace MVCSkeleton.Presentation.ApplicationStartup
 {
     public class ApplicationStartupModuleContainer
     {
