@@ -1,8 +1,8 @@
 ﻿using MVCSkeleton.Application.Session;
-using MVCSkeleton.ApplicationStartup;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.IOC;
-using MVCSkeleton.Infrastructure.Persistance.Repositories;
+using MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories;
+using MVCSkeleton.Presentation.ApplicationStartup;
 using NUnit.Framework;
 
 namespace MVCSkeleton.IntegrationTests.Repository
@@ -62,9 +62,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
 
             UserRepository userRepository = CreateSUT();
             userRepository.Save(user);
-            IOCProvider.Instance.Get<ISessionAdapter>().Commit();
             userRepository.Delete(user);
-            IOCProvider.Instance.Get<ISessionAdapter>().Commit();
 
             User actualUser = userRepository.Get(user.Id);
             Assert.IsNull(actualUser);
