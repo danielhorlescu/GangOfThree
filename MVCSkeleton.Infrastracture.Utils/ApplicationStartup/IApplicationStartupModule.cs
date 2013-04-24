@@ -1,4 +1,4 @@
-namespace MVCSkeleton.Presentation.ApplicationStartup
+namespace MVCSkeleton.Infrastracture.Utils.ApplicationStartup
 {
     public interface IApplicationStartupModule
     {

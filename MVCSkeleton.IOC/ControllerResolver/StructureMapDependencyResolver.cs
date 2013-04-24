@@ -18,7 +18,7 @@
 using System.Web.Http.Dependencies;
 using StructureMap;
 
-namespace MVCSkeleton.IOC
+namespace MVCSkeleton.IOC.ControllerResolver
 {
     /// <summary>
     /// The structure map dependency resolver.

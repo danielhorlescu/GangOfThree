@@ -22,7 +22,7 @@ using System.Web.Http.Dependencies;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace MVCSkeleton.IOC
+namespace MVCSkeleton.IOC.ControllerResolver
 {
     /// <summary>
     /// The structure map dependency scope.

@@ -1,8 +1,10 @@
 ﻿using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
+using MVCSkeleton.IOC;
+using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 using MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories;
-using MVCSkeleton.Presentation.ApplicationStartup;
+using MVCSkeleton.Mapper;
 using NUnit.Framework;
 
 namespace MVCSkeleton.IntegrationTests.Repository
@@ -13,8 +15,8 @@ namespace MVCSkeleton.IntegrationTests.Repository
         [SetUp]
         public void Setup()
         {
-            ApplicationStartupModuleContainer.Instance.RegisterModulesFromConfigurationFile();
-            ApplicationStartupModuleContainer.Instance.LoadRegisteredModules();
+            new ApplicationStartupModuleComposite(new IApplicationStartupModule[]
+            {new StructureMapApplicationStartupModule(), new AutoMapperApplicationStartupModule()}).Load();
         }
 
         private UserRepository CreateSUT()

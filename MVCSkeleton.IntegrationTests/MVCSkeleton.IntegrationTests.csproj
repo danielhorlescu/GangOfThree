@@ -46,6 +46,12 @@
     <Reference Include="MVCSkeleton.Infrastructure.Persistance.EntityFramework">
       <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="MVCSkeleton.IOC">
+      <HintPath>..\Binaries\MVCSkeleton.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Mapper">
+      <HintPath>..\Binaries\MVCSkeleton.Mapper.dll</HintPath>
+    </Reference>
     <Reference Include="MVCSkeleton.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\MVCSkeleton.Presentation.dll</HintPath>

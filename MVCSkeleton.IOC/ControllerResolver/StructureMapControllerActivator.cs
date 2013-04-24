@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using StructureMap;
 
-namespace MVCSkeleton.IOC
+namespace MVCSkeleton.IOC.ControllerResolver
 {
     public class StructureMapControllerActivator : IControllerActivator
     {

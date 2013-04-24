@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.IntegrationTests", "MVCSkeleton.IntegrationTests\MVCSkeleton.IntegrationTests.csproj", "{C9EBBBA9-064D-434D-9E35-8BE79EBB07AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Mapper", "MVCSkeleton.Mapper\MVCSkeleton.Mapper.csproj", "{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Mapper.AutoMapper", "MVCSkeleton.Mapper\MVCSkeleton.Mapper.AutoMapper.csproj", "{DFB07374-F8A4-4192-AF37-6E8E3013F9C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Infrastructure.Persistance.EntityFramework", "MVCSkeleton.Infrastructure.Persistance.EntityFramework\MVCSkeleton.Infrastructure.Persistance.EntityFramework.csproj", "{F7D8FC67-7939-4D66-B589-25FC97FD99D7}"
 EndProject

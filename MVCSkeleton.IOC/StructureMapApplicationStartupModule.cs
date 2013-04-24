@@ -1,7 +1,8 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
+using MVCSkeleton.IOC.ControllerResolver;
 using MVCSkeleton.IOC.Modules;
-using MVCSkeleton.Presentation.ApplicationStartup;
+using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
 using StructureMap;
 
 namespace MVCSkeleton.IOC

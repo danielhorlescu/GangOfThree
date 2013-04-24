@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using MVCSkeleton.IOC.ControllerResolver;
 using MVCSkeleton.Presentation.Authentication;
 using StructureMap;
 
