@@ -1,4 +1,4 @@
-using MVCSkeleton.ApplicationInterfaces;
+using MVCSkeleton.Presentation.ApplicationInterfaces;
 
 namespace MVCSkeleton.Application.Session
 {

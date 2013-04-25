@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace MVCSkeleton.Models
+namespace MVCSkeleton.Presentation.Models
 {
     public class RegisterModel
     {

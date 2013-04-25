@@ -1,8 +1,8 @@
 using MVCSkeleton.Application.Repository;
-using MVCSkeleton.ApplicationInterfaces;
-using MVCSkeleton.DTOs;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
+using MVCSkeleton.Presentation.ApplicationInterfaces;
+using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Application
 {

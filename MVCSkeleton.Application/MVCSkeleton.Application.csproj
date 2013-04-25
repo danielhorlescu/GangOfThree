@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MVCSkeleton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.dll</HintPath>
-    </Reference>
     <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
@@ -42,6 +38,10 @@
     <Reference Include="MVCSkeleton.Infrastracture.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MVCSkeleton.Presentation">
+      <HintPath>..\Binaries\MVCSkeleton.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

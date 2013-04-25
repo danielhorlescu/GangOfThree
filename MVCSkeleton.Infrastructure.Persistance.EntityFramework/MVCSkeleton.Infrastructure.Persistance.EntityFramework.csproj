@@ -71,6 +71,7 @@
     <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
       <Project>{803B97EB-41E8-4B5C-9DA8-EFD41CCCBA65}</Project>
       <Name>MVCSkeleton.Infrastracture.Utils</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

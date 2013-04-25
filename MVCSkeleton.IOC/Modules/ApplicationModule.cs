@@ -1,11 +1,11 @@
 using MVCSkeleton.Application;
 using MVCSkeleton.Application.Session;
-using MVCSkeleton.ApplicationInterfaces;
+using MVCSkeleton.Presentation.ApplicationInterfaces;
 using StructureMap;
 
 namespace MVCSkeleton.IOC.Modules
 {
-    internal class ApplicationModule
+    public class ApplicationModule
     {
         public void Initialize(IInitializationExpression initializationExpression)
         {

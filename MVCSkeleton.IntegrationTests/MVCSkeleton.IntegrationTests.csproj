@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MVCSkeleton, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.dll</HintPath>
-    </Reference>
     <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
@@ -47,9 +43,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="MVCSkeleton.Infrastructure.Persistance, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MVCSkeleton.Infrastructure.Persistance.EntityFramework">
+      <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.IOC">
+      <HintPath>..\Binaries\MVCSkeleton.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Mapper">
+      <HintPath>..\Binaries\MVCSkeleton.Mapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCSkeleton.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.dll</HintPath>
+      <HintPath>..\Binaries\MVCSkeleton.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>

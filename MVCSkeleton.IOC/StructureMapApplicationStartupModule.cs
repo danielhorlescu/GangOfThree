@@ -1,12 +1,13 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
-using MVCSkeleton.ApplicationStartup;
+using MVCSkeleton.IOC.ControllerResolver;
 using MVCSkeleton.IOC.Modules;
+using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
 using StructureMap;
 
 namespace MVCSkeleton.IOC
 {
-    internal class StructureMapApplicationStartupModule : IApplicationStartupModule
+    public class StructureMapApplicationStartupModule : IApplicationStartupModule
     {
         public void Load()
         {
@@ -23,11 +24,16 @@ namespace MVCSkeleton.IOC
                                              new PresentationModule().Initialize(x);
                                              new ApplicationModule().Initialize(x);
                                             // new NHibernateRepositoryModule().Initialize(x);
-                                             new EntityFrameworkRepositoryModule().Initialize(x);
+                                             GetRepositoryModule().Initialize(x);
                                              new InfrastructureModule().Initialize(x);
                                          });
 
             return ObjectFactory.Container;
+        }
+
+        protected virtual EntityFrameworkRepositoryModule GetRepositoryModule()
+        {
+            return new EntityFrameworkRepositoryModule();
         }
 
         private void SetInterfaceDefaultBindings()

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Binaries\</OutputPath>
+    <OutputPath>bin\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -68,6 +68,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationStartup\ApplicationStartupModuleComposite.cs" />
+    <Compile Include="ApplicationStartup\IApplicationStartupModule.cs" />
     <Compile Include="DesignByContract\Check.cs" />
     <Compile Include="IOC\IIOCProvider.cs" />
     <Compile Include="IOC\IOCProvider.cs" />

@@ -1,4 +1,4 @@
-﻿namespace MVCSkeleton.ApplicationInterfaces
+﻿namespace MVCSkeleton.Presentation.ApplicationInterfaces
 {
     public interface ISessionService
     {
