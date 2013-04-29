@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.Mvc;
+
 using Kendo.Mvc.Infrastructure;
 using Kendo.Mvc.UI.Html;
-using MVCSkeleton.Controls.Builders;
-using MVCSkeleton.Controls.Controls;
-using System.Collections.Generic;
 
-namespace MVCSkeleton.Controls
+using MVCSkeleton.Presentation.Controls.Builders;
+using MVCSkeleton.Presentation.Controls.Controls;
+
+namespace MVCSkeleton.Presentation.Controls
 {
     public class ControlsFactory : Kendo.Mvc.UI.Fluent.WidgetFactory
     {
@@ -23,6 +25,11 @@ namespace MVCSkeleton.Controls
         public override Kendo.Mvc.UI.Fluent.ComboBoxBuilder ComboBox()
         {
             return new ComboBoxBuilder(new ComboBox(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData, UrlGenerator));
+        }
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<Decimal> CurrencyTextBox()
+        {
+            return NumericTextBox<Decimal>().Format("c");
         }
 
         public override Kendo.Mvc.UI.Fluent.DateTimePickerBuilder DateTimePicker()
@@ -66,6 +73,16 @@ namespace MVCSkeleton.Controls
             GridBuilder<DataRowView> gridBuilder = (GridBuilder<DataRowView>) Grid<DataRowView>();
             gridBuilder.SetDataSource(dataSource);
             return gridBuilder;
+        }
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<double> NumericTextBox()
+        {
+            return new NumericTextBoxBuilder<double>(new NumericTextBox<double>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));
+        }
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<T> NumericTextBox<T>()
+        {
+            return new NumericTextBoxBuilder<T>(new NumericTextBox<T>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));
         }
     }
 }

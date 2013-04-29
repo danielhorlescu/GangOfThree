@@ -1,6 +1,6 @@
-﻿using MVCSkeleton.Controls.Controls;
+﻿using MVCSkeleton.Presentation.Controls.Controls;
 
-namespace MVCSkeleton.Controls.Builders
+namespace MVCSkeleton.Presentation.Controls.Builders
 {
     public class DateTimePickerBuilder : Kendo.Mvc.UI.Fluent.DateTimePickerBuilder
     {

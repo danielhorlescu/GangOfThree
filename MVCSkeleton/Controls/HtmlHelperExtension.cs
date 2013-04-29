@@ -1,4 +1,4 @@
-﻿namespace MVCSkeleton.Controls
+﻿namespace MVCSkeleton.Presentation.Controls
 {
     public static class HtmlHelperExtension
     {

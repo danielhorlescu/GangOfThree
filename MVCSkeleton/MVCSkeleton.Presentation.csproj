@@ -143,6 +143,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
+    <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
+    <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Controllers\KendoController.cs" />
@@ -170,7 +172,6 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\UnitPrice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace MVCSkeleton.Models
+﻿namespace MVCSkeleton.Presentation.Models
 {
     public class CategoryModel
     {

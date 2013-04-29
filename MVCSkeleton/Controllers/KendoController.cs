@@ -1,32 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
-using MVCSkeleton.Controls;
-using MVCSkeleton.Models;
 
-namespace MVCSkeleton.Controllers
+using MVCSkeleton.Presentation.Controls;
+using MVCSkeleton.Presentation.Models;
+
+namespace MVCSkeleton.Presentation.Controllers
 {
     public class KendoController : Controller
     {
-        private KendoModel model;
+        private readonly KendoModel _model;
 
         public KendoController()
         {
-            model = KendoModelFactory.CreateModel();
+            _model = KendoModelFactory.CreateModel();
         }
 
         public ActionResult Index()
         {
-            return View("KendoDemo", model);
+            return View("KendoDemo", _model);
+        }
+
+        public ActionResult GetCascadeProducts(int categoryId)
+        {
+            return Json(_model.Products.Where(p => p.CategoryId == categoryId), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Products_Read([DataSourceRequest] DataSourceRequest dsRequest)
         {
-            return Json(model.Products.ToDataSourceResult(dsRequest));
+            return Json(_model.Products.ToDataSourceResult(dsRequest));
         }
 
         public ActionResult Product_Create([DataSourceRequest] DataSourceRequest dsRequest, ProductModel product)
@@ -36,7 +41,7 @@ namespace MVCSkeleton.Controllers
 
         public ActionResult Product_Update([DataSourceRequest] DataSourceRequest dsRequest, ProductModel product)
         {
-            return Json(model.Products.ToDataSourceResult(dsRequest));
+            return Json(_model.Products.ToDataSourceResult(dsRequest));
         }
 
         public ActionResult Product_Delete([DataSourceRequest] DataSourceRequest dsRequest, ProductModel product)
@@ -45,9 +50,9 @@ namespace MVCSkeleton.Controllers
         }
 
         [HttpPost]
-        public ActionResult Submit(string Countries, string TShirtFabric, DateTime DateTimePicker, string Categories)
+        public ActionResult Submit(string countries, string shirtFabric, DateTime dateTimePicker, string categories, double percentage)
         {
-            return View("KendoDemo", this.model);
+            return View("KendoDemo", _model);
         }
     }
 }

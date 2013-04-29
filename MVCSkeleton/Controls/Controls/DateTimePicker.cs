@@ -1,7 +1,8 @@
 ﻿using System.Web.Mvc;
+
 using Kendo.Mvc.Infrastructure;
 
-namespace MVCSkeleton.Controls.Controls
+namespace MVCSkeleton.Presentation.Controls.Controls
 {
     public class DateTimePicker : Kendo.Mvc.UI.DateTimePicker
     {

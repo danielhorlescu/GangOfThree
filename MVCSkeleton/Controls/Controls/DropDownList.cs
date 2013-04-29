@@ -1,8 +1,9 @@
 ﻿using System.Web.Mvc;
+
 using Kendo.Mvc;
 using Kendo.Mvc.Infrastructure;
 
-namespace MVCSkeleton.Controls.Controls
+namespace MVCSkeleton.Presentation.Controls.Controls
 {
     public class DropDownList : Kendo.Mvc.UI.DropDownList
     {

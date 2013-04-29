@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using Kendo.Mvc.UI;
-using System.Collections;
 
-namespace MVCSkeleton.Controls.Builders
+using MVCSkeleton.Presentation.Controls.Controls;
+
+namespace MVCSkeleton.Presentation.Controls.Builders
 {
     public class GridBuilder<T> : Kendo.Mvc.UI.Fluent.GridBuilder<T> where T : class
     {
