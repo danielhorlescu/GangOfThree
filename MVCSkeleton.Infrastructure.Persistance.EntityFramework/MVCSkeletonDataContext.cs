@@ -11,10 +11,10 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
     {
         private readonly TransactionScope _transactionScope;
 
-        public MVCSkeletonDataContext()
+        public MVCSkeletonDataContext(TransactionScope transactionScope)
             : base(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString)
         {
-            _transactionScope = new TransactionScope();
+            _transactionScope = transactionScope;
         }
 
         public DbSet<User> Users { get; set; }
@@ -28,12 +28,19 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            _transactionScope.Dispose();
+            if (_transactionScope != null)
+            {
+                _transactionScope.Dispose();
+            }
+
         }
 
         public void Commit()
         {
-            _transactionScope.Complete();
+            if (_transactionScope != null)
+            {
+                _transactionScope.Complete();
+            }
         }
     }
 }

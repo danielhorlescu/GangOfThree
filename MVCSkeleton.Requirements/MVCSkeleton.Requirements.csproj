@@ -65,9 +65,8 @@
     <Reference Include="nunit.framework">
       <HintPath>..\Binaries\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MVCSkeleton.Tests\bin\debug\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap">
+      <HintPath>..\Binaries\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />

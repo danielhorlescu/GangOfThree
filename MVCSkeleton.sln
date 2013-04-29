@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Infrastructure.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.Requirements", "MVCSkeleton.Requirements\MVCSkeleton.Requirements.csproj", "{7B8F7388-87B6-4E71-9B8B-F6929C64E25B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSkeleton.DatabaseCreator", "MVCSkeleton.DatabaseCreator\MVCSkeleton.DatabaseCreator.csproj", "{07840DD4-905E-4419-9E83-3F270B0F4244}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{7B8F7388-87B6-4E71-9B8B-F6929C64E25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B8F7388-87B6-4E71-9B8B-F6929C64E25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B8F7388-87B6-4E71-9B8B-F6929C64E25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07840DD4-905E-4419-9E83-3F270B0F4244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07840DD4-905E-4419-9E83-3F270B0F4244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07840DD4-905E-4419-9E83-3F270B0F4244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07840DD4-905E-4419-9E83-3F270B0F4244}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
