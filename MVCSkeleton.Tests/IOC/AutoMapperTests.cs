@@ -1,12 +1,12 @@
 ﻿using MVCSkeleton.Mapper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace MVCSkeleton.Tests.IOC
 {
-    [TestClass]
+    [TestFixture]
     public class AutoMapperTests
     {
-        [TestMethod]
+        [Test]
         public void Assert_that_configurations_are_valid()
         {
             new AutoMapperApplicationStartupModule().Load();

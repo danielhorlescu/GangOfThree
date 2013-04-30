@@ -2,10 +2,14 @@
 {
     public class MenuItem : IAggregateRoot
     {
-        public long Id { get; set; }
+        public virtual long Id { get; set; }
 
-        public string Controller { get; set; }
+        public virtual string Controller { get; set; }
 
-        public string Action { get; set; }
+        public virtual string Action { get; set; }
+
+        public virtual string Name { get; set; }
+
+        public virtual MenuItem ParentItem { get; set; }
     }
 }

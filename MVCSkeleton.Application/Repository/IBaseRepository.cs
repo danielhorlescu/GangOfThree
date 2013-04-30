@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MVCSkeleton.Domain;
 
 namespace MVCSkeleton.Application.Repository
@@ -9,5 +10,7 @@ namespace MVCSkeleton.Application.Repository
         T Get(long id);
 
         void Delete(T user);
+
+        void Save(IEnumerable<T> domainObjects);
     }
 }

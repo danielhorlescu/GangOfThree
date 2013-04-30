@@ -37,6 +37,14 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
+        public void Save(IEnumerable<T> domainObjects)
+        {
+            foreach (var domainObject in domainObjects)
+            {
+                Save(domainObject);
+            }
+        }
+
         public void Save(T domainObject)
         {
             Session.Add(domainObject);

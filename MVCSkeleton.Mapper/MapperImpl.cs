@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
 
 namespace MVCSkeleton.Mapper
@@ -42,6 +43,15 @@ namespace MVCSkeleton.Mapper
         public TDestination Map<TSource, TDestination>(TSource source, TDestination destination)
         {
             return AutoMapper.Mapper.Map(source, destination);
+        }
+
+        public List<TDestination> Map<TSource, TDestination>(List<TSource> source, List<TDestination> destination) where TDestination : new()
+        {
+            foreach (var sourceItem in source)
+            {
+                destination.Add(Map(sourceItem, new TDestination()));
+            }
+            return destination;
         }
 
         /// <summary>

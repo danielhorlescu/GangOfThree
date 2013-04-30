@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FluentMappings\MenuItemMapping.cs" />
     <Compile Include="FluentMappings\UserMapping.cs" />
     <Compile Include="DatabaseFactory.cs" />
     <Compile Include="IDatabaseFactory.cs" />
@@ -57,7 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityFrameworkSessionAdapter.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\IMenuItemRepository.cs" />
     <Compile Include="Repositories\MenuItemRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

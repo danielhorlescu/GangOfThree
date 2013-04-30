@@ -118,6 +118,13 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\Binaries\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
@@ -136,6 +143,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationInterfaces\IMenuItemService.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="ApplicationInterfaces\ISessionService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -143,9 +151,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
+    <Compile Include="DTOs\RootMenuItemDTO.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Controllers\KendoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -168,6 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\KendoModel.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -519,6 +530,7 @@
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Menu\GetRootMenuItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

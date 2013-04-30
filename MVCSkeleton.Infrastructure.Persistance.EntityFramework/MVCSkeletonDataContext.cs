@@ -11,29 +11,38 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
     {
         private readonly TransactionScope _transactionScope;
 
-        public MVCSkeletonDataContext()
+        public MVCSkeletonDataContext(TransactionScope transactionScope)
             : base(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString)
         {
-            _transactionScope = new TransactionScope();
+            _transactionScope = transactionScope;
         }
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<MenuItem> MenuItems { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             modelBuilder.Configurations.Add(new UserMapping());
+            modelBuilder.Configurations.Add(new MenuItemMapping());
         }
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            _transactionScope.Dispose();
+            if (_transactionScope != null)
+            {
+                _transactionScope.Dispose();
+            }
+
         }
 
         public void Commit()
         {
-            _transactionScope.Complete();
+            if (_transactionScope != null)
+            {
+                _transactionScope.Complete();
+            }
         }
     }
 }

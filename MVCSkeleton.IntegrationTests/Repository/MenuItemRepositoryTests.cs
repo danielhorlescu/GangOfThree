@@ -1,4 +1,5 @@
-﻿using MVCSkeleton.Application.Session;
+﻿using System.Collections.Generic;
+using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
 using MVCSkeleton.IOC;
 using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
@@ -31,7 +32,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
         }
 
         [Test]
-        public void Should_Save_A_User()
+        public void Should_Save_A_Menu_Item()
         {
             var expectedMenuItem = CreateMenuItem();
 
@@ -43,39 +44,90 @@ namespace MVCSkeleton.IntegrationTests.Repository
             Assert.AreEqual(expectedMenuItem.Id, actualMenuItem.Id);
         }
 
+        [Test]
+        public void Should_Delete_A_Menu_Item()
+        {
+            var menuItem = CreateMenuItem();
+
+            MenuItemRepository menuItemRepository = CreateSUT();
+            menuItemRepository.Save(menuItem);
+            menuItemRepository.Delete(menuItem);
+
+            MenuItem actualMenuItem = menuItemRepository.Get(menuItem.Id);
+            Assert.IsNull(actualMenuItem);
+        }
+
+        [Test]
+        public void Should_Update_Name()
+        {
+            var expectedMenuItem = CreateMenuItem();
+
+            MenuItemRepository menuItemRepository = CreateSUT();
+            menuItemRepository.Save(expectedMenuItem);
+            MenuItem actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
+
+            string updatedMenuItem = "Updated Menu Item";
+            actualMenuItem.Name = updatedMenuItem;
+            menuItemRepository.Save(actualMenuItem);
+
+            actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
+            Assert.IsNotNull(actualMenuItem);
+            Assert.AreEqual(updatedMenuItem, actualMenuItem.Name);
+        }
+
         //[Test]
-        //public void Should_Update_A_User_Password()
+        //public void Should_Return_Correct_Number_Of_Aggregate_Menu_Items()
         //{
-        //    var user = CreateMenuItem();
-        //    UserRepository userRepository = CreateSUT();
-        //    userRepository.Save(user);
+        //    List<MenuItem> menuItems = CreateMenuItems();
 
-        //    var newPassword = "testPass";
-        //    userRepository.ChangePassword(user.Name, user.Password, newPassword);
-        //    User actualUser = userRepository.Get(user.Id);
+        //    MenuItemRepository menuItemRepository = CreateSUT();
+        //    menuItemRepository.Save(menuItems);
 
-        //    Assert.AreEqual(newPassword, actualUser.Password);
+        //    IOCProvider.Instance.Get<ISessionAdapter>().Commit();
+           // List<MenuItem> rootMenuItems = menuItemRepository.GetRootMenuItems();
+          //  Assert.IsTrue(rootMenuItems.Count == 2);
         //}
 
         //[Test]
-        //public void Should_Delete_A_User()
+        //public void Should_Load_ChildMenuItem_With_LazyLoading_By_Default()
         //{
-        //    var user = CreateMenuItem();
 
-        //    UserRepository userRepository = CreateSUT();
-        //    userRepository.Save(user);
-        //    userRepository.Delete(user);
+        //    MenuItemRepository menuItemRepository = CreateSUT();
+        //    MenuItem withParentItem = menuItemRepository.GetWithParentItem(19);
+        //    // MenuItem menuItem = menuItemRepository.Get(19);
 
-        //    User actualUser = userRepository.Get(user.Id);
-        //    Assert.IsNull(actualUser);
+        //    MenuItem parentItem = withParentItem.ParentItem;
+
         //}
 
-        private static MenuItem CreateMenuItem()
+        private List<MenuItem> CreateMenuItems()
+        {
+            List<MenuItem> testMenuItems = new List<MenuItem>();
+
+            MenuItem rootMenuItem = CreateAggregateMenuItem("Menu Root");
+            MenuItem aggregateMenuItem1 = CreateAggregateMenuItem("Menu Aggregate 1", rootMenuItem);
+            MenuItem aggregateMenuItem2 = CreateAggregateMenuItem("Menu Aggregate 2", rootMenuItem);
+            testMenuItems.Add(CreateMenuItem("testController1", "testAction1", "MenuItem1", aggregateMenuItem1));
+             testMenuItems.Add( CreateMenuItem("testController1", "testAction1", "MenuItem1",aggregateMenuItem2));
+              testMenuItems.Add(CreateMenuItem("testController1", "testAction1", "MenuItem1",aggregateMenuItem2));
+           
+            return testMenuItems;
+        }
+
+        private MenuItem CreateMenuItem(string controller = "User", string action = "GetAccounts", string name = "Test Menu Item",
+            MenuItem aggregateMenuItem = null)
         {
             MenuItem expectedMenuItem = new MenuItem();
-            expectedMenuItem.Controller = "User";
-            expectedMenuItem.Action = "GetAccounts";
+            expectedMenuItem.Controller = controller;
+            expectedMenuItem.Action = action;
+            expectedMenuItem.Name = name;
+            expectedMenuItem.ParentItem = aggregateMenuItem;
             return expectedMenuItem;
+        }
+
+        private MenuItem CreateAggregateMenuItem(string menuAggregate, MenuItem rootMenuItem = null)
+        {
+            return new MenuItem {Name = menuAggregate, ParentItem = rootMenuItem};
         }
     }
 

@@ -1,4 +1,6 @@
-﻿namespace MVCSkeleton.Infrastracture.Utils.Mapper
+﻿using System.Collections.Generic;
+
+namespace MVCSkeleton.Infrastracture.Utils.Mapper
 {
     /// <summary>
     /// IMapper interface.
@@ -23,6 +25,8 @@
         /// <param name="destination">The destination.</param>
         /// <returns></returns>
         TDestination Map<TSource, TDestination>(TSource source, TDestination destination);
+
+        List<TDestination> Map<TSource, TDestination>(List<TSource> source, List<TDestination> destination) where TDestination : new();
 
         /// <summary>
         /// Asserts the configuration is valid.
