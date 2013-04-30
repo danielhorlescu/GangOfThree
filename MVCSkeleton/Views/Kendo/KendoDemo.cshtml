@@ -10,52 +10,46 @@
     @using (Html.BeginForm("Submit", "Kendo", FormMethod.Post))
     {
         <label for="Countries">Choose shipping countries :</label>
-        @(Html.Controls()
-            .AutoComplete()
-            .Name("countries")
-            .Filter("startswith")
-            .Placeholder("Select countries...")
-            .BindTo(Model.Countries)
-            .Separator(", "))
+        @(Html.Controls().AutoComplete()
+              .Name("countries")
+              .Filter("startswith")
+              .Placeholder("Select countries...")
+              .BindTo(Model.Countries)
+              .Separator(", "))
         <br/>
         <label for="TShirt">Choose T-shirt fabric :</label>
         @(Html.Controls().ComboBox()
-            .Name("shirtFabric")
-            .Filter("contains")
-            .Placeholder("Select T-shirt fabric...")
-            .DataTextField("Text")
-            .DataValueField("Value")
-            .BindTo(Model.Fabrics.Select(x => new SelectListItem{ Text = x, Value = Model.Fabrics.IndexOf(x).ToString()}))
-            .SelectedIndex(3)
-            .Suggest(true))
+              .Name("shirtFabric")
+              .Filter("contains")
+              .Placeholder("Select T-shirt fabric...")
+              .DataTextField("Text")
+              .DataValueField("Value")
+              .BindTo(Model.Fabrics.Select(x => new SelectListItem{ Text = x, Value = Model.Fabrics.IndexOf(x).ToString()}))
+              .SelectedIndex(3)
+              .Suggest(true))
         <br/>
         <label for="DateTimePicker">Choose Date Time :</label>
         @(Html.Controls().DateTimePicker()
-            .Name("dateTimePicker")
-            .Value(DateTime.Now))
+              .Name("dateTimePicker")
+              .Value(DateTime.Now))
         <br/>
         <label for="Categories">Choose Category :</label>
         @(Html.Controls().DropDownList()
-            .BindTo(Model.Categories)
-            .Name("categories")
-            .OptionLabel("Select category...")
-            .DataTextField("Name")
-            .DataValueField("Id"))
+              .BindTo(Model.Categories)
+              .Name("categories")
+              .OptionLabel("Select category...")
+              .DataTextField("Name")
+              .DataValueField("Id"))
         <br/>
         <label for="Products">Choose Product :</label>
         @(Html.Controls().DropDownList()
-            .Name("Products")
-            .OptionLabel("Select product...")
-            .DataTextField("ProductName")
-            .DataValueField("Id")
-            .DataSource(source => {
-                  source.Read(read =>
-                      {
-                          read.Action("GetCascadeProducts", "Kendo")
-                              .Data("SetCategories");
-                      })
-                  .ServerFiltering(true);
-              })
+              .Name("Products")
+              .OptionLabel("Select product...")
+              .DataTextField("ProductName")
+              .DataValueField("Id")
+              .DataSource(source => source.Read(read => read.Action("GetCascadeProducts", "Kendo")
+                                                            .Data("SetCategories"))
+                                          .ServerFiltering(true))
               .Enable(false)
               .AutoBind(false)
               .CascadeFrom("categories"))
@@ -100,34 +94,38 @@
             </div>
         </div>
         <br/>
-        <input type="submit" value="Submit" onclick="//alert($('#Countries').data('kendoAutoComplete').value());"/>      
+        <input type="submit" value="Submit" onclick="//alert($('#Countries').data('kendoAutoComplete').value());"/>
     }
     <br/>
     <br/>
     <label for="ProductsGrid">Products:</label>
     @(Html.Controls().Grid(Model.Products)    
-        .Name("ProductsGrid")
-        .Columns(columns =>
-            {
-                columns.Bound(p => p.ProductName);
-                columns.Bound(p => p.ProductCode);
-                columns.Bound(p => p.UnitPrice);
-                columns.Command(command => { command.Edit(); command.Destroy(); });
-            })
-        .ToolBar(toolbar => toolbar.Create())
-        .Editable(x => x.Mode(GridEditMode.PopUp))
-        .Groupable()
-        .Pageable()
-        .Sortable()
-        .Scrollable()
-        .Filterable()
-        .DataSource(ds => ds
-            .Ajax()
-            .Read(read => read.Action("Products_Read", "Kendo"))
-            .Model(model => model.Id(p => p.Id))
-            .Create(create => create.Action("Product_Create", "Kendo"))
-            .Destroy(destroy => destroy.Action("Product_Delete", "Kendo"))
-            .Update(update => update.Action("Product_Update", "Kendo"))))  
+          .Name("ProductsGrid")
+          .Columns(columns =>
+              {
+                  columns.Bound(p => p.ProductName);
+                  columns.Bound(p => p.ProductCode);
+                  columns.Bound(p => p.UnitPrice).Width(120);
+                  columns.Command(command => { command.Edit(); command.Destroy(); });
+              })
+          .ToolBar(toolbar => toolbar.Create())
+          .Editable(x => x.Mode(GridEditMode.PopUp))
+          .Groupable()
+          .Pageable()
+          .Sortable()
+          .Scrollable()
+          .Filterable()
+          .DataSource(ds => ds.Ajax()
+                              .Read(read => read.Action("Products_Read", "Kendo"))
+                              .Model(model => model.Id(p => p.Id))
+                              .Create(create => create.Action("Product_Create", "Kendo"))
+                              .Destroy(destroy => destroy.Action("Product_Delete", "Kendo"))
+                              .Update(update => update.Action("Product_Update", "Kendo"))))  
     <br/>
+    <input type="button" id="refreshProductsGridData" value="Refresh Data" onclick="/*$('#ProductsGrid').data('kendoGrid').dataSource.read();*/" />
     
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bindings")
+}

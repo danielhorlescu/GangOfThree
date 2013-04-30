@@ -9,7 +9,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.FluentMappings
         {
             HasKey(u => u.Id);
             Property(u => u.Name).HasMaxLength(200).IsRequired();
-            Property(u => u.Password).HasMaxLength(20).IsRequired();
+            Property(u => u.Password).HasMaxLength(200).IsRequired();
         }
     }
 }
