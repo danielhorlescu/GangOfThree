@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
 using MVCSkeleton.IOC;
 using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
-using MVCSkeleton.Infrastracture.Utils.IOC;
 using MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories;
 using MVCSkeleton.Mapper;
 using NUnit.Framework;
@@ -23,12 +21,6 @@ namespace MVCSkeleton.IntegrationTests.Repository
         private MenuItemRepository CreateSUT()
         {
             return new MenuItemRepository();
-        }
-
-        [TearDown]
-        public void CleanUp()
-        {
-            IOCProvider.Instance.Get<ISessionAdapter>().Rollback();
         }
 
         [Test]

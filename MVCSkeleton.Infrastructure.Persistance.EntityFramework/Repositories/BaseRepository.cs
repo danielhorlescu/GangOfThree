@@ -48,7 +48,6 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         public void Save(T domainObject)
         {
             Session.Add(domainObject);
-            context.SaveChanges();
         }
 
         public T Get(long id)
@@ -59,7 +58,6 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         public void Delete(T domainObject)
         {
             Session.Remove(domainObject);
-            context.SaveChanges();
         }
 
         public IEnumerable<T> GetAll()

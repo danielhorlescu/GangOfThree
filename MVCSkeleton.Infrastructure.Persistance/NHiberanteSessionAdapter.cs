@@ -88,29 +88,9 @@ namespace MVCSkeleton.Infrastructure.Persistance
             }
         }
 
-        public void Rollback()
+        public void CommitWithoutDispose()
         {
-            if (sessionFactory == null)
-            {
-                return;
-            }
-            ISession session = CurrentSessionContext.Unbind(sessionFactory);
-            if (session == null)
-            {
-                return;
-            }
-            try
-            {
-                session.Transaction.Rollback();
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                session.Close();
-                session.Dispose();
-            }
+            throw new NotImplementedException();
         }
     }
 }

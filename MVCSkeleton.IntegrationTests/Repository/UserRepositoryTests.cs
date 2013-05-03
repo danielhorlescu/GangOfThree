@@ -1,4 +1,5 @@
-﻿using MVCSkeleton.Application.Session;
+﻿using System.Transactions;
+using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
 using MVCSkeleton.IOC;
 using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
@@ -24,12 +25,6 @@ namespace MVCSkeleton.IntegrationTests.Repository
             return new UserRepository();
         }
 
-        [TearDown]
-        public void CleanUp()
-        {
-            IOCProvider.Instance.Get<ISessionAdapter>().Rollback();
-        }
-
         [Test]
         public void Should_Save_A_User()
         {
@@ -46,15 +41,19 @@ namespace MVCSkeleton.IntegrationTests.Repository
         [Test]
         public void Should_Update_A_User_Password()
         {
+            TransactionScope transactionScope = new TransactionScope();
             var user = CreateUser();
             UserRepository userRepository = CreateSUT();
             userRepository.Save(user);
-
+            IOCProvider.Instance.Get<ISessionAdapter>().CommitWithoutDispose();
             var newPassword = "testPass";
             userRepository.ChangePassword(user.Name, user.Password, newPassword);
+            IOCProvider.Instance.Get<ISessionAdapter>().CommitWithoutDispose();
+
             User actualUser = userRepository.Get(user.Id);
 
             Assert.AreEqual(newPassword, actualUser.Password);
+            transactionScope.Dispose();
         }
 
         [Test]

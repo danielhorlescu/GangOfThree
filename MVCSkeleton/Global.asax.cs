@@ -17,9 +17,6 @@ namespace MVCSkeleton.Presentation
     {
         protected void Application_Start()
         {
-            //  ApplicationStartupModuleComposite.Instance.RegisterModulesFromConfigurationFile();
-            // ApplicationStartupModuleComposite.Instance.LoadRegisteredModules();
-            // Bootstrapper.With.AutoMapper().Start();
 
             AreaRegistration.RegisterAllAreas();
 
@@ -40,7 +37,6 @@ namespace MVCSkeleton.Presentation
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            IOCProvider.Instance.Get<ISessionService>().Rollback();
         }
     }
 }
