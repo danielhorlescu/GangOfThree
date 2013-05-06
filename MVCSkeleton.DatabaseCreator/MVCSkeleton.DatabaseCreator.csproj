@@ -57,11 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
-      <Project>{6D845853-16D3-4802-A8E9-0E97DA53AF69}</Project>
+      <Project>{6d845853-16d3-4802-a8e9-0e97da53af69}</Project>
       <Name>MVCSkeleton.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MVCSkeleton.Infrastructure.Persistance.EntityFramework\MVCSkeleton.Infrastructure.Persistance.EntityFramework.csproj">
-      <Project>{F7D8FC67-7939-4D66-B589-25FC97FD99D7}</Project>
+      <Project>{f7d8fc67-7939-4d66-b589-25fc97fd99d7}</Project>
       <Name>MVCSkeleton.Infrastructure.Persistance.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
