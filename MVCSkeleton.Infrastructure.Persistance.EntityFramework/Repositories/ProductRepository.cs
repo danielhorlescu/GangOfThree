@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Domain;
+using System.Linq;
 
 namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 {
@@ -8,7 +9,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
     {
         public List<Product> GetProducts()
         {
-            throw new System.NotImplementedException();
+            return Session.ToList();
         }
     }
 }

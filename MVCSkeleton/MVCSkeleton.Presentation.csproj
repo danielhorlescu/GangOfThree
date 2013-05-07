@@ -151,6 +151,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
@@ -531,6 +532,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Menu\GetRootMenuItems.cshtml" />
+    <Content Include="Views\Product\GetProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

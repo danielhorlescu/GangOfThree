@@ -25,12 +25,6 @@ namespace MVCSkeleton.IntegrationTests.Repository
             return new ProductRepository();
         }
 
-        [TearDown]
-        public void CleanUp()
-        {
-            IOCProvider.Instance.Get<ISessionAdapter>().Rollback();
-        }
-
         [Test]
         public void Should_Save_A_Product()
         {

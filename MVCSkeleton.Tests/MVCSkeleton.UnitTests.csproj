@@ -128,6 +128,7 @@
   <ItemGroup>
     <Compile Include="Application\ProductServiceTests.cs" />
     <Compile Include="Controllers\MenuControllerTests.cs" />
+    <Compile Include="Controllers\ProductControllerTests.cs" />
     <Compile Include="IOC\AutoMapperTests.cs" />
     <Compile Include="IOC\IOCTests.cs" />
     <Compile Include="Application\MenuItemServiceTests.cs" />
