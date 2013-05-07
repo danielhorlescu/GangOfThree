@@ -11,9 +11,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MVCSkeleton.Tests</RootNamespace>
     <AssemblyName>MVCSkeleton.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,28 +33,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FakeItEasy">
       <HintPath>..\packages\FakeItEasy.1.10.0\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
+    <Reference Include="Kendo.Mvc, Version=2013.1.319.340, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\KENDOUIMVC\2013.1.319.340\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.IOC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.IOC.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Mapper.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -126,7 +117,6 @@
     <Compile Include="Controllers\MenuControllerTests.cs" />
     <Compile Include="Controllers\StoreControllerTests.cs" />
     <Compile Include="IOC\AutoMapperTests.cs" />
-    <Compile Include="IOC\IOCTests.cs" />
     <Compile Include="Application\MenuItemServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -137,16 +127,31 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">
+      <Project>{988c1cee-b25a-4485-b871-1dfebfa88846}</Project>
+      <Name>MVCSkeleton.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
+      <Project>{6d845853-16d3-4802-a8e9-0e97da53af69}</Project>
+      <Name>MVCSkeleton.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
-      <Project>{803B97EB-41E8-4B5C-9DA8-EFD41CCCBA65}</Project>
+      <Project>{803b97eb-41e8-4b5c-9da8-efd41cccba65}</Project>
       <Name>MVCSkeleton.Infrastracture.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.IOC.Unity\MVCSkeleton.IOC.Unity.csproj">
+      <Project>{bc727f67-a97d-467e-af37-a8c0d6551fc6}</Project>
+      <Name>MVCSkeleton.IOC.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Mapper\MVCSkeleton.Mapper.AutoMapper.csproj">
+      <Project>{dfb07374-f8a4-4192-af37-6e8e3013f9c4}</Project>
+      <Name>MVCSkeleton.Mapper.AutoMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVCSkeleton\MVCSkeleton.Presentation.csproj">
-      <Project>{795E0097-E308-41CB-B5C6-1A52CF97526A}</Project>
+      <Project>{795e0097-e308-41cb-b5c6-1a52cf97526a}</Project>
       <Name>MVCSkeleton.Presentation</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

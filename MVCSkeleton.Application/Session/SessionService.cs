@@ -16,9 +16,9 @@ namespace MVCSkeleton.Application.Session
             _sessionAdapter.Commit();
         }
 
-        public void Rollback()
+        public void Dispose()
         {
-            _sessionAdapter.Rollback();
+            _sessionAdapter.Dispose();
         }
     }
 }

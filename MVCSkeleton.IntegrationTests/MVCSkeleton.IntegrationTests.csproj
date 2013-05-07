@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MVCSkeleton.IntegrationTests</RootNamespace>
     <AssemblyName>MVCSkeleton.IntegrationTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,38 +31,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Infrastracture.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Infrastructure.Persistance.EntityFramework">
-      <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.IOC">
-      <HintPath>..\Binaries\MVCSkeleton.IOC.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Mapper">
-      <HintPath>..\Binaries\MVCSkeleton.Mapper.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Presentation.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repository\BaseRepositoryTests.cs" />
-    <Compile Include="Repository\MenuItemRepositoryTests.cs" />
+    <Compile Include="Repository\MenuItemRepositoryRepositoryTests.cs" />
     <Compile Include="Repository\StoreRepositoryTests.cs" />
     <Compile Include="Repository\UserRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +56,36 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">
+      <Project>{988c1cee-b25a-4485-b871-1dfebfa88846}</Project>
+      <Name>MVCSkeleton.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
+      <Project>{6d845853-16d3-4802-a8e9-0e97da53af69}</Project>
+      <Name>MVCSkeleton.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
+      <Project>{803b97eb-41e8-4b5c-9da8-efd41cccba65}</Project>
+      <Name>MVCSkeleton.Infrastracture.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Infrastructure.Persistance.EntityFramework\MVCSkeleton.Infrastructure.Persistance.EntityFramework.csproj">
+      <Project>{f7d8fc67-7939-4d66-b589-25fc97fd99d7}</Project>
+      <Name>MVCSkeleton.Infrastructure.Persistance.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.IOC.Unity\MVCSkeleton.IOC.Unity.csproj">
+      <Project>{bc727f67-a97d-467e-af37-a8c0d6551fc6}</Project>
+      <Name>MVCSkeleton.IOC.Unity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Mapper\MVCSkeleton.Mapper.AutoMapper.csproj">
+      <Project>{dfb07374-f8a4-4192-af37-6e8e3013f9c4}</Project>
+      <Name>MVCSkeleton.Mapper.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton\MVCSkeleton.Presentation.csproj">
+      <Project>{795e0097-e308-41cb-b5c6-1a52cf97526a}</Project>
+      <Name>MVCSkeleton.Presentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
 using MVCSkeleton.Presentation.Authentication;
 using MVCSkeleton.Presentation.DTOs;
@@ -59,16 +58,9 @@ namespace MVCSkeleton.Presentation.Controllers
             SetReturnUrl();
             if (ModelState.IsValid)
             {
-                try
-                {
-                    userService.ChangePassword(userName??User.Identity.Name, model.OldPassword, model.NewPassword);
-                    ViewBag.Message = "Password was successfully changed.";
-                    return RedirectToAction("Manage");
-                }
-                catch (Exception e)
-                {
-                    ModelState.AddModelError("", e.Message);
-                }
+                userService.ChangePassword(userName ?? User.Identity.Name, model.OldPassword, model.NewPassword);
+                ViewBag.Message = "Password was successfully changed.";
+                return RedirectToAction("Manage");
             }
             return View(model);
         }
@@ -89,16 +81,9 @@ namespace MVCSkeleton.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    userService.CreateUser(new UserDTO {Name = model.UserName, Password = model.Password});
-                    _authenticationService.SignIn(model.UserName, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                catch (Exception e)
-                {
-                    ModelState.AddModelError("", e.Message);
-                }
+                userService.CreateUser(new UserDTO {Name = model.UserName, Password = model.Password});
+                _authenticationService.SignIn(model.UserName, false);
+                return RedirectToAction("Index", "Home");
             }
             return View(model);
         }
