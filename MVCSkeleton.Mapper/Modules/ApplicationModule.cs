@@ -8,7 +8,7 @@ namespace MVCSkeleton.Mapper.Modules
         public void Load()
         {
             AutoMapper.Mapper.CreateMap<User, UserDTO>();
-            AutoMapper.Mapper.CreateMap<UserDTO, User>();
+            AutoMapper.Mapper.CreateMap<UserDTO, User>().IgnoreAllNonExisting();
             AutoMapper.Mapper.CreateMap<MenuItem, RootMenuItemDTO>();
         }
     }

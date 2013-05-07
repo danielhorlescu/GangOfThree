@@ -1,5 +1,7 @@
 ﻿CREATE TABLE [dbo].[MenuItems](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[CreationDate] [datetime] NOT NULL,
+	[UpdateDate] [datetime] NULL,
 	[Controller] [nvarchar](100) NULL,
 	[Action] [nvarchar](100) NULL,
 	[Name] [nvarchar](200) NOT NULL,

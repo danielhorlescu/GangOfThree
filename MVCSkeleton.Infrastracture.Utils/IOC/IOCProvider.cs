@@ -19,7 +19,6 @@ namespace MVCSkeleton.Infrastracture.Utils.IOC
 
         public T Get<T>()
         {
-            //return ObjectFactory.GetInstance<T>();
             return unityContainer.Resolve<T>();
         }
 

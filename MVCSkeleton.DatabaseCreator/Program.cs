@@ -1,4 +1,5 @@
-﻿using MVCSkeleton.Infrastructure.Persistance.EntityFramework;
+﻿using System;
+using MVCSkeleton.Infrastructure.Persistance.EntityFramework;
 
 namespace MVCSkeleton.DatabaseCreator
 {
@@ -6,7 +7,7 @@ namespace MVCSkeleton.DatabaseCreator
     {
         private static void Main(string[] args)
         {
-            using (var db = new MVCSkeletonDataContext(null))
+            using (var db = new MVCSkeletonDataContext())
             {
                 if (db.Database.Exists())
                 {
@@ -14,6 +15,9 @@ namespace MVCSkeleton.DatabaseCreator
                 }
                 db.Database.Create();
             }
+
+            Console.WriteLine("Database created.");
+            Console.ReadLine();
         }
     }
 }

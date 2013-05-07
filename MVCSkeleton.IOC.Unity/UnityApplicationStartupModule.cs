@@ -22,7 +22,6 @@ namespace MVCSkeleton.IOC.Unity
 
             new PresentationModule().Initialize(container);
             new ApplicationModule().Initialize(container);
-            // new NHibernateRepositoryModule().Initialize(x);
             GetRepositoryModule().Initialize(container);
             new InfrastructureModule().Initialize(container);
 

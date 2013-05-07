@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Application.Session;
@@ -19,29 +20,43 @@ namespace MVCSkeleton.IOC.Unity.Modules
 
         protected virtual void InitializeSessionAdapterBinding(IUnityContainer container)
         {
-            container.RegisterType<ISessionAdapter, EntityFrameworkSessionAdapter>(new PerHttpRequestLifetime());
+            container.RegisterType<ISessionAdapter, EntityFrameworkSessionAdapter>(new PerHttpRequestOrCallContextLifetime());
         }
 
-        private class PerHttpRequestLifetime : LifetimeManager
+        private class PerHttpRequestOrCallContextLifetime : LifetimeManager
         {
             // This is very important part and the reason why I believe mentioned
             // PerCallContext implementation is wrong.
-            private readonly Guid _key = Guid.NewGuid();
+            private readonly string _key = Guid.NewGuid().ToString();
 
             public override object GetValue()
             {
-                return HttpContext.Current.Items[_key];
+                return HttpContext.Current == null ? CallContext.GetData(_key) : HttpContext.Current.Items[_key];
             }
 
             public override void SetValue(object newValue)
             {
-                HttpContext.Current.Items[_key] = newValue;
+                if (HttpContext.Current != null)
+                {
+                    HttpContext.Current.Items[_key] = newValue;
+                }
+                else
+                {
+                    CallContext.SetData(_key, newValue);
+                }
             }
 
             public override void RemoveValue()
             {
                 var obj = GetValue();
-                HttpContext.Current.Items.Remove(obj);
+                if (HttpContext.Current != null)
+                {
+                    HttpContext.Current.Items.Remove(obj);
+                }
+                else
+                {
+                    CallContext.FreeNamedDataSlot(_key);
+                }
             }
         }
     }
