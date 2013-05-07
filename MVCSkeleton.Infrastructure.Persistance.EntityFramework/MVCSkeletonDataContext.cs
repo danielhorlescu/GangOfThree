@@ -18,13 +18,14 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
         }
 
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Store> Stores { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserMapping());
             modelBuilder.Configurations.Add(new MenuItemMapping());
+            modelBuilder.Configurations.Add(new StoreMapping());
         }
 
         protected override void Dispose(bool disposing)

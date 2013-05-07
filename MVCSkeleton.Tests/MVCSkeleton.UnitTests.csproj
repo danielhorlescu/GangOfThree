@@ -122,7 +122,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\StoreServiceTests.cs" />
     <Compile Include="Controllers\MenuControllerTests.cs" />
+    <Compile Include="Controllers\StoreControllerTests.cs" />
     <Compile Include="IOC\AutoMapperTests.cs" />
     <Compile Include="IOC\IOCTests.cs" />
     <Compile Include="Application\MenuItemServiceTests.cs" />

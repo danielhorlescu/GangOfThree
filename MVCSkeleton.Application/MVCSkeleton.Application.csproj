@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repository\IStoreRepository.cs" />
     <Compile Include="MenuItemService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IBaseRepository.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Session\ISessionAdapter.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Session\SessionService.cs" />
+    <Compile Include="StoreService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

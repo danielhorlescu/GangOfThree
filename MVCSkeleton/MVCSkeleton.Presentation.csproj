@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInterfaces\IMenuItemService.cs" />
+    <Compile Include="ApplicationInterfaces\IStoreService.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="ApplicationInterfaces\ISessionService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -152,10 +153,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
     <Compile Include="DTOs\RootMenuItemDTO.cs" />
+    <Compile Include="DTOs\StoreDTO.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Controllers\KendoController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -531,6 +534,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Menu\GetRootMenuItems.cshtml" />
+    <Content Include="Views\Store.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,24 +10,11 @@ using NUnit.Framework;
 namespace MVCSkeleton.IntegrationTests.Repository
 {
     [TestFixture]
-    public class UserRepositoryTests
+    public class UserRepositoryTests : BaseRepositoryTests
     {
-        [SetUp]
-        public void Setup()
-        {
-            new ApplicationStartupModuleComposite(new IApplicationStartupModule[]
-            {new StructureMapApplicationStartupModule(), new AutoMapperApplicationStartupModule()}).Load();
-        }
-
         private UserRepository CreateSUT()
         {
             return new UserRepository();
-        }
-
-        [TearDown]
-        public void CleanUp()
-        {
-            IOCProvider.Instance.Get<ISessionAdapter>().Rollback();
         }
 
         [Test]

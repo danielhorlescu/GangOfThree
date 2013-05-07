@@ -9,7 +9,10 @@ namespace MVCSkeleton.Mapper.Modules
         {
             AutoMapper.Mapper.CreateMap<User, UserDTO>();
             AutoMapper.Mapper.CreateMap<UserDTO, User>();
+
             AutoMapper.Mapper.CreateMap<MenuItem, RootMenuItemDTO>();
+
+            AutoMapper.Mapper.CreateMap<Store, StoreDTO>();
         }
     }
 }
