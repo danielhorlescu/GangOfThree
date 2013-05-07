@@ -4,6 +4,6 @@
     {
         void Commit();
 
-        void Rollback();
+        void Dispose();
     }
 }

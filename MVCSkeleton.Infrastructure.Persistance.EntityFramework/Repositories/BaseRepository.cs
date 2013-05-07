@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using MVCSkeleton.Application.Repository;
@@ -10,9 +11,9 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : class, IAggregateRoot
     {
-        private readonly ISessionAdapter _sessionAdapter;
+        private readonly ISessionAdapter sessionAdapter;
         protected MVCSkeletonDataContext context;
-        private IDbSet<T> _dbSet;
+        private IDbSet<T> dbSet;
 
         protected BaseRepository() : this(IOCProvider.Instance.Get<ISessionAdapter>())
         {
@@ -20,20 +21,20 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 
         private BaseRepository(ISessionAdapter sessionAdapter)
         {
-            _sessionAdapter = sessionAdapter;
+            this.sessionAdapter = sessionAdapter;
         }
 
-        public IDbSet<T> Session
+        protected IDbSet<T> Session
         {
             get
             {
                 if (context == null)
                 {
-                    context = ((EntityFrameworkSessionAdapter) _sessionAdapter).CurrentSession;
+                    context = ((EntityFrameworkSessionAdapter) sessionAdapter).CurrentSession;
                     context.Configuration.AutoDetectChangesEnabled = true;
-                    _dbSet = context.Set<T>();
+                    dbSet = context.Set<T>();
                 }
-                return _dbSet;
+                return dbSet;
             }
         }
 
@@ -45,11 +46,17 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
-        public T Save(T domainObject)
+        public void Save(T domainObject)
         {
-            Session.Add(domainObject);
-            context.SaveChanges();
-            return domainObject;
+            if (Session.Any(e => e.Id == domainObject.Id))
+            {
+                Session.Attach(domainObject);
+                context.Entry(domainObject).State = EntityState.Modified;
+            }
+            else
+            {
+                Session.Add(domainObject);
+            }
         }
 
         public T Get(long id)
@@ -59,17 +66,12 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 
         public void Delete(T domainObject)
         {
-            Session.Attach(domainObject);
             Session.Remove(domainObject);
-            context.SaveChanges();
         }
 
-        public virtual List<T> GetAll()
+        public IEnumerable<T> GetAll()
         {
             return Session.ToList();
         }
-
-
-       
     }
 }

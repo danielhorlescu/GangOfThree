@@ -14,7 +14,7 @@ namespace MVCSkeleton.Tests.Controllers
     {
         private IMenuItemService service;
 
-        public MenuController CreateSUT()
+        private MenuController CreateSUT()
         {
             service = A.Fake<IMenuItemService>();
             return new MenuController(service);

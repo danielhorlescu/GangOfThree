@@ -10,16 +10,23 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-Insert INTO dbo.Users (Id,Name,Password) 
-Values (3,'User','Pwd@123');
-Insert INTO dbo.Users (Id,Name,Password) 
-Values (4,'TestUser','Pwd@123');
+
+SET IDENTITY_INSERT [dbo].Users ON
+
+Insert INTO dbo.Users (Id,CreationDate, UpdateDate,Name,Password) 
+Values (1,'10/10/2010',null,'User','Pwd@123');
+Insert INTO dbo.Users (Id,CreationDate, UpdateDate,Name,Password) 
+Values (2,'10/10/2010',null,'TestUser','Pwd@123');
+
+SET IDENTITY_INSERT [dbo].Users OFF
 
 SET IDENTITY_INSERT [dbo].[MenuItems] ON
-INSERT INTO [dbo].[MenuItems] ([Id], [Controller], [Action], [Name], [ParentItem_Id]) VALUES (16, NULL, NULL, N'Menu Aggregate 1', NULL);
-INSERT INTO [dbo].[MenuItems] ([Id], [Controller], [Action], [Name], [ParentItem_Id]) VALUES (17, N'testController1', N'testAction1', N'MenuItem1', 16);
-INSERT INTO [dbo].[MenuItems] ([Id], [Controller], [Action], [Name], [ParentItem_Id]) VALUES (18, NULL, NULL, N'Menu Aggregate 2', NULL);
-INSERT INTO [dbo].[MenuItems] ([Id], [Controller], [Action], [Name], [ParentItem_Id]) VALUES (19, N'testController1', N'testAction1', N'MenuItem1', 18);
-INSERT INTO [dbo].[MenuItems] ([Id], [Controller], [Action], [Name], [ParentItem_Id]) VALUES (20, N'testController1', N'testAction1', N'MenuItem1', 18);
+INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (1,'10/10/2010',null, NULL, NULL, N'Menu Aggregate 1', NULL);
+INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (2,'10/10/2010',null, N'testController1', N'testAction1', N'MenuItem1', 1);
+INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (3,'10/10/2010',null, NULL, NULL, N'Menu Aggregate 2', NULL);
+INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (4,'10/10/2010',null, N'testController1', N'testAction1', N'MenuItem1', 3);
+INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (5,'10/10/2010',null, N'testController1', N'testAction1', N'MenuItem1', 3);
+
 SET IDENTITY_INSERT [dbo].[MenuItems] OFF
+
 
