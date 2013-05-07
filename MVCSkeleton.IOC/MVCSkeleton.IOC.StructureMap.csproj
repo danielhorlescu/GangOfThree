@@ -37,31 +37,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="MVCSkeleton.Application, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Application.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Infrastracture.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Infrastracture.Utils.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="MVCSkeleton.Infrastructure.Persistance, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Infrastructure.Persistance.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Mapper.dll</HintPath>
-    </Reference>
-    <Reference Include="MVCSkeleton.Presentation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\MVCSkeleton.Presentation.dll</HintPath>
-    </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
@@ -89,7 +64,6 @@
     <Compile Include="Modules\InfrastructureModule.cs" />
     <Compile Include="Modules\ApplicationModule.cs" />
     <Compile Include="Modules\PresentationModule.cs" />
-    <Compile Include="Modules\NHibernateRepositoryModule.cs" />
     <Compile Include="PreApplicationStart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureMapApplicationStartupModule.cs" />
@@ -98,16 +72,36 @@
     <Compile Include="ControllerResolver\StructureMapDependencyScope.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVCSkeleton.Infrastructure.Persistance.EntityFramework\MVCSkeleton.Infrastructure.Persistance.EntityFramework.csproj">
-      <Project>{F7D8FC67-7939-4D66-B589-25FC97FD99D7}</Project>
-      <Name>MVCSkeleton.Infrastructure.Persistance.EntityFramework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">
+      <Project>{988c1cee-b25a-4485-b871-1dfebfa88846}</Project>
+      <Name>MVCSkeleton.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Domain\MVCSkeleton.Domain.csproj">
+      <Project>{6d845853-16d3-4802-a8e9-0e97da53af69}</Project>
+      <Name>MVCSkeleton.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Infrastracture.Utils\MVCSkeleton.Infrastracture.Utils.csproj">
+      <Project>{803b97eb-41e8-4b5c-9da8-efd41cccba65}</Project>
+      <Name>MVCSkeleton.Infrastracture.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Infrastructure.Persistance.EntityFramework\MVCSkeleton.Infrastructure.Persistance.EntityFramework.csproj">
+      <Project>{f7d8fc67-7939-4d66-b589-25fc97fd99d7}</Project>
+      <Name>MVCSkeleton.Infrastructure.Persistance.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton.Mapper\MVCSkeleton.Mapper.AutoMapper.csproj">
+      <Project>{dfb07374-f8a4-4192-af37-6e8e3013f9c4}</Project>
+      <Name>MVCSkeleton.Mapper.AutoMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCSkeleton\MVCSkeleton.Presentation.csproj">
+      <Project>{795e0097-e308-41cb-b5c6-1a52cf97526a}</Project>
+      <Name>MVCSkeleton.Presentation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

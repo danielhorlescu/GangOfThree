@@ -42,13 +42,14 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             mvcSkeletonDataContext.Dispose();
         }
 
-        public void Rollback()
+        public void CommitWithoutDispose()
         {
             if (sessionFactory == null)
             {
                 return;
             }
-            sessionFactory.Dispose();
+            MVCSkeletonDataContext mvcSkeletonDataContext = sessionFactory.Get();
+            mvcSkeletonDataContext.Commit();
         }
     }
 }

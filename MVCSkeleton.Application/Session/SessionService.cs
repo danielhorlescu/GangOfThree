@@ -15,10 +15,5 @@ namespace MVCSkeleton.Application.Session
         {
             _sessionAdapter.Commit();
         }
-
-        public void Rollback()
-        {
-            _sessionAdapter.Rollback();
-        }
     }
 }

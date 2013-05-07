@@ -6,7 +6,7 @@ namespace MVCSkeleton.DatabaseCreator
     {
         private static void Main(string[] args)
         {
-            using (var db = new MVCSkeletonDataContext(null))
+            using (var db = new MVCSkeletonDataContext())
             {
                 if (db.Database.Exists())
                 {
