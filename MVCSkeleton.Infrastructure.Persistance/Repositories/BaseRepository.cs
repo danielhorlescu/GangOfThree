@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
@@ -37,6 +38,14 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
         public void Delete(T domainObject)
         {
             Session.Delete(domainObject);
+        }
+
+        public void Save(IEnumerable<T> domainObjects)
+        {
+            foreach (T domainObject in domainObjects)
+            {
+                Session.Save(domainObject);
+            }
         }
     }
 }

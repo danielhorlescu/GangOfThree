@@ -144,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInterfaces\IMenuItemService.cs" />
+    <Compile Include="ApplicationInterfaces\IProductService.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="ApplicationInterfaces\ISessionService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
+    <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\RootMenuItemDTO.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Controllers\KendoController.cs" />

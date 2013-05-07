@@ -12,6 +12,7 @@ namespace MVCSkeleton.IOC.Modules
             InitializeSessionAdapterBinding(initializationExpression);
             initializationExpression.For<IUserRepository>().Use<Infrastructure.Persistance.EntityFramework.Repositories.UserRepository>();
             initializationExpression.For<IMenuItemRepository>().Use<Infrastructure.Persistance.EntityFramework.Repositories.MenuItemRepository>();
+            initializationExpression.For<IProductRepository>().Use<Infrastructure.Persistance.EntityFramework.Repositories.ProductRepository>();
         }
 
         protected virtual void InitializeSessionAdapterBinding(IInitializationExpression initializationExpression)

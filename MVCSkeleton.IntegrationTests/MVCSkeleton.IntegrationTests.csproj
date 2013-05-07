@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repository\MenuItemRepositoryTests.cs" />
+    <Compile Include="Repository\ProductRepositoryTests.cs" />
     <Compile Include="Repository\UserRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

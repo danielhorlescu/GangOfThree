@@ -60,19 +60,18 @@ namespace MVCSkeleton.IntegrationTests.Repository
         [Test]
         public void Should_Update_Name()
         {
-            var expectedMenuItem = CreateMenuItem();
+            var menuItem = CreateMenuItem();
 
             MenuItemRepository menuItemRepository = CreateSUT();
-            menuItemRepository.Save(expectedMenuItem);
-            MenuItem actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
+            menuItemRepository.Save(menuItem);
 
             string updatedMenuItem = "Updated Menu Item";
-            actualMenuItem.Name = updatedMenuItem;
-            menuItemRepository.Save(actualMenuItem);
+            menuItem.Name = updatedMenuItem;
+            menuItemRepository.Save(menuItem);
 
-            actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
-            Assert.IsNotNull(actualMenuItem);
-            Assert.AreEqual(updatedMenuItem, actualMenuItem.Name);
+            menuItem = menuItemRepository.Get(menuItem.Id);
+            Assert.IsNotNull(menuItem);
+            Assert.AreEqual(updatedMenuItem, menuItem.Name);
         }
 
         //[Test]
