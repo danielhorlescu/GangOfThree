@@ -6,7 +6,7 @@ namespace MVCSkeleton.IOC
     {
         public static void InitializeIOCBindings()
         {
-            new StructureMapApplicationStartupModule().Load();
+           //  new StructureMapApplicationStartupModule().Load();
         }
     }
 }

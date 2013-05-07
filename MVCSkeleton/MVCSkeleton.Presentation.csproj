@@ -184,6 +184,13 @@
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\kendo.compatibility.css" />
@@ -400,6 +407,7 @@
     <Content Include="Scripts\kendo\2013.1.319\jquery.min.js" />
     <Content Include="Content\kendo\2013.1.319\images\KendoUI.ttf" />
     <Content Include="Content\kendo\2013.1.319\images\KendoUI.woff" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\kendo\2013.1.319\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2013.1.319\kendo.all.min.intellisense.js" />
     <Content Include="Scripts\kendo\2013.1.319\kendo.all.min.js" />
@@ -558,7 +566,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52490</DevelopmentServerPort>
+          <DevelopmentServerPort>20140</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
