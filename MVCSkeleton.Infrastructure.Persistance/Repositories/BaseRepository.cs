@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
@@ -24,9 +25,10 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
             get { return _nHiberanteSessionAdapter.CurrentSession; }
         }
 
-        public void Save(T domainObject) 
+        public T Save(T domainObject) 
         {
             Session.Save(domainObject);
+            return domainObject;
         }
 
         public T Get(long id)
@@ -37,6 +39,17 @@ namespace MVCSkeleton.Infrastructure.Persistance.Repositories
         public void Delete(T domainObject)
         {
             Session.Delete(domainObject);
+        }
+
+
+        public List<T> GetAll()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Save(System.Collections.Generic.IEnumerable<T> domainObjects)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

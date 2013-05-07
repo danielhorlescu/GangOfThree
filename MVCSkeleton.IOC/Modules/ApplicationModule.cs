@@ -12,6 +12,7 @@ namespace MVCSkeleton.IOC.Modules
             initializationExpression.For<ISessionService>().Use<SessionService>();
             initializationExpression.For<IUserService>().Use<UserService>();
             initializationExpression.For<IMenuItemService>().Use<MenuItemService>();
+            initializationExpression.For<ICustomerService>().Use<CustomerService>();
         }
     }
 }

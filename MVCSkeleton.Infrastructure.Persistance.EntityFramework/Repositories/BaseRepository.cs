@@ -45,10 +45,11 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
-        public void Save(T domainObject)
+        public T Save(T domainObject)
         {
             Session.Add(domainObject);
             context.SaveChanges();
+            return domainObject;
         }
 
         public T Get(long id)
@@ -58,13 +59,17 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 
         public void Delete(T domainObject)
         {
+            Session.Attach(domainObject);
             Session.Remove(domainObject);
             context.SaveChanges();
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return Session.ToList();
         }
+
+
+       
     }
 }

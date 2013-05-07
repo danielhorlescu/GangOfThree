@@ -9,6 +9,7 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+
 Insert INTO dbo.Users (Id,Name,Password) 
 Values (3,'User','Pwd@123');
 Insert INTO dbo.Users (Id,Name,Password) 

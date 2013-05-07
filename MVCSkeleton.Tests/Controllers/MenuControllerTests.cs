@@ -29,7 +29,7 @@ namespace MVCSkeleton.Tests.Controllers
             A.CallTo(() => service.GetRootMenuItems()).Returns(expectedRootMenuItems);
             ViewResult view = menuController.GetRootMenuItems();
 
-            Assert.AreEqual(expectedRootMenuItems, ((MenuModel)view.Model).RootItems);
+            Assert.AreEqual(expectedRootMenuItems.Count, ((MenuModel)view.Model).RootItems.Count);
         }
 
         private List<RootMenuItemDTO> CreateRootMenuItemList()
