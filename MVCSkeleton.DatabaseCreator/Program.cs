@@ -1,4 +1,5 @@
-﻿using MVCSkeleton.Infrastructure.Persistance.EntityFramework;
+﻿using System;
+using MVCSkeleton.Infrastructure.Persistance.EntityFramework;
 
 namespace MVCSkeleton.DatabaseCreator
 {
@@ -14,6 +15,9 @@ namespace MVCSkeleton.DatabaseCreator
                 }
                 db.Database.Create();
             }
+
+            Console.WriteLine("Database created.");
+            Console.ReadLine();
         }
     }
 }

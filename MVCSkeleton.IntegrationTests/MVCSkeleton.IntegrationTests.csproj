@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MVCSkeleton.IntegrationTests</RootNamespace>
     <AssemblyName>MVCSkeleton.IntegrationTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
@@ -44,7 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repository\MenuItemRepositoryTests.cs" />
+    <Compile Include="Repository\BaseRepositoryTests.cs" />
+    <Compile Include="Repository\MenuItemRepositoryRepositoryTests.cs" />
     <Compile Include="Repository\ProductRepositoryTests.cs" />
     <Compile Include="Repository\UserRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,9 +74,9 @@
       <Project>{f7d8fc67-7939-4d66-b589-25fc97fd99d7}</Project>
       <Name>MVCSkeleton.Infrastructure.Persistance.EntityFramework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MVCSkeleton.IOC\MVCSkeleton.IOC.StructureMap.csproj">
-      <Project>{db067a7f-4348-48a3-bbaf-0a8aecd477d9}</Project>
-      <Name>MVCSkeleton.IOC.StructureMap</Name>
+    <ProjectReference Include="..\MVCSkeleton.IOC.Unity\MVCSkeleton.IOC.Unity.csproj">
+      <Project>{bc727f67-a97d-467e-af37-a8c0d6551fc6}</Project>
+      <Name>MVCSkeleton.IOC.Unity</Name>
     </ProjectReference>
     <ProjectReference Include="..\MVCSkeleton.Mapper\MVCSkeleton.Mapper.AutoMapper.csproj">
       <Project>{dfb07374-f8a4-4192-af37-6e8e3013f9c4}</Project>

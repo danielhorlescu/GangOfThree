@@ -2,6 +2,7 @@
 using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
 using MVCSkeleton.IOC;
+using MVCSkeleton.IOC.Unity;
 using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 using MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories;
@@ -17,7 +18,9 @@ namespace MVCSkeleton.IntegrationTests.Repository
         public void Setup()
         {
             new ApplicationStartupModuleComposite(new IApplicationStartupModule[]
-            {new StructureMapApplicationStartupModule(), new AutoMapperApplicationStartupModule()}).Load();
+                {
+                    new UnityApplicationStartupModule(), new AutoMapperApplicationStartupModule()
+                }).Load();
         }
 
         private UserRepository CreateSUT()

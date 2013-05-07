@@ -1,9 +1,7 @@
 ﻿namespace MVCSkeleton.Domain
 {
-    public class MenuItem : IAggregateRoot
+    public class MenuItem :  EntityBase, IAggregateRoot
     {
-        public virtual long Id { get; set; }
-
         public virtual string Controller { get; set; }
 
         public virtual string Action { get; set; }

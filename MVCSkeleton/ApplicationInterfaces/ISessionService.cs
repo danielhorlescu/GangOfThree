@@ -3,5 +3,7 @@
     public interface ISessionService
     {
         void Commit();
+
+        void Dispose();
     }
 }

@@ -5,5 +5,7 @@
         void Commit();
 
         void CommitWithoutDispose();
+
+        void Dispose();
     }
 }

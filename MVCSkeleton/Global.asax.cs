@@ -37,6 +37,7 @@ namespace MVCSkeleton.Presentation
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            IOCProvider.Instance.Get<ISessionService>().Dispose();
         }
     }
 }

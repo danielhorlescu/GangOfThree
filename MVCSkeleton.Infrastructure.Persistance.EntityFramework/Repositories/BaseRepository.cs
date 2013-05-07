@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using MVCSkeleton.Application.Repository;
@@ -47,7 +48,15 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 
         public void Save(T domainObject)
         {
-            Session.Add(domainObject);
+            if (Session.Any(e => e.Id == domainObject.Id))
+            {
+                Session.Attach(domainObject);
+                context.Entry(domainObject).State = EntityState.Modified;
+            }
+            else
+            {
+                Session.Add(domainObject);
+            }
         }
 
         public T Get(long id)

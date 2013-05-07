@@ -6,21 +6,9 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
     {
         private IDatabaseFactory sessionFactory;
 
-        public EntityFrameworkSessionAdapter()
-        {
-            int a = 0;
-        }
-
         private IDatabaseFactory SessionFactory
         {
-            get
-            {
-                if (sessionFactory == null)
-                {
-                    sessionFactory = new DatabaseFactory();
-                }
-                return sessionFactory;
-            }
+            get { return sessionFactory ?? (sessionFactory = new DatabaseFactory()); }
         }
 
         internal MVCSkeletonDataContext CurrentSession
@@ -37,10 +25,10 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             {
                 return;
             }
-            MVCSkeletonDataContext mvcSkeletonDataContext = sessionFactory.Get();
-            mvcSkeletonDataContext.Commit();
-            mvcSkeletonDataContext.Dispose();
+           CurrentSession.Commit();
+           CurrentSession.Dispose();
         }
+
 
         public void CommitWithoutDispose()
         {
@@ -48,8 +36,17 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             {
                 return;
             }
-            MVCSkeletonDataContext mvcSkeletonDataContext = sessionFactory.Get();
-            mvcSkeletonDataContext.Commit();
+            CurrentSession.Commit();
+        }
+
+        public void Dispose()
+        {
+            if (sessionFactory == null)
+            {
+                return;
+            }
+            CurrentSession.Dispose();
+            sessionFactory = null;
         }
     }
 }

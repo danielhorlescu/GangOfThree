@@ -1,27 +1,44 @@
 ﻿using MVCSkeleton.Application.Session;
-using MVCSkeleton.IOC.Modules;
+using MVCSkeleton.IOC.Unity.Modules;
 using MVCSkeleton.Infrastructure.Persistance.EntityFramework;
-using StructureMap;
+using Microsoft.Practices.Unity;
 using TechTalk.SpecFlow;
 
 namespace MVCSkeleton.Requirements.IOC
 {
     public class RequirementsIOCRepositoryModule : EntityFrameworkRepositoryModule
     {
-        protected override void InitializeSessionAdapterBinding(IInitializationExpression initializationExpression)
+        protected override void InitializeSessionAdapterBinding(IUnityContainer container)
         {
-            initializationExpression.For<ISessionAdapter>().Use(GetSessionAdapter(null));
+            container.RegisterType<ISessionAdapter, EntityFrameworkSessionAdapter>(new PerScenarioLifetime());
         }
 
-        private ISessionAdapter GetSessionAdapter(IContext context)
+        private class PerScenarioLifetime : LifetimeManager
         {
-            if (!ScenarioContext.Current.ContainsKey("SessionAdapter"))
+            // This is very important part and the reason why I believe mentioned
+            // PerCallContext implementation is wrong.
+            private readonly string key = "SessionAdapter";
+
+            public override object GetValue()
             {
-                var entityFrameworkSessionAdapter = new EntityFrameworkSessionAdapter();
-                ScenarioContext.Current.Add("SessionAdapter", entityFrameworkSessionAdapter);
-                return entityFrameworkSessionAdapter;
+                return ScenarioContext.Current.Get<ISessionAdapter>(key);
             }
-            return ScenarioContext.Current.Get<ISessionAdapter>("SessionAdapter");
+
+            public override void SetValue(object newValue)
+            {
+                if (!ScenarioContext.Current.ContainsKey(key))
+                {
+                    ScenarioContext.Current.Add(key, new EntityFrameworkSessionAdapter());
+                }
+            }
+
+            public override void RemoveValue()
+            {
+                if (ScenarioContext.Current.ContainsKey(key))
+                {
+                    ScenarioContext.Current.Remove(key);
+                }
+            }
         }
     }
 }

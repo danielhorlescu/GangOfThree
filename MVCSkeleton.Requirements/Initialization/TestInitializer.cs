@@ -1,4 +1,5 @@
 ﻿using MVCSkeleton.IOC;
+using MVCSkeleton.IOC.Unity;
 using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
 using MVCSkeleton.Mapper;
 using TechTalk.SpecFlow;
@@ -11,8 +12,7 @@ namespace MVCSkeleton.Requirements.Initialization
         [BeforeScenario]
         public static void RegisterIOC()
         {
-            new ApplicationStartupModuleComposite(new IApplicationStartupModule[] 
-            { new StructureMapApplicationStartupModule(), new AutoMapperApplicationStartupModule() }).Load();
+            new ApplicationStartupModuleComposite(new IApplicationStartupModule[] { new UnityApplicationStartupModule(), new AutoMapperApplicationStartupModule() }).Load();
         }
 
         [AfterScenario()]

@@ -5,10 +5,8 @@ using System.Text;
 
 namespace MVCSkeleton.Domain
 {
-    public class Product : IAggregateRoot
+    public class Product : EntityBase, IAggregateRoot
     {
-        public virtual long Id { get; set; }
-
         public virtual string Code { get; set; }
 
         public virtual string Name { get; set; }
@@ -16,7 +14,5 @@ namespace MVCSkeleton.Domain
         public virtual double UnitPrice { get; set; }
 
         public virtual int UnitsInStock { get; set; }
-
-        public virtual DateTime CreationDate { get; set; }
     }
 }

@@ -15,5 +15,10 @@ namespace MVCSkeleton.Application.Session
         {
             _sessionAdapter.Commit();
         }
+
+        public void Dispose()
+        {
+            _sessionAdapter.Dispose();
+        }
     }
 }
