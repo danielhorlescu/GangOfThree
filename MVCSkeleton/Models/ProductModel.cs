@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Presentation.Models
 {
@@ -10,12 +7,6 @@ namespace MVCSkeleton.Presentation.Models
     {
         [ScaffoldColumn(false)]
         public long Id { get; set; }
-
-        [ScaffoldColumn(false)]
-        public DateTime CreationDate { get; set; }
-
-        [ScaffoldColumn(false)]
-        public DateTime? UpdateDate { get; set; }
 
         [ScaffoldColumn(false)]
         public int CategoryId { get; set; }

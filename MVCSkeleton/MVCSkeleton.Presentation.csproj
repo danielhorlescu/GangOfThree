@@ -148,7 +148,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controls\Builders\MenuBuilder.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
