@@ -5,6 +5,7 @@ namespace MVCSkeleton.Domain
     public class Store : IAggregateRoot
     {
         public virtual long Id { get; set; }
+        public DateTime? UpdateDate { get; set; }
 
         public virtual string Name { get; set; }
 

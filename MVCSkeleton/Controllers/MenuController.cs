@@ -16,6 +16,11 @@ namespace MVCSkeleton.Presentation.Controllers
             this.service = service;
         }
 
+        public MenuController()
+        {
+            
+        }
+
         public ViewResult GetRootMenuItems()
         {
             List<RootMenuItemDTO> rootMenuItemDtos = service.GetRootMenuItems();

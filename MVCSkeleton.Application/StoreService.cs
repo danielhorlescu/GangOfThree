@@ -14,7 +14,7 @@ namespace MVCSkeleton.Application
 
         public StoreService(IStoreRepository storeRepository, IMapper mapper)
         {
-            this._storeRepository = storeRepository;
+            _storeRepository = storeRepository;
             _mapper = mapper;
         }
 
@@ -30,7 +30,9 @@ namespace MVCSkeleton.Application
 
         public List<StoreDTO> GetAllStores()
         {
-            throw new System.NotImplementedException();
+            var returnList = new List<StoreDTO>();
+            _mapper.Map(_storeRepository.GetAllStores(), returnList);
+            return returnList;
         }
     }
 }

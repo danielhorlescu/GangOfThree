@@ -40,5 +40,13 @@ namespace MVCSkeleton.Tests.Application
 
             Assert.IsNotNull(retrievedStores);
         }
+
+        //public void Should_Create_A_Store()
+        //{
+        //    StoreService storeService = CreateSUT();
+        //    var newStore = new Store();
+
+
+        //}
     }
 }

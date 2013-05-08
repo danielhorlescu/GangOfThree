@@ -154,6 +154,7 @@
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
+    <Compile Include="Controls\StoreModelFactory.cs" />
     <Compile Include="DTOs\RootMenuItemDTO.cs" />
     <Compile Include="DTOs\StoreDTO.cs" />
     <Compile Include="Models\CategoryModel.cs" />
@@ -183,6 +184,8 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\StoreGridModel.cs" />
+    <Compile Include="Models\StoreModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -539,7 +542,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Menu\GetRootMenuItems.cshtml" />
-    <Content Include="Views\Store.cshtml" />
+    <Content Include="Views\Store\Store.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
