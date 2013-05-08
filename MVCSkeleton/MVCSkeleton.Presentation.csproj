@@ -537,7 +537,7 @@
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
-    <Content Include="Views\Menu\LoadMenu.cshtml" />
+    <Content Include="Views\Home\LoadMenu.cshtml" />
     <Content Include="Views\Product\GetProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
