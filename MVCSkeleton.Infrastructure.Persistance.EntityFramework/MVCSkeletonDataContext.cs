@@ -23,10 +23,5 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             modelBuilder.Configurations.Add(new MenuItemMapping());
             modelBuilder.Configurations.Add(new ProductMapping());
         }
-
-        public void Commit()
-        {
-            SaveChanges();
-        }
     }
 }

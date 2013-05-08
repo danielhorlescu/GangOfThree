@@ -20,6 +20,8 @@ Values (2,'10/10/2010',null,'TestUser','Pwd@123');
 
 SET IDENTITY_INSERT [dbo].Users OFF
 
+SET IDENTITY_INSERT [dbo].[MenuItems] ON
+
 INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (1,'10/10/2010',null, NULL, NULL, N'Products', NULL);
 INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (2,'10/10/2010',null, N'Product', N'GetProducts', N'List Products', 1);
 INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES (3,'10/10/2010',null, NULL, NULL, N'Menu Aggregate 2', NULL);

@@ -59,6 +59,12 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
+        internal void SaveWithCommit(T domainObject)
+        {
+            Save(domainObject);
+            context.SaveChanges();
+        }
+
         public T Get(long id)
         {
             return Session.Find(id);
@@ -67,6 +73,12 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         public void Delete(T domainObject)
         {
             Session.Remove(domainObject);
+        }
+
+        internal void DeleteWithCommit(T domainObject)
+        {
+            Delete(domainObject);
+            context.SaveChanges();
         }
 
         public IEnumerable<T> GetAll()
