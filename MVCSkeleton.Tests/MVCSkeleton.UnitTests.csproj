@@ -39,8 +39,9 @@
     <Reference Include="FakeItEasy">
       <HintPath>..\packages\FakeItEasy.1.10.0\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>..\packages\KENDOUIMVC\2013.1.319.340\Kendo.Mvc.dll</HintPath>
+    <Reference Include="Kendo.Mvc, Version=2013.1.319.340, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\KENDOUIMVC\2013.1.319.340\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework">
@@ -112,9 +113,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\CustomerServiceTests.cs" />
-    <Compile Include="Controllers\CustomerControllerTests.cs" />
+    <Compile Include="Application\ProductServiceTests.cs" />
     <Compile Include="Controllers\MenuControllerTests.cs" />
+    <Compile Include="Controllers\ProductControllerTests.cs" />
     <Compile Include="IOC\AutoMapperTests.cs" />
     <Compile Include="Application\MenuItemServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

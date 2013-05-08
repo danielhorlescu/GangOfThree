@@ -1,0 +1,35 @@
+﻿@using MVCSkeleton.Presentation.Controls
+@model MVCSkeleton.Presentation.Models.ProductModel
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "_Layout";
+}
+
+<h2>Products</h2>
+
+<label for="ProductsGrid">Products:</label>
+    @(Html.Controls().Grid(Model.Products)    
+          .Name("ProductsGrid")
+          .Columns(columns =>
+              {
+                  columns.Bound(p => p.Name);
+                  columns.Bound(p => p.Code);
+                  columns.Bound(p => p.UnitPrice).Width(120);
+                  columns.Command(command => { command.Edit(); command.Destroy(); });
+              })
+          .ToolBar(toolbar => toolbar.Create())
+          .Editable(x => x.Mode(GridEditMode.PopUp))
+          .Groupable()
+          .Pageable()
+          .Sortable()
+          .Scrollable()
+          .Filterable()
+          .DataSource(ds => ds.Ajax()
+                              .Read(read => read.Action("Products_Read", "Kendo"))
+                              .Model(model => model.Id(p => p.Id))
+                              .Create(create => create.Action("Product_Create", "Kendo"))
+                              .Destroy(destroy => destroy.Action("Product_Delete", "Kendo"))
+                              .Update(update => update.Action("Product_Update", "Kendo"))))  
+    <br/>
+    <input type="button" id="refreshProductsGridData" value="Refresh Data" onclick="/*$('#ProductsGrid').data('kendoGrid').dataSource.read();*/" />

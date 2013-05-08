@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -16,8 +15,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         protected MVCSkeletonDataContext context;
         private IDbSet<T> dbSet;
 
-        protected BaseRepository()
-            : this(IOCProvider.Instance.Get<ISessionAdapter>())
+        protected BaseRepository() : this(IOCProvider.Instance.Get<ISessionAdapter>())
         {
         }
 
@@ -48,11 +46,10 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
-        public long Save(T domainObject)
+        public void Save(T domainObject)
         {
             if (Session.Any(e => e.Id == domainObject.Id))
             {
-                domainObject.UpdateDate = DateTime.Now;
                 Session.Attach(domainObject);
                 context.Entry(domainObject).State = EntityState.Modified;
             }
@@ -60,7 +57,12 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             {
                 Session.Add(domainObject);
             }
-            return domainObject.Id;
+        }
+
+        internal void SaveWithCommit(T domainObject)
+        {
+            Save(domainObject);
+            context.SaveChanges();
         }
 
         public T Get(long id)
@@ -73,11 +75,15 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             Session.Remove(domainObject);
         }
 
-        public List<T> GetAll()
+        internal void DeleteWithCommit(T domainObject)
+        {
+            Delete(domainObject);
+            context.SaveChanges();
+        }
+
+        public IEnumerable<T> GetAll()
         {
             return Session.ToList();
         }
-
-      
     }
 }

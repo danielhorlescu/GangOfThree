@@ -140,8 +140,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationInterfaces\ICustomerService.cs" />
     <Compile Include="ApplicationInterfaces\IMenuItemService.cs" />
+    <Compile Include="ApplicationInterfaces\IProductService.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="ApplicationInterfaces\ISessionService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -149,12 +149,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
-    <Compile Include="DTOs\CustomerDTO.cs" />
+    <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\RootMenuItemDTO.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Controllers\KendoController.cs" />
@@ -177,8 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerModel.cs" />
-    <Compile Include="Models\CustomersModel.cs" />
     <Compile Include="Models\KendoModel.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
@@ -541,7 +539,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Menu\GetRootMenuItems.cshtml" />
-    <Content Include="Views\Customer\GetCustomers.cshtml" />
+    <Content Include="Views\Product\GetProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

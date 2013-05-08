@@ -25,19 +25,10 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             {
                 return;
             }
-           CurrentSession.Commit();
-           CurrentSession.Dispose();
+            CurrentSession.SaveChanges();
+            CurrentSession.Dispose();
         }
 
-
-        public void CommitWithoutDispose()
-        {
-            if (sessionFactory == null)
-            {
-                return;
-            }
-            CurrentSession.Commit();
-        }
 
         public void Dispose()
         {

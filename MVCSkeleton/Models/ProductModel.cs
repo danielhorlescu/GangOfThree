@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Presentation.Models
 {
@@ -18,5 +20,7 @@ namespace MVCSkeleton.Presentation.Models
         [DataType(DataType.Currency)]
         [Range(0, int.MaxValue)]
         public double? UnitPrice { get; set; }
+
+        public List<ProductDTO> Products { get; set; }
     }
 }
