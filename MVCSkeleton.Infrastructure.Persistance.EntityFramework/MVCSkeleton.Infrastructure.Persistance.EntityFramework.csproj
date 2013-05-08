@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="FluentMappings\MenuItemMapping.cs" />
     <Compile Include="FluentMappings\StoreMapping.cs" />
+    <Compile Include="FluentMappings\ProductMapping.cs" />
     <Compile Include="FluentMappings\UserMapping.cs" />
     <Compile Include="DatabaseFactory.cs" />
     <Compile Include="IDatabaseFactory.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\MenuItemRepository.cs" />
     <Compile Include="Repositories\StoreRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

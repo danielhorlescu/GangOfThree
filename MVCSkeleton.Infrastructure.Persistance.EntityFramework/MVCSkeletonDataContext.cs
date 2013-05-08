@@ -22,11 +22,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             modelBuilder.Configurations.Add(new UserMapping());
             modelBuilder.Configurations.Add(new MenuItemMapping());
             modelBuilder.Configurations.Add(new StoreMapping());
-        }
-
-        public void Commit()
-        {
-            SaveChanges();
+            modelBuilder.Configurations.Add(new ProductMapping());
         }
     }
 }

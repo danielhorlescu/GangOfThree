@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace MVCSkeleton.IntegrationTests.Repository
 {
     [TestFixture]
-    public class MenuItemRepositoryRepositoryTests : BaseRepositoryTests
+    public class MenuItemRepositoryTests : BaseRepositoryTests
     {
         private MenuItemRepository CreateSUT()
         {
@@ -19,7 +19,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
             var expectedMenuItem = CreateMenuItem();
 
             MenuItemRepository menuItemRepository = CreateSUT();
-            menuItemRepository.Save(expectedMenuItem);
+            menuItemRepository.SaveWithCommit(expectedMenuItem);
             MenuItem actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
 
             Assert.IsNotNull(actualMenuItem);
@@ -32,8 +32,8 @@ namespace MVCSkeleton.IntegrationTests.Repository
             var menuItem = CreateMenuItem();
 
             MenuItemRepository menuItemRepository = CreateSUT();
-            menuItemRepository.Save(menuItem);
-            menuItemRepository.Delete(menuItem);
+            menuItemRepository.SaveWithCommit(menuItem);
+            menuItemRepository.DeleteWithCommit(menuItem);
 
             MenuItem actualMenuItem = menuItemRepository.Get(menuItem.Id);
             Assert.IsNull(actualMenuItem);
@@ -45,7 +45,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
             var expectedMenuItem = CreateMenuItem();
 
             MenuItemRepository menuItemRepository = CreateSUT();
-            menuItemRepository.Save(expectedMenuItem);
+            menuItemRepository.SaveWithCommit(expectedMenuItem);
             MenuItem actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
 
             string updatedMenuItem = "Updated Menu Item";
