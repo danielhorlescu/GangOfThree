@@ -35,8 +35,8 @@ namespace MVCSkeleton.Presentation.Controllers
         {
             if (customer != null && ModelState.IsValid)
             {
-             CustomerDTO customerDTO =  service.SaveCustomer(mapper.Map(customer,new CustomerDTO()));
-              customer = mapper.Map(customerDTO, new CustomerModel());
+            customer.Id =  service.SaveCustomer(mapper.Map(customer,new CustomerDTO()));
+
             }
             return Json(new[] {customer}.ToDataSourceResult(request, ModelState));
         }

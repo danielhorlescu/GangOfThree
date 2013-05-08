@@ -1,5 +1,7 @@
 ﻿CREATE TABLE [dbo].[Customers](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[CreationDate] [datetime] NOT NULL,
+	[UpdateDate] [datetime] NULL,
 	[Name] [nvarchar](50) NOT NULL,
 	[Surname] [nvarchar](50) NOT NULL,
 	[AddressId] [nvarchar](100) NULL,

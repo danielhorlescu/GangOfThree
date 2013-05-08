@@ -5,7 +5,7 @@ namespace MVCSkeleton.Application.Repository
 {
     public interface IBaseRepository<T> where T : IAggregateRoot
     {
-        T Save(T domainObject);
+        long Save(T domainObject);
 
         T Get(long id);
 

@@ -7,7 +7,7 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
     {
         List<CustomerDTO> GetCustomers();
 
-       CustomerDTO SaveCustomer(CustomerDTO customerDTO);
+       long SaveCustomer(CustomerDTO customerDTO);
 
         void DeleteCustomer(CustomerDTO customerDTO);
 

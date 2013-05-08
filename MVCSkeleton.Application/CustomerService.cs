@@ -25,10 +25,10 @@ namespace MVCSkeleton.Application
             return mapper.Map(customerList, new List<CustomerDTO>());
         }
 
-      public CustomerDTO SaveCustomer(CustomerDTO customerDTO)
+      public long SaveCustomer(CustomerDTO customerDTO)
       {
-        Customer customer =   customerRepository.Save(mapper.Map(customerDTO, new Customer()));
-         return mapper.Map(customer, new CustomerDTO());
+        return  customerRepository.Save(mapper.Map(customerDTO, new Customer()));
+        
       }
 
       public void DeleteCustomer(CustomerDTO customerDTO)
@@ -39,13 +39,8 @@ namespace MVCSkeleton.Application
       public void UpdateCustomer(CustomerDTO customerDTO)
       {
           Customer customer = mapper.Map(customerDTO, new Customer());
-          customerRepository.Update(customer);
+          customerRepository.Save(customer);
       }
 
-      //public void UpdateCustomer(CustomerDTO customerDto)
-      //{
-      //    Customer customer = mapper.Map(customerDto, new Customer());
-      //    customerRepository.
-      //}
     }
 }

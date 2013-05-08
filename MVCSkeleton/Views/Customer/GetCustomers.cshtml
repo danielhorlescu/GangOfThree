@@ -1,9 +1,8 @@
 ﻿@model MVCSkeleton.Presentation.Models.CustomersModel
-
+@using MVCSkeleton.Presentation.Controls
 @{
-    Layout = null;
+    ViewBag.Title = "CustomerModule";
 }
-
 
 @(Html.Kendo().Grid(Model.CustomerList)
       .Name("CustomerList")
