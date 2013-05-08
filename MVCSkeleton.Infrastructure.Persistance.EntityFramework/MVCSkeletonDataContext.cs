@@ -17,11 +17,14 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
 
         public DbSet<MenuItem> MenuItems { get; set; }
 
+        public DbSet<Customer> Customers { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserMapping());
             modelBuilder.Configurations.Add(new MenuItemMapping());
             modelBuilder.Configurations.Add(new ProductMapping());
+            modelBuilder.Configurations.Add(new CustomerMapping());
         }
     }
 }
