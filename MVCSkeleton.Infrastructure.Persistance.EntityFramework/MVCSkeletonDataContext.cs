@@ -15,12 +15,11 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserMapping());
-            modelBuilder.Configurations.Add(new MenuItemMapping());
             modelBuilder.Configurations.Add(new ProductMapping());
         }
     }

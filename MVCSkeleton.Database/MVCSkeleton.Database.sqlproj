@@ -70,6 +70,5 @@
   <ItemGroup>
     <None Include="MVCSkeleton.Database.publish.xml" />
     <None Include="MVCSkeleton.TestDatabase.publish.publish.xml" />
-    <Build Include="Tables\MenuItems.sql" />
   </ItemGroup>
 </Project>
