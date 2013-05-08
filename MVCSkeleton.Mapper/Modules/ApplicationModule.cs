@@ -11,7 +11,8 @@ namespace MVCSkeleton.Mapper.Modules
         {
             AutoMapper.Mapper.CreateMap<User, UserDTO>();
             AutoMapper.Mapper.CreateMap<UserDTO, User>().IgnoreAllNonExisting();
-            AutoMapper.Mapper.CreateMap<MenuItem, RootMenuItemDTO>();
+            AutoMapper.Mapper.CreateMap<Product, ProductDTO>();
+            AutoMapper.Mapper.CreateMap<ProductDTO, ProductModel>();
 
             AutoMapper.Mapper.CreateMap<RootMenuItemDTO,MenuItem>().IgnoreAllNonExisting();
 

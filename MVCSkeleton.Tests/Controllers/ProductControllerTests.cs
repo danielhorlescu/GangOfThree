@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using FakeItEasy;
+using MVCSkeleton.Infrastracture.Utils.Mapper;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
 using MVCSkeleton.Presentation.Controllers;
 using MVCSkeleton.Presentation.DTOs;
@@ -14,11 +15,13 @@ namespace MVCSkeleton.Tests.Controllers
     public class ProductControllerTests
     {
         private IProductService service;
+        private IMapper mapper;
 
         private ProductController CreateSUT()
         {
             service = A.Fake<IProductService>();
-            return new ProductController(service);
+            mapper = A.Fake<IMapper>();
+            return new ProductController(service, mapper);
         }
 
         [Test]
@@ -30,7 +33,7 @@ namespace MVCSkeleton.Tests.Controllers
             A.CallTo(() => service.GetProducts()).Returns(expectedProducts);
             ViewResult view = productController.GetProducts();
 
-            Assert.AreEqual(expectedProducts, ((ProductModel)view.Model).Products);
+            Assert.AreEqual(mapper.Map(expectedProducts, new List<ProductModel>()), view.Model);
         }
 
         private List<ProductDTO> CreateProductList()

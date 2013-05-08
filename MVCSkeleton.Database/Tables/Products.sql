@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Products](
 	[Id] BIGINT IDENTITY(1,1) NOT NULL,
+	[CategoryId] [bigint] NOT NULL,
 	[CreationDate] [datetime] NOT NULL,
 	[UpdateDate] [datetime] NULL,
 	[Code] [nvarchar](20) NOT NULL,
