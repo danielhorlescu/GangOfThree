@@ -83,64 +83,64 @@ namespace MVCSkeleton.Presentation.Controls
                         {
                             Id = 1,
                             CategoryId = 1,
-                            ProductName = "Gula Malacca",
-                            ProductCode = "GM",
+                            Name = "Gula Malacca",
+                            Code = "GM",
                             UnitPrice = 2.33
                         },
                     new ProductModel
                         {
                             Id = 2,
                             CategoryId = 1,
-                            ProductName = "Sirop d'érable",
-                            ProductCode = "SDE",
+                            Name = "Sirop d'érable",
+                            Code = "SDE",
                             UnitPrice = 3.45
                         },
                     new ProductModel
                         {
                             Id = 3,
                             CategoryId = 2,
-                            ProductName = "Gravad lax",
-                            ProductCode = "GL",
+                            Name = "Gravad lax",
+                            Code = "GL",
                             UnitPrice = 5.77
                         },
                     new ProductModel
                         {
                             Id = 4,
                             CategoryId = 2,
-                            ProductName = "Konbu",
-                            ProductCode = "KB",
+                            Name = "Konbu",
+                            Code = "KB",
                             UnitPrice = 10.27
                         },
                     new ProductModel
                         {
                             Id = 5,
                             CategoryId = 3,
-                            ProductName = "Alice Mutton",
-                            ProductCode = "AM",
+                            Name = "Alice Mutton",
+                            Code = "AM",
                             UnitPrice = 9.86
                         },
                     new ProductModel
                         {
                             Id = 6,
                             CategoryId = 3,
-                            ProductName = "Pâté chinois",
-                            ProductCode = "PC",
+                            Name = "Pâté chinois",
+                            Code = "PC",
                             UnitPrice = 21.43
                         },
                     new ProductModel
                         {
                             Id = 7,
                             CategoryId = 4,
-                            ProductName = "Tunnbröd",
-                            ProductCode = "TB",
+                            Name = "Tunnbröd",
+                            Code = "TB",
                             UnitPrice = 1.13
                         },
                     new ProductModel
                         {
                             Id = 8,
                             CategoryId = 4,
-                            ProductName = "Ravioli Angelo",
-                            ProductCode = "RA",
+                            Name = "Ravioli Angelo",
+                            Code = "RA",
                             UnitPrice = 4.89
                         },
                 }

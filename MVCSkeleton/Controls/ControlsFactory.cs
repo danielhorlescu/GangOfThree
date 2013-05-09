@@ -75,6 +75,11 @@ namespace MVCSkeleton.Presentation.Controls
             return gridBuilder;
         }
 
+        public override Kendo.Mvc.UI.Fluent.MenuBuilder Menu()
+        {
+            return new MenuBuilder(new Menu(HtmlHelper.ViewContext, Initializer, UrlGenerator, DI.Current.Resolve<INavigationItemAuthorization>()));
+        }
+
         public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<double> NumericTextBox()
         {
             return new NumericTextBoxBuilder<double>(new NumericTextBox<double>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));

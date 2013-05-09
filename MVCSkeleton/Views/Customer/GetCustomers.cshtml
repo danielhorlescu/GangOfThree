@@ -1,0 +1,30 @@
+﻿@model MVCSkeleton.Presentation.Models.CustomersModel
+@using MVCSkeleton.Presentation.Controls
+@{
+    ViewBag.Title = "CustomerModule";
+}
+
+@(Html.Kendo().Grid(Model.CustomerList)
+      .Name("CustomerList")
+      .Columns(columns =>
+          {
+              columns.Bound(x => x.Name);
+              columns.Bound(x => x.Surname);
+              columns.Bound(x => x.AddressId);
+              columns.Command(command => { command.Edit(); command.Destroy(); }).Width(172);
+          })
+          .ToolBar(toolbar => toolbar.Create())
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Scrollable()
+      .Sortable()
+      .DataSource(datasource =>datasource
+                                   .Ajax()
+                                   .PageSize(20)
+                                   .ServerOperation(false)
+                                   .Model(model => model.Id(p => p.Id))
+                                   .Create(update => update.Action("Create_Customer", "Customer"))
+                                   .Destroy(update => update.Action("Delete_Customer", "Customer"))
+                                   .Update("Update_Customer","Customer")
+                                   ))
+ 

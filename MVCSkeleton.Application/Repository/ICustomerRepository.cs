@@ -3,8 +3,8 @@ using MVCSkeleton.Domain;
 
 namespace MVCSkeleton.Application.Repository
 {
-    public interface IMenuItemRepository
+    public interface ICustomerRepository : IBaseRepository<Customer>
     {
-        List<MenuItem> GetRootMenuItems();
+
     }
 }
