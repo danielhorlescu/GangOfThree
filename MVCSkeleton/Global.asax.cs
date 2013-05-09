@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Kendo.Mvc;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 using MVCSkeleton.Presentation.App_Start;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
@@ -24,6 +25,19 @@ namespace MVCSkeleton.Presentation
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            RegisterSiteMap();
+        }
+
+        private void RegisterSiteMap()
+        {
+            string menu = "menu";
+            string appDataMenuSitemapPath = "~/App_Data/menu.sitemap";
+            if (!SiteMapManager.SiteMaps.ContainsKey(menu))
+            {
+                SiteMapManager.SiteMaps.Register<XmlSiteMap>(menu,
+                                                             sitmap => sitmap.LoadFrom(appDataMenuSitemapPath));
+            }
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

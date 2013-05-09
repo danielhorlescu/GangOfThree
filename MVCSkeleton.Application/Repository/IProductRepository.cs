@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using MVCSkeleton.Domain;
+﻿using MVCSkeleton.Domain;
 
 namespace MVCSkeleton.Application.Repository
 {
-    public interface IProductRepository
+    public interface IProductRepository : IBaseRepository<Product>
     {
-        List<Product> GetProducts();
     }
 }

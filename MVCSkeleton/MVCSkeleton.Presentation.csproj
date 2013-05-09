@@ -149,8 +149,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+=======
+>>>>>>> 8d85ac3e4ed161ad23782785d1642f7676f3e65c
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controls\Builders\MenuBuilder.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
@@ -543,7 +546,7 @@
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
-    <Content Include="Views\Menu\LoadMenu.cshtml" />
+    <Content Include="Views\Home\LoadMenu.cshtml" />
     <Content Include="Views\Product\GetProducts.cshtml" />
     <Content Include="Views\Customer\GetCustomers.cshtml" />
   </ItemGroup>

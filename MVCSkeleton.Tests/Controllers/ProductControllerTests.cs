@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using FakeItEasy;
@@ -24,6 +23,14 @@ namespace MVCSkeleton.Tests.Controllers
             return new ProductController(service, mapper);
         }
 
+        private List<ProductDTO> CreateProductList()
+        {
+            return new List<ProductDTO>
+                {
+                    new ProductDTO {Code = "Smart", Name = "Samsung Nexus", UnitPrice = 567, UnitsInStock = 3}
+                };
+        }
+
         [Test]
         public void Should_Get_Products()
         {
@@ -34,14 +41,6 @@ namespace MVCSkeleton.Tests.Controllers
             ViewResult view = productController.GetProducts();
 
             Assert.AreEqual(mapper.Map(expectedProducts, new List<ProductModel>()), view.Model);
-        }
-
-        private List<ProductDTO> CreateProductList()
-        {
-            return new List<ProductDTO>
-                {
-                    new ProductDTO {Code = "Smart", Name = "Samsung Nexus", UnitPrice = 567, UnitsInStock = 3, CreationDate = DateTime.Now}
-                };
         }
     }
 }

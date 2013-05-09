@@ -22,5 +22,10 @@ namespace MVCSkeleton.Presentation.Controllers
 
             return View();
         }
+
+        public ActionResult LoadMenu()
+        {
+            return View();
+        }
     }
 }

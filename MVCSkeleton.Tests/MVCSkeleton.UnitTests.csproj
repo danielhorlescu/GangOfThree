@@ -115,7 +115,7 @@
     <Compile Include="Application\CustomerServiceTests.cs" />
     <Compile Include="Application\ProductServiceTests.cs" />
     <Compile Include="Controllers\CustomerControllerTests.cs" />
-    <Compile Include="Controllers\MenuControllerTests.cs" />
+
     <Compile Include="Controllers\ProductControllerTests.cs" />
     <Compile Include="IOC\AutoMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
