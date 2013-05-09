@@ -141,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInterfaces\ICustomerService.cs" />
-    <Compile Include="ApplicationInterfaces\IMenuItemService.cs" />
     <Compile Include="ApplicationInterfaces\IProductService.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
     <Compile Include="ApplicationInterfaces\ISessionService.cs" />

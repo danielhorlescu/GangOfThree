@@ -15,12 +15,11 @@ namespace MVCSkeleton.IOC.Unity.Modules
         {
             InitializeSessionAdapterBinding(container);
             container.RegisterType<IUserRepository, UserRepository>();
-<<<<<<< HEAD
-            container.RegisterType<IMenuItemRepository, MenuItemRepository>();
+
             container.RegisterType<ICustomerRepository, CustomerRepository>();
-=======
+
             container.RegisterType<IProductRepository, ProductRepository>();
->>>>>>> 2b2ad7d3cce158f55b3f95ace790741dbacdd07b
+
         }
 
         protected virtual void InitializeSessionAdapterBinding(IUnityContainer container)
