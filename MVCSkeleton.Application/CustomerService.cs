@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
@@ -20,17 +21,17 @@ namespace MVCSkeleton.Application
 
         public List<CustomerDTO> GetCustomers()
         {
-            List<Customer> customerList =  customerRepository.GetAll();
+            var customerList =  (List<Customer>) customerRepository.GetAll();
           
             return mapper.Map(customerList, new List<CustomerDTO>());
         }
 
-      public long SaveCustomer(CustomerDTO customerDTO)
+      public Guid SaveCustomer(CustomerDTO customerDTO)
       {
         return customerRepository.Save(mapper.Map(customerDTO, new Customer()));
       }
 
-      public void DeleteCustomer(long customerId)
+      public void DeleteCustomer(Guid customerId)
       {
           customerRepository.Delete(customerId);
       }

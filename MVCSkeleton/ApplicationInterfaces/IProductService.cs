@@ -6,5 +6,7 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
     public interface IProductService
     {
         List<ProductDTO> GetProducts();
+
+        void CreateProduct(ProductDTO productDto);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
+using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
 using MVCSkeleton.Presentation.DTOs;
@@ -20,6 +21,11 @@ namespace MVCSkeleton.Application
         public List<ProductDTO> GetProducts()
         {
             return mapper.Map(productRepository.GetAll(), new List<ProductDTO>());
+        }
+
+        public void CreateProduct(ProductDTO productDto)
+        {
+            productRepository.Save(mapper.Map(productDto, new Product()));
         }
     }
 }
