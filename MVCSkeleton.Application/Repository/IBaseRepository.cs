@@ -12,6 +12,8 @@ namespace MVCSkeleton.Application.Repository
 
         void Delete(T user);
 
+        void Delete(long id);
+
         void Save(IEnumerable<T> domainObjects);
 
         List<T> GetAll();

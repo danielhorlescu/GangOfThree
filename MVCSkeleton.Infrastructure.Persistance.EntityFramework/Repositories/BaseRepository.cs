@@ -6,6 +6,7 @@ using System.Linq;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
+using MVCSkeleton.Infrastracture.Utils.DesignByContract;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 
 namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
@@ -37,6 +38,13 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
                 }
                 return dbSet;
             }
+        }
+
+        public void Delete(long id)
+        {
+            T domainObject = Get(id);
+            Check.Require(domainObject != null, string.Format("Cannot find object {0} to delete", id));
+            Delete(domainObject);
         }
 
         public void Save(IEnumerable<T> domainObjects)
@@ -75,8 +83,6 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 
         public void Delete(T domainObject)
         {
-            Session.Attach(domainObject);
-            context.Entry(domainObject).State = EntityState.Deleted;
             Session.Remove(domainObject);
         }
 

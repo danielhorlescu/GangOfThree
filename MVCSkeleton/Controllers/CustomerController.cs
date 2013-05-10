@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
 using MVCSkeleton.Presentation.DTOs;
 using MVCSkeleton.Presentation.Models;
-using Kendo.Mvc.UI;
 
 namespace MVCSkeleton.Presentation.Controllers
 {
@@ -23,20 +20,16 @@ namespace MVCSkeleton.Presentation.Controllers
             this.mapper = mapper;
         }
 
-
         public ViewResult GetCustomers()
         {
-            List<CustomerDTO> customers = service.GetCustomers();
-            return View(new CustomersModel { CustomerList = mapper.Map(customers, new List<CustomerModel>())});
-
+            return View(new CustomersModel {CustomerList = mapper.Map(service.GetCustomers(), new List<CustomerModel>())});
         }
 
         public ActionResult Create_Customer([DataSourceRequest] DataSourceRequest request, CustomerModel customer)
         {
             if (customer != null && ModelState.IsValid)
             {
-            customer.Id =  service.SaveCustomer(mapper.Map(customer,new CustomerDTO()));
-
+                customer.Id = service.SaveCustomer(mapper.Map(customer, new CustomerDTO()));
             }
             return Json(new[] {customer}.ToDataSourceResult(request, ModelState));
         }
@@ -45,7 +38,7 @@ namespace MVCSkeleton.Presentation.Controllers
         {
             if (customer != null)
             {
-                service.DeleteCustomer(mapper.Map(customer, new CustomerDTO()));
+                service.DeleteCustomer(customer.Id);
             }
             return Json(ModelState.ToDataSourceResult());
         }

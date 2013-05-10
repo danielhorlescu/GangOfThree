@@ -9,7 +9,7 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
 
        long SaveCustomer(CustomerDTO customerDTO);
 
-        void DeleteCustomer(CustomerDTO customerDTO);
+        void DeleteCustomer(long customerId);
 
         void UpdateCustomer(CustomerDTO customerDTO);
     }
