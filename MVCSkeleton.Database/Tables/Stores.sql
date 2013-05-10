@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Stores]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Name] NVARCHAR(255) NOT NULL, 
+    [Email] NVARCHAR(255) NOT NULL, 
+    [CreationDate] DATETIME NOT NULL, 
+    [UpdateDate] DATETIME NOT NULL
+)

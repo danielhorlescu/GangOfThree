@@ -40,7 +40,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
-        public void Delete(long id)
+        public void Delete(Guid id)
         {
             T domainObject = Get(id);
             Check.Require(domainObject != null, string.Format("Cannot find object {0} to delete", id));
@@ -55,7 +55,12 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
-        public long Save(T domainObject)
+        public IEnumerable<T> GetAll()
+        {
+            return Session.ToList();
+        }
+
+        public Guid Save(T domainObject)
         {
             if (Session.Any(e => e.Id == domainObject.Id))
             {
@@ -76,7 +81,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             context.SaveChanges();
         }
 
-        public T Get(long id)
+        public T Get(Guid id)
         {
             return Session.Find(id);
         }
@@ -90,13 +95,6 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         {
             Delete(domainObject);
             context.SaveChanges();
-        }
-
-        public List<T> GetAll()
-        {
-            return Session.ToList();
-        }
-
-       
+        }       
     }
 }

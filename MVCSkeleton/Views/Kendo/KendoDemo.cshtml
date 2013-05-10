@@ -103,8 +103,8 @@
           .Name("ProductsGrid")
           .Columns(columns =>
               {
-                  columns.Bound(p => p.ProductName);
-                  columns.Bound(p => p.ProductCode);
+                  columns.Bound(p => p.Name);
+                  columns.Bound(p => p.Code);
                   columns.Bound(p => p.UnitPrice).Width(120);
                   columns.Command(command => { command.Edit(); command.Destroy(); });
               })
@@ -114,7 +114,7 @@
           .Pageable()
           .Sortable()
           .Scrollable()
-          .Filterable()
+          .Filterable()          
           .DataSource(ds => ds.Ajax()
                               .Read(read => read.Action("Products_Read", "Kendo"))
                               .Model(model => model.Id(p => p.Id))

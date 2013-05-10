@@ -63,6 +63,7 @@
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Products.sql" />
+    <Build Include="Tables\Stores.sql" />
     <Build Include="Tables\Customers.sql" />
   </ItemGroup>
   <ItemGroup>

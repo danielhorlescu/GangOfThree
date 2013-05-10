@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MVCSkeleton.Presentation.Models
@@ -6,10 +7,10 @@ namespace MVCSkeleton.Presentation.Models
     public class ProductModel
     {
         [ScaffoldColumn(false)]
-        public long Id { get; set; }
+        public Guid Id { get; set; }
 
         [ScaffoldColumn(false)]
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
 
         [DisplayName("Name")]
         public string Name { get; set; }

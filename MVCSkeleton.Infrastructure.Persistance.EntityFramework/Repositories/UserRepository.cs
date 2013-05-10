@@ -16,7 +16,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         {
             User user = Session.SingleOrDefault(u => u.Name == userName &&
                                                      u.Password == oldPassword);
-            user.Password = newPassword;
+            if (user != null) user.Password = newPassword;
             context.SaveChanges();
         }
     }

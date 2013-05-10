@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repository\IStoreRepository.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Session\ISessionAdapter.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Session\SessionService.cs" />
+    <Compile Include="StoreService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,10 @@
-﻿namespace MVCSkeleton.Domain
+﻿using System;
+
+namespace MVCSkeleton.Domain
 {
     public class Product : EntityBase, IAggregateRoot
     {
-        public virtual long CategoryId { get; set; }
+        public virtual Guid CategoryId { get; set; }
 
         public virtual string Code { get; set; }
 

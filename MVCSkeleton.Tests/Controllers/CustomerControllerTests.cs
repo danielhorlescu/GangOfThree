@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using FakeItEasy;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
@@ -41,7 +42,7 @@ namespace MVCSkeleton.Tests.Controllers
                     new CustomerDTO
                         {
                             AddressId = "123",
-                            Id = 1,
+                            Id = Guid.NewGuid(),
                             Name = "CustomerName1",
                             Surname = "CustomerSurname1"
 
@@ -49,7 +50,7 @@ namespace MVCSkeleton.Tests.Controllers
                     new CustomerDTO
                         {
                             AddressId = "321",
-                            Id = 2,
+                            Id = Guid.NewGuid(),
                             Name = "CustomerName2",
                             Surname = "CustomerSurname2"
 

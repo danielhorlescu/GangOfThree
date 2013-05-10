@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FluentMappings\CustomerMapping.cs" />
+    <Compile Include="FluentMappings\StoreMapping.cs" />
     <Compile Include="FluentMappings\ProductMapping.cs" />
     <Compile Include="FluentMappings\UserMapping.cs" />
     <Compile Include="DatabaseFactory.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="EntityFrameworkSessionAdapter.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

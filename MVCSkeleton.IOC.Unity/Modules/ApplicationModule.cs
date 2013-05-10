@@ -13,6 +13,7 @@ namespace MVCSkeleton.IOC.Unity.Modules
             container.RegisterType<IUserService, UserService>();
             container.RegisterType<IProductService, ProductService>();
             container.RegisterType<ICustomerService, CustomerService>();
+            container.RegisterType<IStoreService, StoreService>();
         }
     }
 }

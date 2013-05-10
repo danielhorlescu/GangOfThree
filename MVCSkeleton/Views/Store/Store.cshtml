@@ -1,0 +1,39 @@
+﻿@model MVCSkeleton.Presentation.Models.StoreGridModel
+@using MVCSkeleton.Presentation.Controls
+@{
+    ViewBag.Title = "Store";
+}
+
+<h2>Store Management</h2>
+<br/>
+<div id="store">
+    
+    <label for="StoresGrid">Stores:</label>
+    @(Html.Controls().Grid(Model.StoreModels)    
+          .Name("StoresGrid")
+          .Columns(columns =>
+              {
+                  columns.Bound(p => p.Name);
+                  columns.Bound(p => p.Email);                  
+                  columns.Command(command => { command.Edit(); command.Destroy(); });
+              })
+          .ToolBar(toolbar => toolbar.Create())
+          .Editable(x => x.Mode(GridEditMode.InLine))
+          .Groupable()
+          .Pageable()
+          .Sortable()
+          .Scrollable()
+          .Filterable()
+          .DataSource(ds => ds.Ajax()
+                              .Read(read => read.Action("Stores_Read", "Store"))
+                              .Model(model => model.Id(p => p.Id))
+                              .Create(create => create.Action("Store_Create", "Store"))
+                              .Destroy(destroy => destroy.Action("Store_Delete", "Store"))
+                              .Update(update => update.Action("Store_Update", "Store"))))      
+    <br/>
+    <input type="button" id="refreshStoresGridData" value="Refresh Data" onclick="$('#StoresGrid').data('kendoGrid').dataSource.read();" />   
+</div>    
+
+@section Scripts {
+    @Scripts.Render("~/bundles/bindings")
+}

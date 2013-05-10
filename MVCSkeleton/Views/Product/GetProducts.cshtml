@@ -8,6 +8,7 @@
 <h2>Products</h2>
 
 <label for="ProductsGrid">Products:</label>
+@Html.ValidationSummary()
     @(Html.Controls().Grid(Model)    
           .Name("ProductsGrid")
           .Columns(columns =>
@@ -25,11 +26,20 @@
           .Sortable()
           .Scrollable()
           .Filterable()
-          .DataSource(ds => ds.Ajax()
-                              .Read(read => read.Action("Products_Read", "Kendo"))
+          .DataSource(ds => ds.Ajax().Batch(true)
+                              .Read(read => read.Action("Products_Read", "Product"))
+                              .Events(events => events.Error("error"))
                               .Model(model => model.Id(p => p.Id))
-                              .Create(create => create.Action("Product_Create", "Kendo"))
-                              .Destroy(destroy => destroy.Action("Product_Delete", "Kendo"))
-                              .Update(update => update.Action("Product_Update", "Kendo"))))  
+                              .Create(create => create.Action("Product_Create", "Product"))
+                              .Destroy(destroy => destroy.Action("Product_Delete", "Product"))
+                              .Update(update => update.Action("Product_Update", "Product"))))  
     <br/>
-    <input type="button" id="refreshProductsGridData" value="Refresh Data" onclick="/*$('#ProductsGrid').data('kendoGrid').dataSource.read();*/" />
+<input type="button" id="refreshProductsGridData" value="Refresh Data" onclick="$('#ProductsGrid').data('kendoGrid').dataSource.read();" />
+<script type="text/javascript">
+    //kendo.data.DataSource.prototype.options.autoSync = true;
+    $("#body").kendoValidator().data('kendoValidator');
+    function error(e) {
+        console.log(e.errors);
+        $('#ProductsGrid').data('kendoGrid').cancelChanges();
+    }
+</script>

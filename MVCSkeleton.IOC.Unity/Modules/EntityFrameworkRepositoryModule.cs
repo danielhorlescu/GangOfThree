@@ -20,6 +20,7 @@ namespace MVCSkeleton.IOC.Unity.Modules
 
             container.RegisterType<IProductRepository, ProductRepository>();
 
+            container.RegisterType<IStoreRepository, StoreRepository>();
         }
 
         protected virtual void InitializeSessionAdapterBinding(IUnityContainer container)

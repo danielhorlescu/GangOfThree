@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MVCSkeleton.Domain;
 
@@ -6,18 +7,16 @@ namespace MVCSkeleton.Application.Repository
     public interface IBaseRepository<T> where T : IAggregateRoot
     {
 
-        long Save(T domainObject);
+        Guid Save(T domainObject);
 
-        T Get(long id);
+        T Get(Guid id);
 
         void Delete(T user);
 
-        void Delete(long id);
+        void Delete(Guid id);
 
         void Save(IEnumerable<T> domainObjects);
 
-        List<T> GetAll();
-
-
+        IEnumerable<T> GetAll();
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MVCSkeleton.Presentation.Models
 {
     public class CustomerModel
     {
         [ScaffoldColumn(false)]
-        public  long Id { get; set; }
+        public  Guid Id { get; set; }
 
         public  string Name { get; set; }
 

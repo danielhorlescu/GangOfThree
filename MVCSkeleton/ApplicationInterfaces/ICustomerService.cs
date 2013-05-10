@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Presentation.ApplicationInterfaces
@@ -7,9 +8,9 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
     {
         List<CustomerDTO> GetCustomers();
 
-       long SaveCustomer(CustomerDTO customerDTO);
+       Guid SaveCustomer(CustomerDTO customerDTO);
 
-        void DeleteCustomer(long customerId);
+        void DeleteCustomer(Guid customerId);
 
         void UpdateCustomer(CustomerDTO customerDTO);
     }

@@ -11,7 +11,9 @@ namespace MVCSkeleton.DatabaseCreator
             {
                 if (db.Database.Exists())
                 {
+                    Console.WriteLine("Existing database found.");
                     db.Database.Delete();
+                    Console.WriteLine("Database deleted.");
                 }
                 db.Database.Create();
             }
