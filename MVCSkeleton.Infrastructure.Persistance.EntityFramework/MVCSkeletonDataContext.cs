@@ -14,16 +14,16 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<MenuItem> MenuItems { get; set; }
+        public DbSet<Store> Stores { get; set; }        
         public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserMapping());
-            modelBuilder.Configurations.Add(new MenuItemMapping());
             modelBuilder.Configurations.Add(new StoreMapping());
             modelBuilder.Configurations.Add(new ProductMapping());
+            modelBuilder.Configurations.Add(new CustomerMapping());
         }
     }
 }

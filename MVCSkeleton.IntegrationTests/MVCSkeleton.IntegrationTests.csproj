@@ -48,7 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repository\BaseRepositoryTests.cs" />
-    <Compile Include="Repository\MenuItemRepositoryTests.cs" />
     <Compile Include="Repository\ProductRepositoryTests.cs" />
     <Compile Include="Repository\StoreRepositoryTests.cs" />
     <Compile Include="Repository\UserRepositoryTests.cs" />

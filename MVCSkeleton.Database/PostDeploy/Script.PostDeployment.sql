@@ -10,34 +10,22 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-
---SET IDENTITY_INSERT [dbo].Users ON
+delete users;
+delete Products;
 
 Insert INTO dbo.Users (Id,CreationDate, UpdateDate,Name,Password) 
-Values ('121457B8-C532-4D1B-98EF-9ADE39819145','10/10/2010',null,'User','Pwd@123');
+Values ('121457B8-C532-4D1B-98EF-9ADE39819145','10/10/2010','10/10/2010','User','Pwd@123');
 Insert INTO dbo.Users (Id,CreationDate, UpdateDate,Name,Password) 
-Values ('E041F344-A098-4578-BBB0-13B4BCC1658F','10/10/2010',null,'TestUser','Pwd@123');
+Values ('E041F344-A098-4578-BBB0-13B4BCC1658F','10/10/2010','10/10/2010','TestUser','Pwd@123');
 
---SET IDENTITY_INSERT [dbo].Users OFF
-
---SET IDENTITY_INSERT [dbo].[MenuItems] ON
-
-INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES ('E29BE52A-BA01-4932-8BF4-6D8C181A2FF3','10/10/2010',null, NULL, NULL, N'Products', NULL);
-INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES ('150BDCD3-8A61-467A-B90D-DE8714D6ADCD','10/10/2010',null, N'Product', N'GetProducts', N'List Products', '150BDCD3-8A61-467A-B90D-DE8714D6ADCD');
-INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES ('AAC449E0-57A0-434B-B724-8CA69A6B46C6','10/10/2010',null, NULL, NULL, N'Menu Aggregate 2', NULL);
-INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES ('12AC41DC-942E-4B3A-9F93-84CE6FF87CCC','10/10/2010',null, N'testController1', N'testAction1', N'MenuItem1', 'AAC449E0-57A0-434B-B724-8CA69A6B46C6');
-INSERT INTO [dbo].[MenuItems] ([Id],CreationDate, UpdateDate, [Controller], [Action], [Name], [ParentItem_Id]) VALUES ('76EFC264-C88D-4C8E-A444-6E944D76D0BF','10/10/2010',null, N'testController1', N'testAction1', N'MenuItem1', 'AAC449E0-57A0-434B-B724-8CA69A6B46C6');
-
---SET IDENTITY_INSERT [dbo].[MenuItems] OFF
-
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Gula Malacca', N'GM', 2.33, 3, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Sirop dérable', N'SDE', 3.45, 5, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Gravad lax', N'GL', 5.77, 0, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Konbu', N'KB', 10.27, 13, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Alice Mutton', N'AM', 9.86, 20, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Pâté chinois', N'PC', 21.43, 100, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Tunnbröd', N'TB', 1.13, 7, '2013-05-07 14:51:05', null);
-INSERT INTO [dbo].[Products] ([Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES (N'Ravioli Angelo', N'RA', 4.89, 11, '2013-05-07 14:51:05', null);
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('1051A360-2E1F-409B-B04A-0F623B89233C', '0B4FDF16-0B02-4806-AD66-CB75B0B5716B', N'Gula Malacca', N'GM', 2.33, 3, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('0BACC451-C240-4ED9-BE77-2CC87182FF70', '0B4FDF16-0B02-4806-AD66-CB75B0B5716B', N'Sirop dérable', N'SDE', 3.45, 5, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('D5E8FDEF-B022-4E10-A293-EA128AC30602', 'E457645C-BC7B-4EEF-AC46-863B24C3BACE', N'Gravad lax', N'GL', 5.77, 0, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('14C4B179-CCAD-47EE-AC53-AFA93BE59A12', 'E457645C-BC7B-4EEF-AC46-863B24C3BACE', N'Konbu', N'KB', 10.27, 13, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('7AFA6D71-7B53-4971-8165-D1EB00DC4774', 'C54C4209-CF50-4603-9FDB-5620EF330E38', N'Alice Mutton', N'AM', 9.86, 20, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('F2A92077-91DC-4806-86FC-1F91D5BA4C19', 'C54C4209-CF50-4603-9FDB-5620EF330E38', N'Pâté chinois', N'PC', 21.43, 100, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('A1D377FA-436A-4D89-870C-9124B7110019', '4B985BA0-126E-4478-8C0F-0CDE556D44F2', N'Tunnbröd', N'TB', 1.13, 7, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
+INSERT INTO [dbo].[Products] ([Id], [CategoryId], [Name], [Code], [UnitPrice], [UnitsInStock], [CreationDate], [UpdateDate]) VALUES ('C56D250F-BA41-4BA4-8D9B-0A46212550CB', '4B985BA0-126E-4478-8C0F-0CDE556D44F2', N'Ravioli Angelo', N'RA', 4.89, 11, '2013-05-07 14:51:05', '2013-05-07 14:51:05');
 
 INSERT INTO [dbo].[Stores] ([Id], [Name], [Email], [CreationDate], [UpdateDate]) VALUES ('9351BA4E-5AEF-436F-95CE-A61557EC1669', 'firstStore','first@first.com','01-01-2001','01-01-2001')
 

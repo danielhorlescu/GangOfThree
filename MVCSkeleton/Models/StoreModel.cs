@@ -8,7 +8,7 @@ namespace MVCSkeleton.Presentation.Models
 {
     public class StoreModel
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public String Name { get; set; }

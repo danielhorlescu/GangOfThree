@@ -29,7 +29,7 @@ namespace MVCSkeleton.Tests.Application
             List<Product> products = new List<Product>();
             List<ProductDTO> productDtos = new List<ProductDTO>();
 
-            A.CallTo(() => productRepository.GetProducts()).Returns(products);
+            A.CallTo(() => productRepository.GetAll()).Returns(products);
             A.CallTo(() => mapper.Map(products, productDtos)).Returns(productDtos);
 
             List<ProductDTO> actualProductDtos = productService.GetProducts();

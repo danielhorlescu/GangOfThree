@@ -15,7 +15,7 @@
     <AssemblyName>MVCSkeleton.Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -140,7 +140,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationInterfaces\IMenuItemService.cs" />
+    <Compile Include="ApplicationInterfaces\ICustomerService.cs" />
     <Compile Include="ApplicationInterfaces\IStoreService.cs" />
     <Compile Include="ApplicationInterfaces\IProductService.cs" />
     <Compile Include="Authentication\FormsAuthenticationService.cs" />
@@ -150,14 +150,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controls\Builders\MenuBuilder.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
+    <Compile Include="Controls\Controls\Menu.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
+    <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
-    <Compile Include="DTOs\RootMenuItemDTO.cs" />
     <Compile Include="DTOs\StoreDTO.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Controllers\KendoController.cs" />
@@ -180,8 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\CustomersModel.cs" />
     <Compile Include="Models\KendoModel.cs" />
-    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -413,6 +416,7 @@
     <Content Include="Content\kendo\2013.1.319\images\KendoUI.ttf" />
     <Content Include="Content\kendo\2013.1.319\images\KendoUI.woff" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="App_Data\menu.sitemap" />
     <None Include="Scripts\kendo\2013.1.319\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2013.1.319\kendo.all.min.intellisense.js" />
     <Content Include="Scripts\kendo\2013.1.319\kendo.all.min.js" />
@@ -543,12 +547,12 @@
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
-    <Content Include="Views\Menu\GetRootMenuItems.cshtml" />
+    <Content Include="Views\Home\LoadMenu.cshtml" />
     <Content Include="Views\Store\Store.cshtml" />
     <Content Include="Views\Product\GetProducts.cshtml" />
+    <Content Include="Views\Customer\GetCustomers.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
@@ -577,12 +581,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>20140</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:20140/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

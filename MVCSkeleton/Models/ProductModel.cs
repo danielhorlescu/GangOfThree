@@ -1,26 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Presentation.Models
 {
     public class ProductModel
     {
         [ScaffoldColumn(false)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+
         [ScaffoldColumn(false)]
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
+
         [DisplayName("Name")]
-        public string ProductName { get; set; }
+        public string Name { get; set; }
+
         [Required]
         [DisplayName("Code")]
-        public string ProductCode { get; set; }
+        public string Code { get; set; }
+
         [DisplayName("Unit Price")]
         [DataType(DataType.Currency)]
         [Range(0, int.MaxValue)]
         public double? UnitPrice { get; set; }
 
-        public List<ProductDTO> Products { get; set; }
+        [Range(0, int.MaxValue)]
+        [DisplayName("Units In Stock")]
+        public int? UnitsInStock { get; set; }
     }
 }

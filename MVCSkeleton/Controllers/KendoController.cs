@@ -24,7 +24,7 @@ namespace MVCSkeleton.Presentation.Controllers
             return View("KendoDemo", _model);
         }
 
-        public ActionResult GetCascadeProducts(int categoryId)
+        public ActionResult GetCascadeProducts(Guid categoryId)
         {
             return Json(_model.Products.Where(p => p.CategoryId == categoryId), JsonRequestBehavior.AllowGet);
         }

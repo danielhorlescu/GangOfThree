@@ -1,21 +1,21 @@
 ﻿@using MVCSkeleton.Presentation.Controls
-@model MVCSkeleton.Presentation.Models.ProductModel
+@model List<MVCSkeleton.Presentation.Models.ProductModel>
 
 @{
     ViewBag.Title = "Products";
-    Layout = "_Layout";
 }
 
 <h2>Products</h2>
 
 <label for="ProductsGrid">Products:</label>
-    @(Html.Controls().Grid(Model.Products)    
+    @(Html.Controls().Grid(Model)    
           .Name("ProductsGrid")
           .Columns(columns =>
               {
                   columns.Bound(p => p.Name);
                   columns.Bound(p => p.Code);
                   columns.Bound(p => p.UnitPrice).Width(120);
+                  columns.Bound(p => p.UnitsInStock).Width(150);
                   columns.Command(command => { command.Edit(); command.Destroy(); });
               })
           .ToolBar(toolbar => toolbar.Create())

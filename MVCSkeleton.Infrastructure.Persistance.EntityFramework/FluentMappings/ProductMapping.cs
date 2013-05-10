@@ -8,6 +8,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.FluentMappings
         public ProductMapping()
         {
             HasKey(p => p.Id);
+            Property(p => p.CreationDate).IsRequired();
             Property(p => p.Code).HasMaxLength(20).IsRequired();
             Property(p => p.Name).HasMaxLength(100).IsRequired();
             Property(p => p.UnitPrice).IsRequired();
