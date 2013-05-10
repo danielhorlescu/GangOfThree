@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MVCSkeleton.Presentation.DTOs;
 
 namespace MVCSkeleton.Presentation.ApplicationInterfaces
@@ -7,7 +8,7 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
     {
         void Create(StoreDTO storeDTO);
 
-        void Delete(StoreDTO storeDTO);
+        void Delete(Guid storeId);
         List<StoreDTO> GetAllStores();
     }
 }

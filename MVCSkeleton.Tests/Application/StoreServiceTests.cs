@@ -5,8 +5,8 @@ using MVCSkeleton.Application;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
-using NUnit.Framework;
 using MVCSkeleton.Presentation.DTOs;
+using NUnit.Framework;
 
 namespace MVCSkeleton.Tests.Application
 {
@@ -43,12 +43,12 @@ namespace MVCSkeleton.Tests.Application
         public void Should_Create_A_Store()
         {
             StoreService storeService = CreateSUT();
-           
-            var initialGuid = Guid.NewGuid();
-            var returnedStore = new Store { Id = initialGuid };
 
-            storeService.Create(new StoreDTO { Id = initialGuid });
-            A.CallTo(()=> _storeRepository.Save(returnedStore)).WithAnyArguments().MustHaveHappened();            
+            var initialGuid = Guid.NewGuid();
+            var returnedStore = new Store {Id = initialGuid};
+
+            storeService.Create(new StoreDTO {Id = initialGuid});
+            A.CallTo(() => _storeRepository.Save(returnedStore)).WithAnyArguments().MustHaveHappened();
         }
 
         [Test]
@@ -56,11 +56,11 @@ namespace MVCSkeleton.Tests.Application
         {
             StoreService storeService = CreateSUT();
 
-            var initialGuid = Guid.NewGuid();
-            var returnedStore = new Store { Id = initialGuid };
+            var storeId = Guid.NewGuid();
 
-            storeService.Delete(new StoreDTO { Id = initialGuid });
-            A.CallTo(() => _storeRepository.Delete(returnedStore)).WithAnyArguments().MustHaveHappened();         
+            storeService.Delete(storeId);
+
+            A.CallTo(() => _storeRepository.Delete(storeId)).WithAnyArguments().MustHaveHappened();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.Mapper;
@@ -23,9 +24,9 @@ namespace MVCSkeleton.Application
             _storeRepository.Save(_mapper.Map(storeDTO, new Store()));
         }
 
-        public void Delete(StoreDTO storeDTO)
+        public void Delete(Guid storeId)
         {
-            _storeRepository.Delete(_mapper.Map(storeDTO, new Store()));
+            _storeRepository.Delete(storeId);
         }
 
         public List<StoreDTO> GetAllStores()

@@ -48,7 +48,7 @@ namespace MVCSkeleton.Presentation.Controllers
 
             if (store!=null)
             {
-                _service.Delete(new StoreDTO {Email = store.Email, Name =  store.Name});
+                _service.Delete(store.Id);
             }
             return Json(ModelState.ToDataSourceResult(dsRequest));
         }
