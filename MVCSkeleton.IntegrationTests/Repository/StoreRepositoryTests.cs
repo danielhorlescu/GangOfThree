@@ -1,11 +1,6 @@
 ﻿using System;
-using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
-using MVCSkeleton.IOC;
-using MVCSkeleton.Infrastracture.Utils.ApplicationStartup;
-using MVCSkeleton.Infrastracture.Utils.IOC;
 using MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories;
-using MVCSkeleton.Mapper;
 using NUnit.Framework;
 
 namespace MVCSkeleton.IntegrationTests.Repository
@@ -37,7 +32,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
             var createdStore = CreateStore();
             var storeRepository = CreateSUT();
 
-            storeRepository.Save(createdStore);
+            storeRepository.SaveWithCommit(createdStore);
             var updatedTime = DateTime.Now;
 
             storeRepository.UpdateLastModification(createdStore.Id, updatedTime);
@@ -46,7 +41,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
 
             Assert.IsNotNull(retrievedStore);            
             Assert.AreEqual(createdStore.Id, retrievedStore.Id);
-            Assert.AreEqual(updatedTime, retrievedStore.LastModification);
+            Assert.AreEqual(updatedTime, retrievedStore.UpdateDate);
         }
 
         [Test]
@@ -65,7 +60,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
 
         private Store CreateStore()
         {
-            Store createdStore = new Store {Name = "Store name", Email = "store@store.com", CreationDate = DateTime.Now, LastModification = DateTime.Now};
+            var createdStore = new Store {Name = "Store name", Email = "store@store.com", CreationDate = DateTime.Now, UpdateDate = DateTime.Now};
             return createdStore;
         }
     }    

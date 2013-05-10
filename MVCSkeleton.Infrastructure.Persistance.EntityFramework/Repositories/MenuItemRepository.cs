@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Domain;
@@ -13,7 +14,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             return Session.Where(mu => mu.ParentItem == null).ToList();
         }
 
-        public MenuItem GetWithParentItem(int id)
+        public MenuItem GetWithParentItem(Guid id)
         {
             return Session.Include(mu => mu.ParentItem).Single(mu=>mu.Id == id);
         }

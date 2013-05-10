@@ -156,7 +156,6 @@
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
-    <Compile Include="Controls\StoreModelFactory.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\RootMenuItemDTO.cs" />
     <Compile Include="DTOs\StoreDTO.cs" />

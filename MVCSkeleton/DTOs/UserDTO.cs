@@ -1,8 +1,10 @@
-﻿namespace MVCSkeleton.Presentation.DTOs
+﻿using System;
+
+namespace MVCSkeleton.Presentation.DTOs
 {
     public class UserDTO
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

@@ -29,10 +29,8 @@ namespace MVCSkeleton.Application
         }
 
         public List<StoreDTO> GetAllStores()
-        {
-            var returnList = new List<StoreDTO>();
-            _mapper.Map(_storeRepository.GetAllStores(), returnList);
-            return returnList;
+        {            
+            return _mapper.Map(_storeRepository.GetAll(), new List<StoreDTO>());
         }
     }
 }

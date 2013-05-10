@@ -48,7 +48,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
             menuItemRepository.SaveWithCommit(expectedMenuItem);
             MenuItem actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
 
-            string updatedMenuItem = "Updated Menu Item";
+            const string updatedMenuItem = "Updated Menu Item";
             actualMenuItem.Name = updatedMenuItem;
 
             actualMenuItem = menuItemRepository.Get(expectedMenuItem.Id);
@@ -83,7 +83,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
 
         private List<MenuItem> CreateMenuItems()
         {
-            List<MenuItem> testMenuItems = new List<MenuItem>();
+            var testMenuItems = new List<MenuItem>();
 
             MenuItem rootMenuItem = CreateAggregateMenuItem("Menu Root");
             MenuItem aggregateMenuItem1 = CreateAggregateMenuItem("Menu Aggregate 1", rootMenuItem);
@@ -99,11 +99,13 @@ namespace MVCSkeleton.IntegrationTests.Repository
                                         string name = "Test Menu Item",
                                         MenuItem aggregateMenuItem = null)
         {
-            MenuItem expectedMenuItem = new MenuItem();
-            expectedMenuItem.Controller = controller;
-            expectedMenuItem.Action = action;
-            expectedMenuItem.Name = name;
-            expectedMenuItem.ParentItem = aggregateMenuItem;
+            var expectedMenuItem = new MenuItem
+                {
+                    Controller = controller,
+                    Action = action,
+                    Name = name,
+                    ParentItem = aggregateMenuItem
+                };
             return expectedMenuItem;
         }
 

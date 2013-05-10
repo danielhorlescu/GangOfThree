@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Products](
-	[Id] BIGINT IDENTITY(1,1) NOT NULL,
+	[Id] UNIQUEIDENTIFIER NOT NULL,
 	[CreationDate] [datetime] NOT NULL,
-	[UpdateDate] [datetime] NULL,
+	[UpdateDate] [datetime] NOT NULL,
 	[Code] [nvarchar](20) NOT NULL,
 	[Name] [nvarchar](100) NOT NULL,
 	[UnitPrice] [float] NOT NULL,

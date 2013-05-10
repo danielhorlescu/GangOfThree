@@ -18,7 +18,7 @@
                   columns.Command(command => { command.Edit(); command.Destroy(); });
               })
           .ToolBar(toolbar => toolbar.Create())
-          .Editable(x => x.Mode(GridEditMode.PopUp))
+          .Editable(x => x.Mode(GridEditMode.InLine))
           .Groupable()
           .Pageable()
           .Sortable()
@@ -29,9 +29,9 @@
                               .Model(model => model.Id(p => p.Id))
                               .Create(create => create.Action("Store_Create", "Store"))
                               .Destroy(destroy => destroy.Action("Store_Delete", "Store"))
-                              .Update(update => update.Action("Store_Update", "Store"))))  
+                              .Update(update => update.Action("Store_Update", "Store"))))      
     <br/>
-    <input type="button" id="refreshStoresGridData" value="Refresh Data" onclick="    /*$('#ProductsGrid').data('kendoGrid').dataSource.read();*/" />
+    <input type="button" id="refreshStoresGridData" value="Refresh Data" onclick="$('#StoresGrid').data('kendoGrid').dataSource.read();" />   
 </div>    
 
 @section Scripts {

@@ -4,8 +4,8 @@ namespace MVCSkeleton.Domain
 {
     public interface IEntity
     {
-        long Id { get; set; }
+        Guid Id { get; set; }
 
-        DateTime? UpdateDate { get; set; }
+        DateTime UpdateDate { get; set; }
     }
 }

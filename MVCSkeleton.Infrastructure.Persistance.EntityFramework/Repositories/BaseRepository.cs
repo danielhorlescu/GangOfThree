@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -65,7 +66,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             context.SaveChanges();
         }
 
-        public T Get(long id)
+        public T Get(Guid id)
         {
             return Session.Find(id);
         }

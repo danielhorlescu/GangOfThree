@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FakeItEasy;
 using MVCSkeleton.Application;
 using MVCSkeleton.Application.Repository;
@@ -15,15 +13,15 @@ namespace MVCSkeleton.Tests.Application
     [TestFixture]
     public class StoreServiceTests
     {
-        private IStoreRepository storeRepository;
-        private IMapper mapper;
+        private IStoreRepository _storeRepository;
+        private IMapper _mapper;
 
-        public StoreService CreateSUT()
+        private StoreService CreateSUT()
         {
-            storeRepository = A.Fake<IStoreRepository>();
-            mapper = A.Fake<IMapper>();
+            _storeRepository = A.Fake<IStoreRepository>();
+            _mapper = A.Fake<IMapper>();
 
-            return new StoreService(storeRepository, mapper);
+            return new StoreService(_storeRepository, _mapper);
         }
 
         [Test]
@@ -33,20 +31,36 @@ namespace MVCSkeleton.Tests.Application
             var stores = new List<Store>();
             var storeDtos = new List<StoreDTO>();
 
-            A.CallTo(() => storeRepository.GetAllStores()).Returns(stores);
-            A.CallTo(() => mapper.Map(stores, storeDtos)).Returns(storeDtos);
+            A.CallTo(() => _storeRepository.GetAll()).Returns(stores);
+            A.CallTo(() => _mapper.Map(stores, storeDtos)).Returns(storeDtos);
 
             var retrievedStores = storeService.GetAllStores();
 
             Assert.IsNotNull(retrievedStores);
         }
 
-        //public void Should_Create_A_Store()
-        //{
-        //    StoreService storeService = CreateSUT();
-        //    var newStore = new Store();
+        [Test]
+        public void Should_Create_A_Store()
+        {
+            StoreService storeService = CreateSUT();
+           
+            var initialGuid = Guid.NewGuid();
+            var returnedStore = new Store { Id = initialGuid };
 
+            storeService.Create(new StoreDTO { Id = initialGuid });
+            A.CallTo(()=> _storeRepository.Save(returnedStore)).WithAnyArguments().MustHaveHappened();            
+        }
 
-        //}
+        [Test]
+        public void Should_Delete_A_Store()
+        {
+            StoreService storeService = CreateSUT();
+
+            var initialGuid = Guid.NewGuid();
+            var returnedStore = new Store { Id = initialGuid };
+
+            storeService.Delete(new StoreDTO { Id = initialGuid });
+            A.CallTo(() => _storeRepository.Delete(returnedStore)).WithAnyArguments().MustHaveHappened();         
+        }
     }
 }

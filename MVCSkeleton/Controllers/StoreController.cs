@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
+using MVCSkeleton.Presentation.DTOs;
 using MVCSkeleton.Presentation.Models;
 
 namespace MVCSkeleton.Presentation.Controllers
 {
     public class StoreController : Controller
     {
-        private StoreGridModel _model;
+        private readonly IStoreService _service;
+        private readonly StoreGridModel _model;
 
-        public StoreController()
+        public StoreController(IStoreService service)
         {
-            _model = new StoreGridModel();
-            _model.StoreModels = new List<StoreModel>();
+            _service = service;
+            _model = new StoreGridModel {StoreModels = _service.GetAllStores()};
         }
 
         public ActionResult Index()
@@ -25,31 +24,39 @@ namespace MVCSkeleton.Presentation.Controllers
             return View("Store", _model);
         }
 
-        public ActionResult Stores_Read([DataSourceRequest] DataSourceRequest dsRequest)
+        public ActionResult Stores_Read([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
         {
             return Json(_model.StoreModels.ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Product_Create([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Store_Create([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
         {
+            if (ModelState.IsValid)
+            {
+                _service.Create(new StoreDTO { Email = store.Email, Name = store.Name});
+            }
             return Json(new[] { store }.ToDataSourceResult(dsRequest, ModelState));
         }
 
-        public ActionResult Product_Update([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Store_Update([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
         {
             return Json(_model.StoreModels.ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Product_Delete([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Store_Delete([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
         {
-            return Json(ModelState.ToDataSourceResult());
+
+            if (store!=null)
+            {
+                _service.Delete(new StoreDTO {Email = store.Email, Name =  store.Name});
+            }
+            return Json(ModelState.ToDataSourceResult(dsRequest));
         }
 
-        //[HttpPost]
-        //public ActionResult Submit(string countries, string shirtFabric, DateTime dateTimePicker, string categories, double percentage)
-        //{
-        //    return View("Store", _model);
-        //}
-        
+        public ViewResult GetAllStores()
+        {
+            List<StoreDTO> storeList = _service.GetAllStores();            
+            return View("Store", new StoreGridModel {StoreModels = storeList});
+        }
     }
 }

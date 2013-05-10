@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Users]
 (
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Id] UNIQUEIDENTIFIER NOT NULL,
 	[CreationDate] [datetime] NOT NULL,
-	[UpdateDate] [datetime] NULL,
+	[UpdateDate] [datetime] NOT NULL,
 	[Name] NVARCHAR(200) NOT NULL, 
 	[Password] NVARCHAR(200) NOT NULL,
 	 CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED 

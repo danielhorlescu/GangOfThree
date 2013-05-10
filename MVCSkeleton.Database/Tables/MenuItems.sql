@@ -1,11 +1,11 @@
 ﻿CREATE TABLE [dbo].[MenuItems](
-	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Id] UNIQUEIDENTIFIER NOT NULL,
 	[CreationDate] [datetime] NOT NULL,
-	[UpdateDate] [datetime] NULL,
+	[UpdateDate] [datetime] NOT NULL,
 	[Controller] [nvarchar](100) NULL,
 	[Action] [nvarchar](100) NULL,
 	[Name] [nvarchar](200) NOT NULL,
-	[ParentItem_Id] [bigint] NULL,
+	[ParentItem_Id] UNIQUEIDENTIFIER NULL,
  CONSTRAINT [PK_dbo.MenuItems] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

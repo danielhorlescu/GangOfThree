@@ -13,6 +13,7 @@ namespace MVCSkeleton.Mapper.Modules
             AutoMapper.Mapper.CreateMap<MenuItem, RootMenuItemDTO>();
 
             AutoMapper.Mapper.CreateMap<Store, StoreDTO>();
+            AutoMapper.Mapper.CreateMap<StoreDTO, Store>().IgnoreAllNonExisting();
         }
     }
 }

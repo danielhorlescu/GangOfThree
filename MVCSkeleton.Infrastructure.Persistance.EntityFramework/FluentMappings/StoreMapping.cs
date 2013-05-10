@@ -3,7 +3,7 @@ using MVCSkeleton.Domain;
 
 namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.FluentMappings
 {
-    internal class StoreMapping: EntityTypeConfiguration<Store>
+    internal class StoreMapping : EntityTypeConfiguration<Store>
     {
         public StoreMapping()
         {
@@ -11,7 +11,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.FluentMappings
             Property(s => s.Name).HasMaxLength(255).IsRequired();
             Property(s => s.Email).HasMaxLength(255).IsRequired();
             Property(s => s.CreationDate).IsRequired();
-            Property(s => s.LastModification).IsRequired();
+            Property(s => s.UpdateDate).IsRequired();
         }
     }
 }
