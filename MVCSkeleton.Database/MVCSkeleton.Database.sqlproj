@@ -63,6 +63,7 @@
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Products.sql" />
+    <Build Include="Tables\Customers.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeploy\Script.PostDeployment.sql" />
@@ -70,5 +71,6 @@
   <ItemGroup>
     <None Include="MVCSkeleton.Database.publish.xml" />
     <None Include="MVCSkeleton.TestDatabase.publish.publish.xml" />
+    <None Include="MVCSkeleton.Database.dbmdl" />
   </ItemGroup>
 </Project>

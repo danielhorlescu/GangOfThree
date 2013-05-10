@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -5,6 +6,7 @@ using System.Linq;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Application.Session;
 using MVCSkeleton.Domain;
+using MVCSkeleton.Infrastracture.Utils.DesignByContract;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 
 namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
@@ -38,6 +40,13 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
+        public void Delete(long id)
+        {
+            T domainObject = Get(id);
+            Check.Require(domainObject != null, string.Format("Cannot find object {0} to delete", id));
+            Delete(domainObject);
+        }
+
         public void Save(IEnumerable<T> domainObjects)
         {
             foreach (var domainObject in domainObjects)
@@ -46,10 +55,11 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             }
         }
 
-        public void Save(T domainObject)
+        public long Save(T domainObject)
         {
             if (Session.Any(e => e.Id == domainObject.Id))
             {
+                domainObject.UpdateDate = DateTime.Now;
                 Session.Attach(domainObject);
                 context.Entry(domainObject).State = EntityState.Modified;
             }
@@ -57,6 +67,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             {
                 Session.Add(domainObject);
             }
+            return domainObject.Id;
         }
 
         internal void SaveWithCommit(T domainObject)
@@ -81,9 +92,11 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
             return Session.ToList();
         }
+
+       
     }
 }

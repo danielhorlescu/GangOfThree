@@ -7,13 +7,6 @@ namespace MVCSkeleton.Infrastracture.Utils.DesignByContract
     {
         #region Interface
 
-        /// <summary>
-        /// Precondition check.
-        /// </summary>
-        [Conditional("DBC_CHECK_ALL"),
-         Conditional("DBC_CHECK_INVARIANT"),
-         Conditional("DBC_CHECK_POSTCONDITION"),
-         Conditional("DBC_CHECK_PRECONDITION")]
         public static void Require(bool assertion, string message)
         {
             if (UseExceptions)
@@ -26,13 +19,6 @@ namespace MVCSkeleton.Infrastracture.Utils.DesignByContract
             }
         }
 
-        /// <summary>
-        /// Precondition check.
-        /// </summary>
-        [Conditional("DBC_CHECK_ALL"),
-         Conditional("DBC_CHECK_INVARIANT"),
-         Conditional("DBC_CHECK_POSTCONDITION"),
-         Conditional("DBC_CHECK_PRECONDITION")]
         public static void Require(bool assertion, string message, Exception inner)
         {
             if (UseExceptions)
@@ -45,13 +31,6 @@ namespace MVCSkeleton.Infrastracture.Utils.DesignByContract
             }
         }
 
-        /// <summary>
-        /// Precondition check.
-        /// </summary>
-        [Conditional("DBC_CHECK_ALL"),
-         Conditional("DBC_CHECK_INVARIANT"),
-         Conditional("DBC_CHECK_POSTCONDITION"),
-         Conditional("DBC_CHECK_PRECONDITION")]
         public static void Require(bool assertion)
         {
             if (UseExceptions)

@@ -10,6 +10,8 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
+delete users;
+delete Products;
 
 Insert INTO dbo.Users (CreationDate, UpdateDate,Name,Password) 
 Values ('10/10/2010',null,'User','Pwd@123');

@@ -1,3 +1,4 @@
+using System;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Presentation.DTOs;
 using MVCSkeleton.Presentation.Models;
@@ -12,6 +13,10 @@ namespace MVCSkeleton.Mapper.Modules
             AutoMapper.Mapper.CreateMap<UserDTO, User>().IgnoreAllNonExisting();
             AutoMapper.Mapper.CreateMap<Product, ProductDTO>();
             AutoMapper.Mapper.CreateMap<ProductDTO, ProductModel>();
+            AutoMapper.Mapper.CreateMap<ProductModel, ProductDTO>();
+            AutoMapper.Mapper.CreateMap<ProductDTO, Product>().IgnoreAllNonExisting();
+            AutoMapper.Mapper.CreateMap<CustomerDTO, Customer>().IgnoreAllNonExisting();
+            AutoMapper.Mapper.CreateMap<CustomerModel, CustomerDTO>();
         }
     }
 }
