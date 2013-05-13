@@ -1,5 +1,6 @@
+@using MVCSkeleton.Presentation.Controls
 @model double?
 
-@(Html.Kendo().NumericTextBoxFor(m => m)
+@(Html.Controls().NumericTextBoxFor(m => m)
       .HtmlAttributes(new { style = "width:100%" })
 )

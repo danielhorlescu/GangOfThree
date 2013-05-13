@@ -88,6 +88,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
 
         public void Delete(T domainObject)
         {
+            Session.Attach(domainObject);
             Session.Remove(domainObject);
         }
 
