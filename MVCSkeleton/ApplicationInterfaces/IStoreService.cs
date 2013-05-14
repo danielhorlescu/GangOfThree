@@ -10,5 +10,6 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
 
         void Delete(Guid storeId);
         List<StoreDTO> GetAllStores();
+        void Update(StoreDTO target);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model MVCSkeleton.Presentation.Models.StoreGridModel
+﻿@model List<MVCSkeleton.Presentation.Models.StoreModel>
 @using MVCSkeleton.Presentation.Controls
 @{
     ViewBag.Title = "Store";
@@ -9,7 +9,7 @@
 <div id="store">
     
     <label for="StoresGrid">Stores:</label>
-    @(Html.Controls().Grid(Model.StoreModels)    
+    @(Html.Controls().Grid(Model)    
           .Name("StoresGrid")
           .Columns(columns =>
               {
@@ -18,7 +18,7 @@
                   columns.Command(command => { command.Edit(); command.Destroy(); });
               })
           .ToolBar(toolbar => toolbar.Create())
-          .Editable(x => x.Mode(GridEditMode.InLine))
+          .Editable(x => x.Mode(GridEditMode.InLine))          
           .Groupable()
           .Pageable()
           .Sortable()
@@ -29,7 +29,8 @@
                               .Model(model => model.Id(p => p.Id))
                               .Create(create => create.Action("Store_Create", "Store"))
                               .Destroy(destroy => destroy.Action("Store_Delete", "Store"))
-                              .Update(update => update.Action("Store_Update", "Store"))))      
+                              .Update(update => update.Action("Store_Update", "Store"))
+                              .Batch(true)))      
     <br/>
     <input type="button" id="refreshStoresGridData" value="Refresh Data" onclick="$('#StoresGrid').data('kendoGrid').dataSource.read();" />   
 </div>    

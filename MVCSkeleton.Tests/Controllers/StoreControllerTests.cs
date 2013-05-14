@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using FakeItEasy;
+using MVCSkeleton.Infrastracture.Utils.Mapper;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
 using MVCSkeleton.Presentation.Controllers;
 using MVCSkeleton.Presentation.DTOs;
@@ -14,11 +15,13 @@ namespace MVCSkeleton.Tests.Controllers
     public class StoreControllerTests
     {
         private IStoreService _service;
+        private IMapper _mapper;
 
         private StoreController CreateSUT()
         {
             _service = A.Fake<IStoreService>();
-            return new StoreController(_service);
+            _mapper = A.Fake<IMapper>();
+            return new StoreController(_service, _mapper);
         }
 
         [Test]
@@ -30,7 +33,7 @@ namespace MVCSkeleton.Tests.Controllers
             A.CallTo(() => _service.GetAllStores()).Returns(expectedStores);
             ViewResult view = storeController.GetAllStores();
 
-            Assert.AreEqual(expectedStores, ((StoreGridModel)view.Model).StoreModels);
+            Assert.AreEqual(expectedStores, view.Model);
         }
 
         private List<StoreDTO> CreateStoreList()

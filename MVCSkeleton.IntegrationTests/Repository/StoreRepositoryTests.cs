@@ -27,21 +27,23 @@ namespace MVCSkeleton.IntegrationTests.Repository
         }
 
         [Test]
-        public void Should_Update_Store_LastModification()
+        public void Should_Update_Store()
         {
             var createdStore = CreateStore();
             var storeRepository = CreateSUT();
 
             storeRepository.SaveWithCommit(createdStore);
-            var updatedTime = DateTime.Now;
+            var updatedName = "test NAme";
 
-            storeRepository.UpdateLastModification(createdStore.Id, updatedTime);
+            var store = storeRepository.Get(createdStore.Id);
+            store.Name = updatedName;
+            storeRepository.Save(store);            
 
             var retrievedStore = storeRepository.Get(createdStore.Id);
 
             Assert.IsNotNull(retrievedStore);            
             Assert.AreEqual(createdStore.Id, retrievedStore.Id);
-            Assert.AreEqual(updatedTime, retrievedStore.UpdateDate);
+            Assert.AreEqual(updatedName, retrievedStore.Name);
         }
 
         [Test]

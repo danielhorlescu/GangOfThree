@@ -30,8 +30,14 @@ namespace MVCSkeleton.Application
         }
 
         public List<StoreDTO> GetAllStores()
-        {            
+        {
             return _mapper.Map(_storeRepository.GetAll(), new List<StoreDTO>());
+        }
+
+        public void Update(StoreDTO target)
+        {
+            var store = _storeRepository.Get(target.Id);
+            _storeRepository.Save(_mapper.Map(target, store));
         }
     }
 }
