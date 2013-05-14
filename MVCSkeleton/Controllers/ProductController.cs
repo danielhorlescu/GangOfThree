@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -38,20 +39,64 @@ namespace MVCSkeleton.Presentation.Controllers
         {
             ProductModel product = products[0];
 
-            service.CreateProduct(mapper.Map(product, new ProductDTO()));
+            product.Id = service.Create(mapper.Map(product, new ProductDTO()));
+
             return Json(new[] { product }.ToDataSourceResult(dsRequest, ModelState));
         }
 
-        public ActionResult Product_Update([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<ProductModel> products)
+        public ActionResult Product_Update([Bind(Prefix = "models")] List<ProductModel> products)
         {
-            ModelState.AddModelError("Product", "Product already exists!");
-            return Json(service.GetProducts().ToDataSourceResult(dsRequest, ModelState));
+            ProductModel product = products[0];
+
+            service.Update(mapper.Map(product, new ProductDTO()));
+
+            //ModelState.AddModelError("Product", "Product already exists!");
+            return Json(ModelState.ToDataSourceResult());
         }
 
-        public ActionResult Product_Delete([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<ProductModel> products)
+        public ActionResult Product_Delete([Bind(Prefix = "models")] List<ProductModel> products)
         {
-            ModelState.AddModelError("Product", "Product could not be deleted!");
+            ProductModel product = products[0];
+
+            service.Delete(product.Id);
+
+            //ModelState.AddModelError("Product", "Product could not be deleted!");
             return Json(ModelState.ToDataSourceResult());
+        }
+
+        [HttpGet]
+        public ActionResult Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                return View(new ProductModel());
+            }
+            else
+            {
+                ProductDTO productDto = service.Get(id.Value);
+                return View(mapper.Map(productDto, new ProductModel()));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ProductModel product)
+        {
+            if (product.Id == Guid.Empty)
+            {
+                service.Create(mapper.Map(product, new ProductDTO()));
+            }
+            else
+            {
+                service.Update(mapper.Map(product, new ProductDTO()));    
+            }
+            
+            return RedirectToAction("GetProducts");
+        }
+
+        //[HttpPost]
+        public ActionResult DeleteAll(List<ProductModel> products)
+        {
+            return RedirectToAction("GetProducts");
         }
     }
 }

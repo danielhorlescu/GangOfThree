@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FakeItEasy;
 using MVCSkeleton.Application;
 using MVCSkeleton.Application.Repository;
@@ -35,6 +36,30 @@ namespace MVCSkeleton.Tests.Application
             List<ProductDTO> actualProductDtos = productService.GetProducts();
 
             Assert.IsNotNull(actualProductDtos);
+        }
+
+        [Test]
+        public void Should_Create_A_Product()
+        {
+            ProductService productService = CreateSUT();
+
+            var initialGuid = Guid.NewGuid();
+            var returnedProduct = new Product { Id = initialGuid };
+
+            productService.Create(new ProductDTO { Id = initialGuid });
+            A.CallTo(() => productRepository.Save(returnedProduct)).WithAnyArguments().MustHaveHappened();
+        }
+
+        [Test]
+        public void Should_Delete_A_Product()
+        {
+            ProductService productService = CreateSUT();
+
+            var initialGuid = Guid.NewGuid();
+            var returnedProduct = new Product { Id = initialGuid };
+
+            productService.Delete(initialGuid);
+            A.CallTo(() => productRepository.Delete(returnedProduct)).WithAnyArguments().MustHaveHappened();
         }
     }
 }

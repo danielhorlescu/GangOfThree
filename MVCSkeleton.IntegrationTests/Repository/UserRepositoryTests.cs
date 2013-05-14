@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace MVCSkeleton.IntegrationTests.Repository
 {
     [TestFixture]
-    public class UserRepositoryTests : BaseRepositoryTests
+    public class UserRepositoryTests : BaseIntegrationTests
     {
         private UserRepository CreateSUT()
         {

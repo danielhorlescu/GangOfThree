@@ -1,6 +1,7 @@
+@using MVCSkeleton.Presentation.Controls
 @model int?
 
-@(Html.Kendo().IntegerTextBoxFor(m => m)
+@(Html.Controls().IntegerTextBoxFor(m => m)
       .HtmlAttributes(new { style = "width:100%" })
       .Min(int.MinValue)
       .Max(int.MaxValue)

@@ -155,6 +155,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controls\Builders\MenuBuilder.cs" />
     <Compile Include="Controls\Builders\NumericTextBoxBuilder.cs" />
+    <Compile Include="Controls\ControlsFactoryWithGeneric.cs" />
     <Compile Include="Controls\Controls\Menu.cs" />
     <Compile Include="Controls\Controls\NumericTextBox.cs" />
     <Compile Include="Controls\KendoModelFactory.cs" />
@@ -550,6 +551,7 @@
     <Content Include="Views\Store\Store.cshtml" />
     <Content Include="Views\Product\GetProducts.cshtml" />
     <Content Include="Views\Customer\GetCustomers.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Filters\" />

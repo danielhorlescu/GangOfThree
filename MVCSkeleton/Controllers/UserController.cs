@@ -29,7 +29,7 @@ namespace MVCSkeleton.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && userService.IsValid(model.UserName, model.Password))
+            if (ModelState.IsValid && userService.Exists(model.UserName, model.Password))
             {
                 _authenticationService.SignIn(model.UserName, model.RememberMe);
                 return RedirectToLocal(returnUrl);
