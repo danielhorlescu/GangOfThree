@@ -7,7 +7,7 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
     public class UserRepository : BaseRepository<User> ,IUserRepository
     {
 
-        public bool IsValid(string userName, string password)
+        public bool Exists(string userName, string password)
         {
             return Session.Any(u => u.Name == userName && u.Password == password);
         }

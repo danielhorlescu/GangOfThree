@@ -51,6 +51,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -63,15 +64,22 @@
     <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\packages\Selenium.WebDriver.2.32.1\lib\net40\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\packages\Selenium.Support.2.32.1\lib\net40\WebDriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\UserContext.cs" />
     <Compile Include="Features\User\ManageUser.feature.cs">
       <DependentUpon>ManageUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Flows\UserFlows.cs" />
     <Compile Include="Initialization\TestInitializer.cs" />
-    <Compile Include="Context\UserContext.cs" />
     <Compile Include="Features\User\RegisterUser.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -80,13 +88,11 @@
     <Compile Include="IOC\RequirementsIOCRepositoryModule.cs" />
     <Compile Include="IOC\RequirementsIOCStartupModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QAInterface\UserFlows.cs" />
-    <Compile Include="Steps\Given\ManageUserGivenSteps.cs" />
-    <Compile Include="Steps\Given\RegisterUserGivenSteps.cs" />
-    <Compile Include="Steps\Then\ManageUserThenSteps.cs" />
-    <Compile Include="Steps\Then\RegisterUserThenSteps.cs" />
-    <Compile Include="Steps\When\ManageUserWhenSteps.cs" />
-    <Compile Include="Steps\When\RegisterUserWhenSteps.cs" />
+    <Compile Include="SeleniumHelpers\BrowserWrapper.cs" />
+    <Compile Include="SeleniumHelpers\StepsBase.cs" />
+    <Compile Include="SeleniumHelpers\WebDriverExtensions.cs" />
+    <Compile Include="Steps\ManageUserSteps.cs" />
+    <Compile Include="Steps\RegisterUserSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -132,6 +138,7 @@
       <Name>MVCSkeleton.Presentation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -64,52 +64,27 @@ namespace MVCSkeleton.Requirements.Features.User
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void FeatureBackground()
-        {
-#line 3
-  #line 4
-    testRunner.Given("The user \"testUser\" with the password \"testPass\" is logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-        }
-        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("As a logged in User I can change my password")]
+        [NUnit.Framework.CategoryAttribute("alreadyLoggedIn")]
         public virtual void AsALoggedInUserICanChangeMyPassword()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a logged in User I can change my password", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a logged in User I can change my password", new string[] {
+                        "alreadyLoggedIn"});
+#line 4
+this.ScenarioSetup(scenarioInfo);
+#line 5
+ testRunner.Given("I navigate to the \'User\\Manage\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 6
-this.ScenarioSetup(scenarioInfo);
-#line 3
-  this.FeatureBackground();
+ testRunner.And("I enter my old password and the new password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
- testRunner.Given("He enters the newPassword \"newPass\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("I click change password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.When("He Clicks the Change Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I log out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.Then("He should be redirected to the Manage page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("I log in with the new password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.And("He should see the success message \"Password was successfully changed.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("As a logged in User I should not be able to change my password if I put a wrong p" +
-            "assword")]
-        public virtual void AsALoggedInUserIShouldNotBeAbleToChangeMyPasswordIfIPutAWrongPassword()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("As a logged in User I should not be able to change my password if I put a wrong p" +
-                    "assword", ((string[])(null)));
-#line 12
-this.ScenarioSetup(scenarioInfo);
-#line 3
-  this.FeatureBackground();
-#line 13
- testRunner.Given("He entered the oldPassword \"myOldPass\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 14
- testRunner.When("He Clicks the Change Password button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
- testRunner.Then("He should see an error message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should be logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
