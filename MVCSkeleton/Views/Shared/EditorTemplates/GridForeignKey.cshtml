@@ -1,6 +1,7 @@
-﻿@model object
+﻿@using MVCSkeleton.Presentation.Controls
+@model object
            
 @(
- Html.Kendo().DropDownListFor(m => m)        
+ Html.Controls().DropDownListFor(m => m)        
         .BindTo((SelectList)ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"])
 )

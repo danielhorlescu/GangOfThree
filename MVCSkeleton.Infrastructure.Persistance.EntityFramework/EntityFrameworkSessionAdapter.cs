@@ -29,7 +29,6 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             CurrentSession.Dispose();
         }
 
-
         public void Dispose()
         {
             if (sessionFactory == null)
@@ -38,6 +37,19 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework
             }
             CurrentSession.Dispose();
             sessionFactory = null;
+        }
+
+        /// <summary>
+        /// Use only in tests
+        /// </summary>
+        public void CommitWithoutDispose()
+        {
+            if (sessionFactory == null)
+            {
+                return;
+            }
+
+            CurrentSession.SaveChanges();
         }
     }
 }

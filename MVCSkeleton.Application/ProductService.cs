@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MVCSkeleton.Application.Repository;
 using MVCSkeleton.Domain;
@@ -23,9 +24,26 @@ namespace MVCSkeleton.Application
             return mapper.Map(productRepository.GetAll(), new List<ProductDTO>());
         }
 
-        public void CreateProduct(ProductDTO productDto)
+        public Guid Create(ProductDTO productDto)
         {
-            productRepository.Save(mapper.Map(productDto, new Product()));
+            return productRepository.Save(mapper.Map(productDto, new Product()));
+        }
+
+        public void Delete(Guid productId)
+        {
+            productRepository.Delete(productId);
+        }
+
+        public void Update(ProductDTO productDto)
+        {
+            Product product = productRepository.Get(productDto.Id);
+
+            mapper.Map(productDto, product);
+        }
+
+        public ProductDTO Get(Guid id)
+        {
+            return mapper.Map(productRepository.Get(id), new ProductDTO());
         }
     }
 }

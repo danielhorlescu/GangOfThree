@@ -8,36 +8,42 @@
 <h2>Products</h2>
 
 <label for="ProductsGrid">Products:</label>
-@Html.ValidationSummary()
-    @(Html.Controls().Grid(Model)    
-          .Name("ProductsGrid")
-          .Columns(columns =>
-              {
-                  columns.Bound(p => p.Name);
-                  columns.Bound(p => p.Code);
-                  columns.Bound(p => p.UnitPrice).Width(120);
-                  columns.Bound(p => p.UnitsInStock).Width(150);
-                  columns.Command(command => { command.Edit(); command.Destroy(); });
-              })
-          .ToolBar(toolbar => toolbar.Create())
-          .Editable(x => x.Mode(GridEditMode.PopUp))
-          .Groupable()
-          .Pageable()
-          .Sortable()
-          .Scrollable()
-          .Filterable()
-          .DataSource(ds => ds.Ajax().Batch(true)
-                              .Read(read => read.Action("Products_Read", "Product"))
-                              .Events(events => events.Error("error"))
-                              .Model(model => model.Id(p => p.Id))
-                              .Create(create => create.Action("Product_Create", "Product"))
-                              .Destroy(destroy => destroy.Action("Product_Delete", "Product"))
-                              .Update(update => update.Action("Product_Update", "Product"))))  
-    <br/>
+    @Html.ValidationSummary()
+
+@(Html.Controls().Grid(Model)    
+      .Name("ProductsGrid")
+      .Columns(columns =>
+          {
+              columns.Bound(p => p.Name).ClientTemplate("<a href='" + Url.Action("Edit", "Product", new {id = "#=Id#"}) + " '>#=Name#</a>");
+              columns.Bound(p => p.Code);
+              columns.Bound(p => p.UnitPrice).Width(120);
+              columns.Bound(p => p.UnitsInStock).Width(150);
+              columns.Command(command => command.Destroy());
+          })
+      .ToolBar(toolbar =>
+          {
+              toolbar.Custom().Action("Edit", "Product").Text("Create New");
+              toolbar.Custom().Action("DeleteAll", "Product").Text("Delete All");
+          })
+      .Groupable()
+      .Pageable()
+      .Sortable()
+      .Scrollable()
+      .Selectable(selectable => selectable.Mode(GridSelectionMode.Multiple))
+      .Filterable()
+      .DataSource(ds => ds.Ajax()
+                          .Batch(true)
+                          .Read(read => read.Action("Products_Read", "Product"))
+                          .Events(events => events.Error("error"))
+                          .Model(model => model.Id(p => p.Id))
+                          .Create(create => create.Action("Product_Create", "Product"))
+                          .Destroy(destroy => destroy.Action("Product_Delete", "Product"))
+                          .Update(update => update.Action("Product_Update", "Product"))))  
+<br/>
 <input type="button" id="refreshProductsGridData" value="Refresh Data" onclick="$('#ProductsGrid').data('kendoGrid').dataSource.read();" />
 <script type="text/javascript">
     //kendo.data.DataSource.prototype.options.autoSync = true;
-    $("#body").kendoValidator().data('kendoValidator');
+    $('#body').kendoValidator().data('kendoValidator');
     function error(e) {
         console.log(e.errors);
         $('#ProductsGrid').data('kendoGrid').cancelChanges();

@@ -6,5 +6,10 @@
         {
             return new ControlsFactory(helper);
         }
+
+        public static ControlsFactory<TModel> Controls<TModel>(this System.Web.Mvc.HtmlHelper<TModel> helper)
+        {
+            return new ControlsFactory<TModel>(helper);
+        }
     }
 }

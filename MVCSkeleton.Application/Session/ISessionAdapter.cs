@@ -5,5 +5,9 @@
         void Commit();
 
         void Dispose();
+        /// <summary>
+        /// Use only in tests
+        /// </summary>
+        void CommitWithoutDispose();
     }
 }
