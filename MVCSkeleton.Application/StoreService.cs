@@ -10,34 +10,34 @@ namespace MVCSkeleton.Application
 {
     public class StoreService : IStoreService
     {
-        private readonly IStoreRepository _storeRepository;
-        private readonly IMapper _mapper;
+        private readonly IStoreRepository storeRepository;
+        private readonly IMapper mapper;
 
         public StoreService(IStoreRepository storeRepository, IMapper mapper)
         {
-            _storeRepository = storeRepository;
-            _mapper = mapper;
+            this.storeRepository = storeRepository;
+            this.mapper = mapper;
         }
 
         public void Create(StoreDTO storeDTO)
         {
-            _storeRepository.Save(_mapper.Map(storeDTO, new Store()));
+            storeRepository.Save(mapper.Map(storeDTO, new Store()));
         }
 
         public void Delete(Guid storeId)
         {
-            _storeRepository.Delete(storeId);
+            storeRepository.Delete(storeId);
         }
 
         public List<StoreDTO> GetAllStores()
         {
-            return _mapper.Map(_storeRepository.GetAll(), new List<StoreDTO>());
+           return mapper.Map(storeRepository.GetAll(), new List<StoreDTO>());
         }
 
         public void Update(StoreDTO target)
         {
-            var store = _storeRepository.Get(target.Id);
-            _storeRepository.Save(_mapper.Map(target, store));
+            var store = storeRepository.Get(target.Id);
+            mapper.Map(target, store);
         }
     }
 }

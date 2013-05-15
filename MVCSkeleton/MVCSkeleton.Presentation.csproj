@@ -416,7 +416,9 @@
     <Content Include="Content\kendo\2013.1.319\images\KendoUI.ttf" />
     <Content Include="Content\kendo\2013.1.319\images\KendoUI.woff" />
     <Content Include="WebForm1.aspx" />
-    <Content Include="App_Data\menu.sitemap" />
+    <Content Include="App_Data\menu.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\kendo\2013.1.319\kendo.all-vsdoc.js" />
     <None Include="Scripts\kendo\2013.1.319\kendo.all.min.intellisense.js" />
     <Content Include="Scripts\kendo\2013.1.319\kendo.all.min.js" />

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -11,61 +12,51 @@ namespace MVCSkeleton.Presentation.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly IStoreService _service;
-        private readonly StoreModel _model;
-        private readonly IMapper _mapper;
+        private readonly IStoreService service;
+        private readonly IMapper mapper;
 
         public StoreController(IStoreService service, IMapper mapper)
         {
-            _service = service;
-            _mapper = mapper;
+            this.service = service;
+            this.mapper = mapper;
         }
 
         public ActionResult Index()
         {
-            var storeDtos = _service.GetAllStores();
-            var storeModels = _mapper.Map(storeDtos, new List<StoreModel>());
+            var storeDtos = service.GetAllStores();
+            var storeModels = mapper.Map(storeDtos, new List<StoreModel>());
             return View("Store", storeModels);
         }
 
         public ActionResult Stores_Read([DataSourceRequest] DataSourceRequest dsRequest)
         {
-            return Json(_service.GetAllStores().ToDataSourceResult(dsRequest));
+            return Json(service.GetAllStores().ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Store_Create([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] List<StoreModel> stores)
+        public ActionResult Store_Create([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
         {
-            var store = stores[0];
-            _service.Create(_mapper.Map(store, new StoreDTO()));
+            var store = stores.First();
+            service.Create(mapper.Map(store, new StoreDTO()));
 
             return Json(new[] { store }.ToDataSourceResult(dsRequest, ModelState));
         }
 
         public ActionResult Store_Update([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
         {
-            foreach (var storeModel in stores)
-            {
-                var target = _mapper.Map(storeModel, new StoreDTO());
-                _service.Update(target);
-            }            
+            var storeModel = stores.First();
+            var target = mapper.Map(storeModel, new StoreDTO());
+            service.Update(target);
 
-            return Json(_service.GetAllStores().ToDataSourceResult(dsRequest));
+            return Json(service.GetAllStores().ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Store_Delete([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
+        public ActionResult Store_Delete([Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
         {
-            foreach (var storeModel in stores)
-            {
-                _service.Delete(storeModel.Id);
-            }
-            
-            return Json(ModelState.ToDataSourceResult(dsRequest));
-        }
+            var storeModel = stores.First();
+            service.Delete(storeModel.Id);
 
-        public ViewResult GetAllStores()
-        {
-            List<StoreDTO> storeList = _service.GetAllStores();
-            return View("Store", _mapper.Map(storeList, new List<StoreModel>()));
+            return ModelState.IsValid ? null : Json(ModelState.ToDataSourceResult());
         }
+       
     }
 }

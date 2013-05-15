@@ -23,7 +23,7 @@ namespace MVCSkeleton.Presentation.Models
         [Required]
         [DisplayName("Unit Price")]
         [DataType(DataType.Currency)]
-        [Range(0, int.MaxValue)]
+        [Range(0, int.MaxValue)]        
         public double? UnitPrice { get; set; }
 
         [Required]

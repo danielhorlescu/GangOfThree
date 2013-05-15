@@ -13,54 +13,52 @@ namespace MVCSkeleton.Tests.Application
     [TestFixture]
     public class StoreServiceTests
     {
-        private IStoreRepository _storeRepository;
-        private IMapper _mapper;
+        private IStoreRepository storeRepository;
+        private IMapper mapper;
 
         private StoreService CreateSUT()
         {
-            _storeRepository = A.Fake<IStoreRepository>();
-            _mapper = A.Fake<IMapper>();
+            storeRepository = A.Fake<IStoreRepository>();
+            mapper = A.Fake<IMapper>();
 
-            return new StoreService(_storeRepository, _mapper);
+            return new StoreService(storeRepository, mapper);
         }
 
         [Test]
         public void Should_Get_All_Stores()
         {
-            StoreService storeService = CreateSUT();
-            var stores = new List<Store>();
-            var storeDtos = new List<StoreDTO>();
+            CreateSUT().GetAllStores();
 
-            A.CallTo(() => _storeRepository.GetAll()).Returns(stores);
-            A.CallTo(() => _mapper.Map(stores, storeDtos)).Returns(storeDtos);
-
-            var retrievedStores = storeService.GetAllStores();
-
-            Assert.IsNotNull(retrievedStores);
+            A.CallTo(() => storeRepository.GetAll()).MustHaveHappened();
+            IEnumerable<Store> source = new List<Store>();
+            A.CallTo(() => mapper.Map(source, new List<StoreDTO>())).WithAnyArguments().MustHaveHappened();
         }
 
         [Test]
         public void Should_Create_A_Store()
         {
             StoreService storeService = CreateSUT();
+            storeService.Create(new StoreDTO());
 
-            var initialGuid = Guid.NewGuid();
-            var returnedStore = new Store {Id = initialGuid};
+            A.CallTo(() => storeRepository.Save(new Store())).WithAnyArguments().MustHaveHappened();
+        }
 
-            storeService.Create(new StoreDTO {Id = initialGuid});
-            A.CallTo(() => _storeRepository.Save(returnedStore)).WithAnyArguments().MustHaveHappened();
+        [Test]
+        public void Should_Update_A_Store()
+        {
+            StoreService storeService = CreateSUT();
+            storeService.Update(new StoreDTO());
+
+            A.CallTo(() => mapper.Map(new StoreDTO(), new Store())).WithAnyArguments().MustHaveHappened();
         }
 
         [Test]
         public void Should_Delete_A_Store()
         {
             StoreService storeService = CreateSUT();
+            storeService.Delete(Guid.NewGuid());
 
-            var storeId = Guid.NewGuid();
-
-            storeService.Delete(storeId);
-
-            A.CallTo(() => _storeRepository.Delete(storeId)).WithAnyArguments().MustHaveHappened();
+            A.CallTo(() => storeRepository.Delete(Guid.NewGuid())).WithAnyArguments().MustHaveHappened();
         }
     }
 }

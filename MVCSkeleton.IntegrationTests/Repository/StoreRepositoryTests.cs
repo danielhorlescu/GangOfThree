@@ -37,7 +37,7 @@ namespace MVCSkeleton.IntegrationTests.Repository
 
             var store = storeRepository.Get(createdStore.Id);
             store.Name = updatedName;
-            storeRepository.Save(store);            
+            storeRepository.SaveWithCommit(store);            
 
             var retrievedStore = storeRepository.Get(createdStore.Id);
 
@@ -52,8 +52,8 @@ namespace MVCSkeleton.IntegrationTests.Repository
             var createdStore = CreateStore();
             var storeRepository = CreateSUT();
 
-            storeRepository.Save(createdStore);
-            storeRepository.Delete(createdStore);
+            storeRepository.SaveWithCommit(createdStore);
+            storeRepository.DeleteWithCommit(createdStore);
 
             var retrievedStore = storeRepository.Get(createdStore.Id);
 

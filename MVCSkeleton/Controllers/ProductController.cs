@@ -50,7 +50,6 @@ namespace MVCSkeleton.Presentation.Controllers
 
             service.Update(mapper.Map(product, new ProductDTO()));
 
-            //ModelState.AddModelError("Product", "Product already exists!");
             return Json(ModelState.ToDataSourceResult());
         }
 
@@ -60,7 +59,6 @@ namespace MVCSkeleton.Presentation.Controllers
 
             service.Delete(product.Id);
 
-            //ModelState.AddModelError("Product", "Product could not be deleted!");
             return Json(ModelState.ToDataSourceResult());
         }
 
