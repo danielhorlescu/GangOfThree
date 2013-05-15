@@ -72,12 +72,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\ProductContext.cs" />
     <Compile Include="Context\UserContext.cs" />
+    <Compile Include="Features\Product\CRUDProduct.feature.cs">
+      <DependentUpon>CRUDProduct.feature</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Features\User\ManageUser.feature.cs">
       <DependentUpon>ManageUser.feature</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Flows\ProductFlows.cs" />
     <Compile Include="Flows\UserFlows.cs" />
     <Compile Include="Initialization\TestInitializer.cs" />
     <Compile Include="Features\User\RegisterUser.feature.cs">
@@ -91,12 +98,17 @@
     <Compile Include="SeleniumHelpers\BrowserWrapper.cs" />
     <Compile Include="SeleniumHelpers\StepsBase.cs" />
     <Compile Include="SeleniumHelpers\WebDriverExtensions.cs" />
+    <Compile Include="Steps\CRUDProductSteps.cs" />
     <Compile Include="Steps\ManageUserSteps.cs" />
     <Compile Include="Steps\RegisterUserSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Features\Product\CRUDProduct.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CRUDProduct.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\User\ManageUser.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

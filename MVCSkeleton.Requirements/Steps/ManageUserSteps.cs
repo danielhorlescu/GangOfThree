@@ -12,15 +12,15 @@ namespace MVCSkeleton.Requirements.Steps
         public void GivenIEnterMyOldPasswordAndTheNewPassword()
         {
             UserContext.Current.NewPassword = "newTestPass";
-            Browser.SetTextBoxValue("OldPassword", UserContext.Current.CurrentUser.Password);
-            Browser.SetTextBoxValue("NewPassword", UserContext.Current.NewPassword) ;
-            Browser.SetTextBoxValue("ConfirmPassword", UserContext.Current.NewPassword);
+            Browser.SetInputValue("OldPassword", UserContext.Current.CurrentUser.Password);
+            Browser.SetInputValue("NewPassword", UserContext.Current.NewPassword) ;
+            Browser.SetInputValue("ConfirmPassword", UserContext.Current.NewPassword);
         }
 
-        [When(@"I click change password")]
-        public void WhenIClickChangePassword()
+        [When(@"I click the '(.*)' button")]
+        public void WhenIClickButton(string butonId)
         {
-            Browser.ClickButton("ChangePassword");
+            Browser.ClickButton(butonId);
         }
 
         [When(@"I log out")]

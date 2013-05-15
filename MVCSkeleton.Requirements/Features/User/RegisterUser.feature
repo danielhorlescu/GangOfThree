@@ -5,7 +5,7 @@
 Scenario: On Successful registration the user is logged in
 	Given I navigate to the 'User\Register' page
 	And  I enter all the register information
-	When I submit the form
+	When I click the 'registerBtn' button
 	Then I should be logged in
 
      

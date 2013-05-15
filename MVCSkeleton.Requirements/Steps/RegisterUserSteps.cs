@@ -17,15 +17,9 @@ namespace MVCSkeleton.Requirements.Steps
         [Given(@"I enter all the register information")]
         public void GivenIEnterAllTheRegisterInformation()
         {
-            Browser.SetTextBoxValue("UserName", "testUser");
-            Browser.SetTextBoxValue("Password", "pass123");
-            Browser.SetTextBoxValue("ConfirmPassword", "pass123");
-        }
-
-        [When(@"I submit the form")]
-        public void WhenISubmitTheForm()
-        {
-            Browser.SubmitForm();
+            Browser.SetInputValue("UserName", "testUser");
+            Browser.SetInputValue("Password", "pass123");
+            Browser.SetInputValue("ConfirmPassword", "pass123");
         }
 
         [Then(@"I should be logged in")]

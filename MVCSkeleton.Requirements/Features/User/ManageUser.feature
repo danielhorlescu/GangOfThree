@@ -4,7 +4,7 @@
 Scenario: As a logged in User I can change my password
 	Given I navigate to the 'User\Manage' page
 	And I enter my old password and the new password
-	When I click change password
+	When I click the 'changePasswordBtn' button
 	And I log out
 	And I log in with the new password
 	Then I should be logged in
