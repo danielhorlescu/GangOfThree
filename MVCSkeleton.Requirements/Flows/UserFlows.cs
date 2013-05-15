@@ -14,8 +14,8 @@ namespace MVCSkeleton.Requirements.Flows
         public static void LogIn()
         {
             Browser.NavigateTo(@"User\Login");
-            Browser.SetTextBoxValue("UserName", UserContext.Current.CurrentUser.Name);
-            Browser.SetTextBoxValue("Password", UserContext.Current.CurrentUser.Password);
+            Browser.SetInputValue("UserName", UserContext.Current.CurrentUser.Name);
+            Browser.SetInputValue("Password", UserContext.Current.CurrentUser.Password);
             Browser.SubmitForm();
         }
 

@@ -10,31 +10,32 @@ namespace MVCSkeleton.Requirements.SeleniumHelpers
     {
         public static string GetTextBoxValue(this IWebDriver browser, string field)
         {
-            IWebElement control = GetFieldControl(browser, field);
+            IWebElement control = GetControlById(browser, field);
 
             return control.GetAttribute("value");
         }
 
-        public static void SetTextBoxValue(this IWebDriver browser, string field, string value)
+        public static void SetInputValue(this IWebDriver browser, string controlId, string value)
         {
-            var control = GetFieldControl(browser, field);
-            var wait = new WebDriverWait(browser, BrowserWrapper.DefaultTimeout);
-            if (!String.IsNullOrEmpty(control.GetAttribute("value")))
+            var control = browser.GetControlById(controlId);
+            if (!control.Displayed)
             {
-                control.Clear();
-                wait.Until(_ => String.IsNullOrEmpty(control.GetAttribute("value")));
+                browser.MakeControlVisible(controlId);
             }
-            
+            control.Clear();
             control.SendKeys(value);
-//            wait.Until( _ => control.Value == value);
-            System.Threading.Thread.Sleep(100);
+        }
+
+        private static void MakeControlVisible(this IWebDriver browser, string controlId)
+        {
+            IJavaScriptExecutor js = browser as IJavaScriptExecutor;
+            js.ExecuteScript(string.Format("$('#{0}').css('display', 'inline-block');", controlId));
         }
 
         public static void SubmitForm(this IWebDriver browser, string formId = null)
         {
             var form = formId == null ? GetForm(browser) : browser.FindElements(By.Id(formId)).First();
             form.Submit();
-            System.Threading.Thread.Sleep(100);
         }
 
         public static void ClickButton(this IWebDriver browser, string buttonId)
@@ -42,9 +43,9 @@ namespace MVCSkeleton.Requirements.SeleniumHelpers
             browser.FindElements(By.Id(buttonId)).First().Click();
         }
 
-        private static IWebElement GetFieldControl(IWebDriver browser, string field)
+        private static IWebElement GetControlById(this IWebDriver browser, string controlId)
         {
-            return browser.FindElement(By.Id(field));
+            return browser.FindElement(By.Id(controlId));
         }
 
         private static IWebElement GetForm(IWebDriver browser)
@@ -83,17 +84,14 @@ namespace MVCSkeleton.Requirements.SeleniumHelpers
             {
                 get
                 {
-                    var selectedOption = dropDown.FindElements(By.TagName("option")).Where(e => e.Selected).FirstOrDefault();
+                    var selectedOption =
+                        dropDown.FindElements(By.TagName("option")).Where(e => e.Selected).FirstOrDefault();
                     if (selectedOption == null)
                         return null;
 
                     return selectedOption.GetAttribute("value");
-
                 }
-                set
-                {
-                    new SelectElement(dropDown).SelectByValue(value);
-                }
+                set { new SelectElement(dropDown).SelectByValue(value); }
             }
         }
     }

@@ -31,9 +31,9 @@ namespace MVCSkeleton.Requirements.SeleniumHelpers
 
         private static IWebDriver GetBrowserDriver()
         {
-            return new FirefoxDriver();
-         //   return new ChromeDriver();
-          //  return new InternetExplorerDriver();
+           //  return new FirefoxDriver();
+               return new ChromeDriver();
+            //return new InternetExplorerDriver();
         }
 
         public void Stop()
@@ -45,7 +45,6 @@ namespace MVCSkeleton.Requirements.SeleniumHelpers
             {
                 Browser.Quit();
                 Browser.Dispose();
-
             }
             catch (Exception ex)
             {
