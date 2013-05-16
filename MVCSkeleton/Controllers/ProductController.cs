@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
@@ -23,7 +24,7 @@ namespace MVCSkeleton.Presentation.Controllers
 
         public ViewResult GetProducts()
         {
-            List<ProductDTO> productDtos = service.GetProducts();
+            List<ProductDTO> productDtos = service.GetAll();
 
             List<ProductModel> productModels = mapper.Map(productDtos, new List<ProductModel>());
 
@@ -32,7 +33,7 @@ namespace MVCSkeleton.Presentation.Controllers
 
         public ActionResult Products_Read([DataSourceRequest] DataSourceRequest dsRequest)
         {
-            return Json(service.GetProducts().ToDataSourceResult(dsRequest));
+            return Json(service.GetAll().ToDataSourceResult(dsRequest));
         }
 
         public ActionResult Product_Create([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] List<ProductModel> products)
@@ -54,14 +55,15 @@ namespace MVCSkeleton.Presentation.Controllers
             return Json(ModelState.ToDataSourceResult());
         }
 
-        public ActionResult Product_Delete([Bind(Prefix = "models")] List<ProductModel> products)
+        public JsonResult Product_Delete([Bind(Prefix = "models")] List<ProductModel> products)
         {
             ProductModel product = products[0];
 
             service.Delete(product.Id);
 
             //ModelState.AddModelError("Product", "Product could not be deleted!");
-            return Json(ModelState.ToDataSourceResult());
+
+            return ModelState.IsValid ? null : Json(ModelState.ToDataSourceResult());
         }
 
         [HttpGet]
@@ -93,9 +95,10 @@ namespace MVCSkeleton.Presentation.Controllers
             return RedirectToAction("GetProducts");
         }
 
-        //[HttpPost]
-        public ActionResult DeleteAll(List<ProductModel> products)
+        [HttpPost]
+        public ActionResult DeleteAll(IEnumerable<ProductModel> selectedProducts)
         {
+            service.Delete(selectedProducts.Select((p, index) => p.Id));
             return RedirectToAction("GetProducts");
         }
     }

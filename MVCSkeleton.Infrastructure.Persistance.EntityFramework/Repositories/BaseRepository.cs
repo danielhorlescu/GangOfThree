@@ -47,17 +47,39 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             Delete(domainObject);
         }
 
+        public void Delete(IEnumerable<Guid> ids)
+        {
+            IEnumerable<T> domainObjects = GetAll(obj => ids.Contains(obj.Id));
+            foreach (var domainObject in domainObjects)
+            {
+                Check.Require(domainObject != null, string.Format("Cannot find object {0} to delete", domainObject.Id));
+                Delete(domainObject);
+            }
+        }
+
+        private void Delete(T domainObject)
+        {
+            Session.Remove(domainObject);
+        }
+
+        internal void DeleteWithCommit(T domainObject)
+        {
+            Delete(domainObject);
+            context.SaveChanges();
+        }
+
+        internal void DeleteWithCommit(IEnumerable<Guid> ids)
+        {
+            Delete(ids);
+            context.SaveChanges();
+        }
+
         public void Save(IEnumerable<T> domainObjects)
         {
             foreach (var domainObject in domainObjects)
             {
                 Save(domainObject);
             }
-        }
-
-        public IEnumerable<T> GetAll()
-        {
-            return Session.ToList();
         }
 
         public Guid Save(T domainObject)
@@ -81,21 +103,25 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
             context.SaveChanges();
         }
 
+        internal void SaveWithCommit(IEnumerable<T> domainObjects)
+        {
+            Save(domainObjects);
+            context.SaveChanges();
+        }
+
         public T Get(Guid id)
         {
             return Session.Find(id);
         }
 
-        public void Delete(T domainObject)
+        public IEnumerable<T> GetAll()
         {
-            Session.Attach(domainObject);
-            Session.Remove(domainObject);
+            return Session.ToList();
         }
 
-        internal void DeleteWithCommit(T domainObject)
+        public IEnumerable<T> GetAll(Func<T, bool> filter)
         {
-            Delete(domainObject);
-            context.SaveChanges();
-        }       
+            return Session.Where(filter).ToList();
+        }
     }
 }

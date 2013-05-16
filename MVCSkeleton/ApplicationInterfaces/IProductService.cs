@@ -6,11 +6,14 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
 {
     public interface IProductService
     {
-        List<ProductDTO> GetProducts();
+        ProductDTO Get(Guid id);
+        List<ProductDTO> GetAll();
+        List<ProductDTO> GetAll(IEnumerable<Guid> ids);
 
         Guid Create(ProductDTO productDto);
+
         void Delete(Guid productId);
+        void Delete(IEnumerable<Guid> productIds);
         void Update(ProductDTO productDto);
-        ProductDTO Get(Guid id);
     }
 }

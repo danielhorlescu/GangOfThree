@@ -33,7 +33,7 @@ namespace MVCSkeleton.Tests.Application
             A.CallTo(() => productRepository.GetAll()).Returns(products);
             A.CallTo(() => mapper.Map(products, productDtos)).Returns(productDtos);
 
-            List<ProductDTO> actualProductDtos = productService.GetProducts();
+            List<ProductDTO> actualProductDtos = productService.GetAll();
 
             Assert.IsNotNull(actualProductDtos);
         }
@@ -55,11 +55,10 @@ namespace MVCSkeleton.Tests.Application
         {
             ProductService productService = CreateSUT();
 
-            var initialGuid = Guid.NewGuid();
-            var returnedProduct = new Product { Id = initialGuid };
+            var productId = Guid.NewGuid();
 
-            productService.Delete(initialGuid);
-            A.CallTo(() => productRepository.Delete(returnedProduct)).WithAnyArguments().MustHaveHappened();
+            productService.Delete(productId);
+            A.CallTo(() => productRepository.Delete(productId)).WithAnyArguments().MustHaveHappened();
         }
     }
 }

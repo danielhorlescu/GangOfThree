@@ -37,7 +37,7 @@ namespace MVCSkeleton.Tests.Controllers
             ProductController productController = CreateSUT();
             List<ProductDTO> expectedProducts = CreateProductList();
 
-            A.CallTo(() => service.GetProducts()).Returns(expectedProducts);
+            A.CallTo(() => service.GetAll()).Returns(expectedProducts);
             ViewResult view = productController.GetProducts();
 
             Assert.AreEqual(mapper.Map(expectedProducts, new List<ProductModel>()), view.Model);
