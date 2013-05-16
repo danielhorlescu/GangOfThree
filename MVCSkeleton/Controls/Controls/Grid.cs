@@ -12,5 +12,17 @@ namespace MVCSkeleton.Presentation.Controls.Controls
             : base(viewContext, initializer, urlGenerator, htmlBuilderFactory)
         {
         }
+
+        protected override void WriteHtml(System.Web.UI.HtmlTextWriter writer)
+        {
+            foreach (var gridColumnBase in VisibleColumns)
+            {
+                if (gridColumnBase.Member != null)
+                {
+                    gridColumnBase.HtmlAttributes.Add("data-PropertyName", gridColumnBase.Member);
+                }
+            }
+            base.WriteHtml(writer);
+        }
     }
 }

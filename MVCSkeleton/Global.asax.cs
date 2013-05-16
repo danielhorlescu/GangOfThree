@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -21,7 +20,6 @@ namespace MVCSkeleton.Presentation
 
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -31,8 +29,8 @@ namespace MVCSkeleton.Presentation
 
         private void RegisterSiteMap()
         {
-            string menu = "menu";
-            string appDataMenuSitemapPath = "~/App_Data/menu.sitemap";
+            const string menu = "menu";
+            const string appDataMenuSitemapPath = "~/App_Data/menu.sitemap";
             if (!SiteMapManager.SiteMaps.ContainsKey(menu))
             {
                 SiteMapManager.SiteMaps.Register<XmlSiteMap>(menu,

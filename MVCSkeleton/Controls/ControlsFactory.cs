@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq.Expressions;
 using System.Web.Mvc;
-
 using Kendo.Mvc.Infrastructure;
 using Kendo.Mvc.UI.Html;
-
-using MVCSkeleton.Presentation.Controls.Builders;
 using MVCSkeleton.Presentation.Controls.Controls;
+using MVCSkeleton.Presentation.Controls.Builders;
 
 namespace MVCSkeleton.Presentation.Controls
 {
-    public class ControlsFactory : Kendo.Mvc.UI.Fluent.WidgetFactory
+    public class ControlsFactory<TModel> : Kendo.Mvc.UI.Fluent.WidgetFactory<TModel>
     {
-        public ControlsFactory(HtmlHelper htmlHelper) : base(htmlHelper)
+        public ControlsFactory(HtmlHelper<TModel> htmlHelper) : base(htmlHelper)
         {
         }
 
@@ -49,28 +48,28 @@ namespace MVCSkeleton.Presentation.Controls
 
         public override Kendo.Mvc.UI.Fluent.GridBuilder<T> Grid<T>(string dataSourceViewDataKey)
         {
-            GridBuilder<T> gridBuilder = (GridBuilder<T>) Grid<T>();
+            GridBuilder<T> gridBuilder = (GridBuilder<T>)Grid<T>();
             gridBuilder.SetDataSource(dataSourceViewDataKey);
             return gridBuilder;
         }
 
         public override Kendo.Mvc.UI.Fluent.GridBuilder<T> Grid<T>(IEnumerable<T> dataSource)
         {
-            GridBuilder<T> gridBuilder = (GridBuilder<T>) Grid<T>();
+            GridBuilder<T> gridBuilder = (GridBuilder<T>)Grid<T>();
             gridBuilder.SetDataSource(dataSource);
             return gridBuilder;
         }
 
         public override Kendo.Mvc.UI.Fluent.GridBuilder<DataRowView> Grid(DataTable dataSource)
         {
-            GridBuilder<DataRowView> gridBuilder = (GridBuilder<DataRowView>) Grid<DataRowView>();
+            GridBuilder<DataRowView> gridBuilder = (GridBuilder<DataRowView>)Grid<DataRowView>();
             gridBuilder.SetDataSource(dataSource);
             return gridBuilder;
         }
 
         public override Kendo.Mvc.UI.Fluent.GridBuilder<DataRowView> Grid(DataView dataSource)
         {
-            GridBuilder<DataRowView> gridBuilder = (GridBuilder<DataRowView>) Grid<DataRowView>();
+            GridBuilder<DataRowView> gridBuilder = (GridBuilder<DataRowView>)Grid<DataRowView>();
             gridBuilder.SetDataSource(dataSource);
             return gridBuilder;
         }
@@ -80,7 +79,7 @@ namespace MVCSkeleton.Presentation.Controls
             return new MenuBuilder(new Menu(HtmlHelper.ViewContext, Initializer, UrlGenerator, DI.Current.Resolve<INavigationItemAuthorization>()));
         }
 
-        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<double> NumericTextBox()
+        /*public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<double> NumericTextBox()
         {
             return new NumericTextBoxBuilder<double>(new NumericTextBox<double>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));
         }
@@ -88,6 +87,26 @@ namespace MVCSkeleton.Presentation.Controls
         public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<T> NumericTextBox<T>()
         {
             return new NumericTextBoxBuilder<T>(new NumericTextBox<T>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));
+        }*/
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<decimal> CurrencyTextBoxFor(Expression<Func<TModel, decimal?>> expression)
+        {
+            return NumericTextBoxFor(expression).Format("c");
+        }
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<int> IntegerTextBoxFor(Expression<Func<TModel, int?>> expression)
+        {
+            return NumericTextBoxFor(expression).Format("n0").Decimals(0);
+        }
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<T> NumericTextBox<T>()
+        {
+            return new NumericTextBoxBuilder<T>(new NumericTextBox<T>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));
+        }
+
+        public override Kendo.Mvc.UI.Fluent.NumericTextBoxBuilder<double> NumericTextBox()
+        {
+            return new NumericTextBoxBuilder<double>(new NumericTextBox<double>(HtmlHelper.ViewContext, Initializer, HtmlHelper.ViewData));
         }
     }
 }

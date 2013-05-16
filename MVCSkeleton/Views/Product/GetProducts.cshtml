@@ -10,7 +10,7 @@
 <label for="ProductsGrid">Products:</label>
     @Html.ValidationSummary()
 
-@(Html.Controls().Grid(Model)    
+    @(Html.Controls().Grid(Model)    
       .Name("ProductsGrid")
       .Columns(columns =>
           {
@@ -23,7 +23,7 @@
       .ToolBar(toolbar =>
           {
               toolbar.Custom().Action("Edit", "Product").Text("Create New");
-              toolbar.Custom().Action("DeleteAll", "Product").Text("Delete All");
+              toolbar.Custom().Text("Delete All").HtmlAttributes(new Dictionary<string, object>{{"id", "deleteAll"}});
           })
       .Groupable()
       .Pageable()
@@ -31,6 +31,7 @@
       .Scrollable()
       .Selectable(selectable => selectable.Mode(GridSelectionMode.Multiple))
       .Filterable()
+      .Events(config => config.DataBound("onDataBound"))
       .DataSource(ds => ds.Ajax()
                           .Batch(true)
                           .Read(read => read.Action("Products_Read", "Product"))
@@ -46,6 +47,34 @@
     $('#body').kendoValidator().data('kendoValidator');
     function error(e) {
         console.log(e.errors);
+        alert('An error occured!');
         $('#ProductsGrid').data('kendoGrid').cancelChanges();
+    }
+
+    $("#deleteAll").click(function() {
+
+        var gridRows = $("#ProductsGrid").data("kendoGrid");
+        var items = new Array();
+
+        gridRows.select().each(function() {
+            var dataItem = gridRows.dataItem($(this));
+            items.push(dataItem);
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/Product/DeleteAll",
+            data: JSON.stringify({ selectedProducts: items }),
+            dataType: "html",
+            contentType: "application/json; charset=utf-8"
+        });
+    });
+    
+    function onDataBound(e) {
+        var grid = e.sender;
+        grid.element.find("tr[role='row']").each(function () {
+            var dataItem = grid.dataItem(this);
+            $(this).attr('data-id', dataItem.Id);
+        });
     }
 </script>
