@@ -84,11 +84,6 @@
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="Specifications\Specification.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

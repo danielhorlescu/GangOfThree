@@ -60,9 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">
       <Project>{988c1cee-b25a-4485-b871-1dfebfa88846}</Project>
       <Name>MVCSkeleton.Application</Name>

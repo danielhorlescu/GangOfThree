@@ -100,7 +100,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>RegisterUser.feature.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MVCSkeleton.Application\MVCSkeleton.Application.csproj">

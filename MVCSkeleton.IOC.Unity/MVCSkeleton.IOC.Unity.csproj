@@ -66,9 +66,6 @@
     <Compile Include="UnityApplicationStartupModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Unity.Mvc3.README.txt" />
   </ItemGroup>
   <ItemGroup>
