@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using MVCSkeleton.Infrastracture.Utils.Mapper;
 using MVCSkeleton.Presentation.ApplicationInterfaces;
 using MVCSkeleton.Presentation.DTOs;
 using MVCSkeleton.Presentation.Models;
@@ -10,53 +12,51 @@ namespace MVCSkeleton.Presentation.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly IStoreService _service;
-        private readonly StoreGridModel _model;
+        private readonly IStoreService service;
+        private readonly IMapper mapper;
 
-        public StoreController(IStoreService service)
+        public StoreController(IStoreService service, IMapper mapper)
         {
-            _service = service;
-            _model = new StoreGridModel {StoreModels = _service.GetAllStores()};
+            this.service = service;
+            this.mapper = mapper;
         }
 
         public ActionResult Index()
         {
-            return View("Store", _model);
+            var storeDtos = service.GetAllStores();
+            var storeModels = mapper.Map(storeDtos, new List<StoreModel>());
+            return View("Store", storeModels);
         }
 
-        public ActionResult Stores_Read([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Stores_Read([DataSourceRequest] DataSourceRequest dsRequest)
         {
-            return Json(_model.StoreModels.ToDataSourceResult(dsRequest));
+            return Json(service.GetAllStores().ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Store_Create([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Store_Create([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
         {
-            if (ModelState.IsValid)
-            {
-                _service.Create(new StoreDTO { Email = store.Email, Name = store.Name});
-            }
+            var store = stores.First();
+            service.Create(mapper.Map(store, new StoreDTO()));
+
             return Json(new[] { store }.ToDataSourceResult(dsRequest, ModelState));
         }
 
-        public ActionResult Store_Update([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Store_Update([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
         {
-            return Json(_model.StoreModels.ToDataSourceResult(dsRequest));
+            var storeModel = stores.First();
+            var target = mapper.Map(storeModel, new StoreDTO());
+            service.Update(target);
+
+            return Json(service.GetAllStores().ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Store_Delete([DataSourceRequest] DataSourceRequest dsRequest, StoreModel store)
+        public ActionResult Store_Delete([Bind(Prefix = "models")] IEnumerable<StoreModel> stores)
         {
+            var storeModel = stores.First();
+            service.Delete(storeModel.Id);
 
-            if (store!=null)
-            {
-                _service.Delete(store.Id);
-            }
-            return Json(ModelState.ToDataSourceResult(dsRequest));
+            return ModelState.IsValid ? null : Json(ModelState.ToDataSourceResult());
         }
-
-        public ViewResult GetAllStores()
-        {
-            List<StoreDTO> storeList = _service.GetAllStores();            
-            return View("Store", new StoreGridModel {StoreModels = storeList});
-        }
+       
     }
 }

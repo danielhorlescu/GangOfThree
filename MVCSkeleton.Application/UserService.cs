@@ -22,9 +22,9 @@ namespace MVCSkeleton.Application
             userRepository.Save(_mapper.Map(userDto, new User()));
         }
 
-        public bool IsValid(string userName, string password)
+        public bool Exists(string userName, string password)
         {
-            return userRepository.IsValid(userName, password);
+            return userRepository.Exists(userName, password);
         }
 
         public void ChangePassword(string userName, string oldPassword, string newPassword)

@@ -18,8 +18,10 @@ namespace MVCSkeleton.Mapper.Modules
             AutoMapper.Mapper.CreateMap<CustomerDTO, Customer>().IgnoreAllNonExisting();
             AutoMapper.Mapper.CreateMap<CustomerModel, CustomerDTO>();
 
-            AutoMapper.Mapper.CreateMap<Store, StoreDTO>();
-            AutoMapper.Mapper.CreateMap<StoreDTO, Store>().IgnoreAllNonExisting();
+            AutoMapper.Mapper.CreateMap<Store, StoreDTO>();            
+            AutoMapper.Mapper.CreateMap<StoreDTO, Store>().IgnoreAllNonExisting().ForMember(dest => dest.Id, opt => opt.Condition(storeDto => storeDto.Id != Guid.Empty));
+            AutoMapper.Mapper.CreateMap<StoreDTO, StoreModel>();
+            AutoMapper.Mapper.CreateMap<StoreModel, StoreDTO>();
         }
     }
 }

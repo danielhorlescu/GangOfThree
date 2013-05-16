@@ -6,7 +6,7 @@ namespace MVCSkeleton.Presentation.ApplicationInterfaces
     {
         void CreateUser(UserDTO userDto);
 
-        bool IsValid(string userName, string password);
+        bool Exists(string userName, string password);
 
         void ChangePassword(string name, string oldPassword, string newPassword);
     }

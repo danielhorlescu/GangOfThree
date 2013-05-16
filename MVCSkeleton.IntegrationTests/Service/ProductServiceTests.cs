@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using MVCSkeleton.Application;
 using MVCSkeleton.Infrastracture.Utils.IOC;
 using MVCSkeleton.IntegrationTests.Repository;
@@ -65,6 +67,24 @@ namespace MVCSkeleton.IntegrationTests.Service
             Assert.IsNull(actualProductDto);
         }
 
+        [Test]
+        public void Should_Delete_A_List_Of_Products()
+        {
+            ProductService service = CreateSUT();
+
+            List<ProductDTO> productDtos = CreateProductDTOsWithouthId();
+
+            List<Guid> productIds = productDtos.Select(service.Create).ToList();
+            Commit();
+
+            service.Delete(productIds);
+            Commit();
+
+            List<ProductDTO> actualProductDtos = service.GetAll(productIds);
+
+            Assert.IsEmpty(actualProductDtos);
+        }
+
         private ProductDTO CreateProductDTOWithId(Guid productId)
         {
             return new ProductDTO
@@ -87,6 +107,27 @@ namespace MVCSkeleton.IntegrationTests.Service
                     CategoryId = Guid.Parse("4CEAC9D2-CA6C-494E-B309-539A86178896"),
                     UnitPrice = 234,
                     UnitsInStock = 2
+                };
+        }
+
+        private List<ProductDTO> CreateProductDTOsWithouthId()
+        {
+            return new List<ProductDTO>
+                {
+                    new ProductDTO
+                        {
+                            Code = "SMART",
+                            Name = "Samsung Nexus",
+                            UnitPrice = 500,
+                            UnitsInStock = 17,
+                        },
+                    new ProductDTO
+                        {
+                            Code = "SMART2",
+                            Name = "Samsung Nexus2",
+                            UnitPrice = 400,
+                            UnitsInStock = 7,
+                        }
                 };
         }
     }

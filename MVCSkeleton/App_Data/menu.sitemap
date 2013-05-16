@@ -4,8 +4,8 @@
     <siteMapNode title="Product">
       <siteMapNode controller="Product" action="GetProducts" title="List Products"/>
     </siteMapNode>
-    <siteMapNode title="Menu">
-      <siteMapNode controller="menu" action="index" title="First Look"/>
+    <siteMapNode title="Store">      
+      <siteMapNode controller="Store" action="Index" title="Display Stores"/>
     </siteMapNode>
   </siteMapNode>
 </siteMap>
