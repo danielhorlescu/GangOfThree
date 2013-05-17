@@ -1,0 +1,45 @@
+﻿@using MVCSkeleton.Presentation.Controls
+@model List<MVCSkeleton.Presentation.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Products</h2>
+
+<label for="ProductsGrid">Products:</label>
+    @Html.ValidationSummary()
+
+    @(Html.Controls().Grid(Model)    
+      .Name("ProductsGrid")
+      .Columns(columns =>
+          {
+              columns.Bound(p => p.Name).ClientTemplate("<a href='" + Url.Action("Edit", "Product", new {id = "#=Id#"}) + " '>#=Name#</a>");
+              columns.Bound(p => p.Code);
+              columns.Bound(p => p.UnitPrice).Width(120);
+              columns.Bound(p => p.UnitsInStock).Width(150);
+              columns.Command(command => command.Destroy());
+          })
+      .ToolBar(toolbar =>
+          {
+              toolbar.Custom().Action("Edit", "Product").Text("Create New");
+              toolbar.Custom().Text("Delete Selected").HtmlAttributes(new Dictionary<string, object>{{"id", "deleteSelected"}});
+          })
+      .Groupable()
+      .Pageable()
+      .Sortable()
+      .Scrollable()
+      .Selectable(selectable => selectable.Mode(GridSelectionMode.Multiple))
+      .Filterable()
+      .Events(config => config.DataBound("onDataBound"))
+      .DataSource(ds => ds.Ajax()
+                          .Read(read => read.Action("Read", "Product"))
+                          .Events(events => events.Error("onError"))
+                          .Model(model => model.Id(p => p.Id))
+                          .Destroy(destroy => destroy.Action("Delete", "Product"))))
+<br/>
+<input type="button" id="refreshProductsGridData" value="Refresh Data" />
+@section Scripts {
+    @Scripts.Render("~/bundles/Grid")
+    @Scripts.Render("~/bundles/Product")
+}

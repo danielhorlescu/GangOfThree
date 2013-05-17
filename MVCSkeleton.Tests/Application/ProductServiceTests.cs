@@ -26,39 +26,38 @@ namespace MVCSkeleton.Tests.Application
         [Test]
         public void Should_Get_Products()
         {
-            ProductService productService = CreateSUT();
-            List<Product> products = new List<Product>();
-            List<ProductDTO> productDtos = new List<ProductDTO>();
+            CreateSUT().GetAll();
 
-            A.CallTo(() => productRepository.GetAll()).Returns(products);
-            A.CallTo(() => mapper.Map(products, productDtos)).Returns(productDtos);
+            A.CallTo(() => productRepository.GetAll()).MustHaveHappened();
 
-            List<ProductDTO> actualProductDtos = productService.GetAll();
+            IEnumerable<Product> products = new List<Product>();
 
-            Assert.IsNotNull(actualProductDtos);
+            A.CallTo(() => mapper.Map(products, new List<ProductDTO>())).WithAnyArguments().MustHaveHappened();
         }
 
         [Test]
         public void Should_Create_A_Product()
         {
-            ProductService productService = CreateSUT();
+            CreateSUT().Create(new ProductDTO());
 
-            var initialGuid = Guid.NewGuid();
-            var returnedProduct = new Product { Id = initialGuid };
-
-            productService.Create(new ProductDTO { Id = initialGuid });
-            A.CallTo(() => productRepository.Save(returnedProduct)).WithAnyArguments().MustHaveHappened();
+            A.CallTo(() => productRepository.Save(new Product())).WithAnyArguments().MustHaveHappened();
         }
 
         [Test]
         public void Should_Delete_A_Product()
         {
-            ProductService productService = CreateSUT();
+            CreateSUT().Delete(Guid.NewGuid());
 
-            var productId = Guid.NewGuid();
+            A.CallTo(() => productRepository.Delete(Guid.NewGuid())).WithAnyArguments().MustHaveHappened();
+        }
 
-            productService.Delete(productId);
-            A.CallTo(() => productRepository.Delete(productId)).WithAnyArguments().MustHaveHappened();
+        [Test]
+        public void Should_Update_A_Product()
+        {
+            CreateSUT().Update(new ProductDTO());
+
+            A.CallTo(() => productRepository.Get(Guid.NewGuid())).WithAnyArguments().MustHaveHappened();
+            A.CallTo(() => mapper.Map(new ProductDTO(), new Product())).WithAnyArguments().MustHaveHappened();
         }
     }
 }

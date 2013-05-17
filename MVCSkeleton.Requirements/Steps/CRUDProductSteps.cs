@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using MVCSkeleton.Domain;
+using MVCSkeleton.Infrastracture.Utils.Comparer;
 using MVCSkeleton.Presentation.Models;
 using MVCSkeleton.Requirements.Context;
 using MVCSkeleton.Requirements.Flows;
@@ -34,7 +35,7 @@ namespace MVCSkeleton.Requirements.Steps
         public void ThenIShouldHaveTheProductListedInTheGrid()
         {
             Product product = GetProductsFromGrid().First();
-            Assert.AreEqual(ProductContext.Current.Product, product);
+            Assert.IsTrue(ObjectComparer.AreObjectsEqual(ProductContext.Current.Product, product, "Id", "CreationDate", "UpdateDate"));
         }
 
         [Given(@"I have the products")]

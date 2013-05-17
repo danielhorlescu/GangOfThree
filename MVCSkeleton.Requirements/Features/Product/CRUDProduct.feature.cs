@@ -90,7 +90,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 11
  testRunner.When("I click the \'saveProductBtn\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 12
- testRunner.Then("I should be redirected to the \'Product/GetProducts\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should be redirected to the \'Product/List\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 13
  testRunner.And("I should have the product listed in the grid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -120,7 +120,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 16
  testRunner.Given("I have the products", ((string)(null)), table2, "Given ");
 #line 19
-    testRunner.And("I navigate to the \'Product/GetProducts\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("I navigate to the \'Product/List\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
  testRunner.And("I click edit for the \'362D6764-07A3-4A03-A430-00E21FFB4998\' product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -141,7 +141,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 24
  testRunner.When("I click the \'saveProductBtn\' button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
- testRunner.Then("I should be redirected to the \'Product/GetProducts\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should be redirected to the \'Product/List\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
  testRunner.And("I should have the product listed in the grid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -177,7 +177,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 29
  testRunner.Given("I have the products", ((string)(null)), table4, "Given ");
 #line 33
-    testRunner.And("I navigate to the \'Product/GetProducts\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("I navigate to the \'Product/List\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
  testRunner.When("I click delete for the \'362D6764-07A3-4A03-A430-00E21FFB4998\' product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 35

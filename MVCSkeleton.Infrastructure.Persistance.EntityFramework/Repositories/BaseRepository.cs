@@ -50,9 +50,9 @@ namespace MVCSkeleton.Infrastructure.Persistance.EntityFramework.Repositories
         public void Delete(IEnumerable<Guid> ids)
         {
             IEnumerable<T> domainObjects = GetAll(obj => ids.Contains(obj.Id));
+            Check.Require(ids.Count() == domainObjects.Count(), string.Format("Not all ids where found in the database"));
             foreach (var domainObject in domainObjects)
             {
-                Check.Require(domainObject != null, string.Format("Cannot find object {0} to delete", domainObject.Id));
                 Delete(domainObject);
             }
         }

@@ -2,7 +2,7 @@
 <siteMap>
   <siteMapNode title="Home" controller="Home" action="Overview">
     <siteMapNode title="Product">
-      <siteMapNode controller="Product" action="GetProducts" title="List Products"/>
+      <siteMapNode controller="Product" action="List" title="List Products"/>
     </siteMapNode>
     <siteMapNode title="Store">      
       <siteMapNode controller="Store" action="Index" title="Display Stores"/>
