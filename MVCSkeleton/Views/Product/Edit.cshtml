@@ -62,7 +62,7 @@
 
 <script type="text/javascript">
     var validator = $('#body').kendoValidator().data('kendoValidator');
-    $("input").click(function (e) {
+    $("input[type='submit']").click(function (e) {
 
         if (!validator.validate()) {
             e.preventDefault();
