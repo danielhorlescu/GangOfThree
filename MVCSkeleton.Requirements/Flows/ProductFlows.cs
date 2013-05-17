@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using MVCSkeleton.Domain;
+using MVCSkeleton.Infrastructure.Persistance.EntityFramework;
 using MVCSkeleton.Presentation.Models;
 using MVCSkeleton.Requirements.SeleniumHelpers;
+using Microsoft.Practices.ObjectBuilder2;
 using OpenQA.Selenium;
 
 namespace MVCSkeleton.Requirements.Flows
@@ -12,17 +15,16 @@ namespace MVCSkeleton.Requirements.Flows
             get { return BrowserWrapper.Instance.Browser; }
         }
 
-        public static void CreateProducts(IEnumerable<ProductModel> products)
+        public static void CreateProducts(IEnumerable<Product> products)
         {
-            foreach (var product in products)
+            using (MVCSkeletonDataContext db = new MVCSkeletonDataContext())
             {
-                Browser.NavigateTo(@"Product\Edit");
-                InitializeControlsFrom(product);
-                Browser.ClickButton("saveProductBtn");
+                products.ForEach(p => db.Products.Add(p));
+                db.SaveChanges();
             }
         }
 
-        public static void InitializeControlsFrom(ProductModel product)
+        public static void InitializeControlsFrom(Product product)
         {
             Browser.SetInputValue("Name", product.Name);
             Browser.SetInputValue("Code", product.Code);

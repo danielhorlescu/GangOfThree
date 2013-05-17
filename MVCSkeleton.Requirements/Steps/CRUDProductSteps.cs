@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using MVCSkeleton.Domain;
 using MVCSkeleton.Presentation.Models;
 using MVCSkeleton.Requirements.Context;
 using MVCSkeleton.Requirements.Flows;
@@ -31,8 +33,8 @@ namespace MVCSkeleton.Requirements.Steps
         [Then(@"I should have the product listed in the grid")]
         public void ThenIShouldHaveTheProductListedInTheGrid()
         {
-            ProductModel productModel = GetProductsFromGrid().First();
-            Assert.AreEqual(ProductContext.Current.Product, productModel);
+            Product product = GetProductsFromGrid().First();
+            Assert.AreEqual(ProductContext.Current.Product, product);
         }
 
         [Given(@"I have the products")]
@@ -41,36 +43,50 @@ namespace MVCSkeleton.Requirements.Steps
             ProductFlows.CreateProducts(GetProductsFromTable(table));
         }
 
-        [Given(@"I click on the product edit link")]
-        public void GivenIClickOnTheProductEditLink()
+        [Given(@"I click edit for the '(.*)' product")]
+        public void GivenIClickEditForTheProduct(string productId)
         {
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='ProductsGrid']"));
             IWebElement rowWithProduct =
-                Browser.FindElement(By.XPath(string.Format("//*[@data-PropertyName ='{0}']", "Name")));
-            rowWithProduct.Click();
+                 productsGrid.FindElement(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
+
+            IWebElement editButton =
+                rowWithProduct.FindElement(By.XPath(string.Format("//*[@data-propertyname ='{0}']/a", "Name")));
+            editButton.Click();
         }
 
         [When(@"I click delete for the '(.*)' product")]
-        public void WhenIClickDeleteForTheProduct(string productName)
+        public void WhenIClickDeleteForTheProduct(string productId)
         {
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='ProductsGrid']"));
             IWebElement rowWithProduct =
-                 Browser.FindElement(By.XPath(string.Format("//tr//a[@data-PropertyName ='{0}' and text()={1}]", "Name",productName)));
-            rowWithProduct.Click();
+                 productsGrid.FindElement(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
+
+            IWebElement deleteButton = rowWithProduct.FindElement(By.XPath("//td/a[contains(@class, 'k-grid-delete')]"));
+
+            deleteButton.Click();
+            Browser.SwitchTo().Alert().Accept();
         }
 
         [Then(@"The grid should not contain the '(.*)' product")]
-        public void ThenTheGridShouldNotContainTheProduct(string productName)
+        public void ThenTheGridShouldNotContainTheProduct(string productId)
         {
-            ScenarioContext.Current.Pending();
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='ProductsGrid']"));
+            ReadOnlyCollection<IWebElement> rowWithProduct =
+                 productsGrid.FindElements(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
+
+            Assert.AreEqual(0, rowWithProduct.Count);
         }
 
 
-        private static IEnumerable<ProductModel> GetProductsFromTable(Table table)
+        private static IEnumerable<Product> GetProductsFromTable(Table table)
         {
-            List<ProductModel> products = new List<ProductModel>();
+            List<Product> products = new List<Product>();
             foreach (var row in table.Rows)
             {
-                products.Add(new ProductModel
+                products.Add(new Product
                 {
+                    Id = string.IsNullOrEmpty(row["Id"]) ? Guid.Empty : Guid.Parse(row["Id"]),
                     Name = row["Name"],
                     Code = row["Code"],
                     UnitPrice = Convert.ToDouble(row["Unit Price"]),
@@ -80,12 +96,12 @@ namespace MVCSkeleton.Requirements.Steps
             return products;
         }
 
-        private IEnumerable<ProductModel> GetProductsFromGrid()
+        private IEnumerable<Product> GetProductsFromGrid()
         {
-            List<ProductModel> products = new List<ProductModel>();
+            List<Product> products = new List<Product>();
             foreach (var gridRow in Browser.FindElements(By.XPath("//div[@id ='ProductsGrid']//tr[@role ='row']")))
             {
-                ProductModel product = new ProductModel();
+                Product product = new Product();
                 product.Name = GetPropertyValue(gridRow, "Name");
                 product.Code = GetPropertyValue(gridRow, "Code");
                 product.UnitPrice = double.Parse(GetPropertyValue(gridRow, "UnitPrice"), NumberStyles.Currency);
@@ -102,7 +118,7 @@ namespace MVCSkeleton.Requirements.Steps
 
         private static IWebElement FindElement(IWebElement gridRow, string dataPropertynameName)
         {
-            return gridRow.FindElement((By.XPath(string.Format(".//*[@data-PropertyName ='{0}']",dataPropertynameName))));
+            return gridRow.FindElement((By.XPath(string.Format(".//*[@data-propertyname ='{0}']",dataPropertynameName))));
         }
     }
 }

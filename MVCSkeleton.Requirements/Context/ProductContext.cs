@@ -1,4 +1,5 @@
-﻿using MVCSkeleton.Presentation.Models;
+﻿using MVCSkeleton.Domain;
+using MVCSkeleton.Presentation.Models;
 using TechTalk.SpecFlow;
 
 namespace MVCSkeleton.Requirements.Context
@@ -21,6 +22,6 @@ namespace MVCSkeleton.Requirements.Context
             }
         }
 
-        public ProductModel Product { get; set; }
+        public Product Product { get; set; }
     }
 }
