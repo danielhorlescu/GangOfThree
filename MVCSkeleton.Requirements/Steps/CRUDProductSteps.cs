@@ -86,7 +86,7 @@ namespace MVCSkeleton.Requirements.Steps
             {
                 products.Add(new Product
                 {
-                    Id = string.IsNullOrEmpty(row["Id"]) ? Guid.Empty : Guid.Parse(row["Id"]),
+                    Id = !row.ContainsKey("Id") ? Guid.Empty : Guid.Parse(row["Id"]),
                     Name = row["Name"],
                     Code = row["Code"],
                     UnitPrice = Convert.ToDouble(row["Unit Price"]),
