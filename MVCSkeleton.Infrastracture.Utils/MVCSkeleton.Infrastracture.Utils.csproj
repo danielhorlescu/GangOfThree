@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="ApplicationStartup\ApplicationStartupModuleComposite.cs" />
     <Compile Include="ApplicationStartup\IApplicationStartupModule.cs" />
+    <Compile Include="Comparer\ObjectComparer.cs" />
     <Compile Include="DesignByContract\Check.cs" />
     <Compile Include="IOC\IIOCProvider.cs" />
     <Compile Include="IOC\IOCProvider.cs" />

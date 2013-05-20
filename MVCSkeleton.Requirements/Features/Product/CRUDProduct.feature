@@ -9,20 +9,20 @@ Scenario: Create a new product
 		|Bread			|1345		|3.2		    |400			 |
 		
 	When I click the 'saveProductBtn' button
-	Then I should be redirected to the 'Product/GetProducts' page
+	Then I should be redirected to the 'Product/List' page
 	And I should have the product listed in the grid
 
 Scenario: Update a product
 	Given I have the products
 		|Id		                                    |Name			|Code		|Unit Price		|Units In Stock	 |
 		|362D6764-07A3-4A03-A430-00E21FFB4998		|Bread			|1345		|3.2		    |400			 |
-    And I navigate to the 'Product/GetProducts' page
+    And I navigate to the 'Product/List' page
 	And I click edit for the '362D6764-07A3-4A03-A430-00E21FFB4998' product
 	And I enter the product
 		|Id		                                    |Name			|Code		|Unit Price		|Units In Stock	 |
 		|362D6764-07A3-4A03-A430-00E21FFB4998		|Onions			|1245		|1.2		    |100			 |
 	When I click the 'saveProductBtn' button
-	Then I should be redirected to the 'Product/GetProducts' page
+	Then I should be redirected to the 'Product/List' page
 	And I should have the product listed in the grid
 
 Scenario: Delete a product
@@ -30,6 +30,6 @@ Scenario: Delete a product
 		|Id		                                    |Name			|Code		|Unit Price		|Units In Stock	 |
 		|362D6764-07A3-4A03-A430-00E21FFB4998		|Bread			|1345		|3.2		    |400			 |
 		|E244995A-BFDA-452D-A6DF-A2C8D24BAEAB		|Onions			|1245		|1.2		    |100			 |
-    And I navigate to the 'Product/GetProducts' page
+    And I navigate to the 'Product/List' page
 	When I click delete for the '362D6764-07A3-4A03-A430-00E21FFB4998' product
 	Then The grid should not contain the '362D6764-07A3-4A03-A430-00E21FFB4998' product

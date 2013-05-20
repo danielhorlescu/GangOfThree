@@ -22,7 +22,7 @@ namespace MVCSkeleton.Presentation.Controllers
             this.mapper = mapper;
         }
 
-        public ViewResult GetProducts()
+        public ViewResult List()
         {
             List<ProductDTO> productDtos = service.GetAll();
 
@@ -31,53 +31,29 @@ namespace MVCSkeleton.Presentation.Controllers
             return View(productModels);
         }
 
-        public ActionResult Products_Read([DataSourceRequest] DataSourceRequest dsRequest)
+        public ActionResult Read([DataSourceRequest] DataSourceRequest dsRequest)
         {
             return Json(service.GetAll().ToDataSourceResult(dsRequest));
         }
 
-        public ActionResult Product_Create([DataSourceRequest] DataSourceRequest dsRequest, [Bind(Prefix = "models")] List<ProductModel> products)
+        public JsonResult Delete(ProductModel product)
         {
-            ProductModel product = products[0];
-
-            product.Id = service.Create(mapper.Map(product, new ProductDTO()));
-
-            return Json(new[] { product }.ToDataSourceResult(dsRequest, ModelState));
-        }
-
-        public ActionResult Product_Update([Bind(Prefix = "models")] List<ProductModel> products)
-        {
-            ProductModel product = products[0];
-
-            service.Update(mapper.Map(product, new ProductDTO()));
-
-            //ModelState.AddModelError("Product", "Product already exists!");
-            return Json(ModelState.ToDataSourceResult());
-        }
-
-        public JsonResult Product_Delete([Bind(Prefix = "models")] List<ProductModel> products)
-        {
-            ProductModel product = products[0];
-
             service.Delete(product.Id);
 
-            //ModelState.AddModelError("Product", "Product could not be deleted!");
+            ModelState.AddModelError("Product", "Product could not be deleted!");
 
             return ModelState.IsValid ? null : Json(ModelState.ToDataSourceResult());
         }
 
-        [HttpGet]
-        public ActionResult Edit(Guid? id)
+        public ViewResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return View(new ProductModel());
             }
-            else
-            {
-                ProductDTO productDto = service.Get(id.Value);
-                return View(mapper.Map(productDto, new ProductModel()));
-            }
+
+            ProductDTO productDto = service.Get(id.Value);
+            return View(mapper.Map(productDto, new ProductModel()));
         }
 
         [HttpPost]
@@ -92,14 +68,14 @@ namespace MVCSkeleton.Presentation.Controllers
                 service.Update(mapper.Map(product, new ProductDTO()));    
             }
             
-            return RedirectToAction("GetProducts");
+            return RedirectToAction("List");
         }
 
         [HttpPost]
-        public ActionResult DeleteAll(IEnumerable<ProductModel> selectedProducts)
+        public ActionResult DeleteSelected(IEnumerable<ProductModel> selectedProducts)
         {
             service.Delete(selectedProducts.Select((p, index) => p.Id));
-            return RedirectToAction("GetProducts");
+            return RedirectToAction("List");
         }
     }
 }

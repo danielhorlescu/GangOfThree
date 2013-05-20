@@ -402,8 +402,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\Bindings.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\CustomScripts\Grid.js" />
+    <Content Include="Scripts\CustomScripts\Product\Edit.js" />
+    <Content Include="Scripts\CustomScripts\Product\List.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.js" />
@@ -906,7 +908,7 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Home\LoadMenu.cshtml" />
     <Content Include="Views\Store\Store.cshtml" />
-    <Content Include="Views\Product\GetProducts.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
     <Content Include="Views\Customer\GetCustomers.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
