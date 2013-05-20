@@ -73,7 +73,7 @@ namespace MVCSkeleton.Requirements.Features.Product
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 6
- testRunner.Given("I navigate to the \'Product/Edit\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I navigate to the \'Product/Edit\' UrlConstants. page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Name",

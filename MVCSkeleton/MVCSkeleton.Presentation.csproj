@@ -143,6 +143,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Authentication\IFormsAuthentication.cs" />
+    <Compile Include="Constants\CustomAttributeNames.cs" />
+    <Compile Include="Constants\ProductConstants.cs" />
+    <Compile Include="Constants\ProductListConstants.cs" />
+    <Compile Include="Constants\UrlConstants.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
