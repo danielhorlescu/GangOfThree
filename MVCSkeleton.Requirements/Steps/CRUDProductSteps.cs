@@ -5,12 +5,12 @@ using System.Globalization;
 using System.Linq;
 using MVCSkeleton.Domain;
 using MVCSkeleton.Infrastracture.Utils.Comparer;
-using MVCSkeleton.Presentation.Models;
 using MVCSkeleton.Requirements.Context;
 using MVCSkeleton.Requirements.Flows;
 using MVCSkeleton.Requirements.SeleniumHelpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using TechTalk.SpecFlow;
 
 namespace MVCSkeleton.Requirements.Steps
@@ -47,7 +47,7 @@ namespace MVCSkeleton.Requirements.Steps
         [Given(@"I click edit for the '(.*)' product")]
         public void GivenIClickEditForTheProduct(string productId)
         {
-            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='ProductsGrid']"));
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='productsGrid']"));
             IWebElement rowWithProduct =
                  productsGrid.FindElement(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
 
@@ -59,7 +59,7 @@ namespace MVCSkeleton.Requirements.Steps
         [When(@"I click delete for the '(.*)' product")]
         public void WhenIClickDeleteForTheProduct(string productId)
         {
-            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='ProductsGrid']"));
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='productsGrid']"));
             IWebElement rowWithProduct =
                  productsGrid.FindElement(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
 
@@ -72,11 +72,53 @@ namespace MVCSkeleton.Requirements.Steps
         [Then(@"The grid should not contain the '(.*)' product")]
         public void ThenTheGridShouldNotContainTheProduct(string productId)
         {
-            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='ProductsGrid']"));
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='productsGrid']"));
             ReadOnlyCollection<IWebElement> rowWithProduct =
                  productsGrid.FindElements(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
 
             Assert.AreEqual(0, rowWithProduct.Count);
+        }
+
+        [When(@"I select products '(.*)' and click the Delete Selected button")]
+        public void WhenISelectProductsAndClickTheDeleteSelectedButton(string productIdsString)
+        {
+            string[] productIds = productIdsString.Split(',');
+
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='productsGrid']"));
+
+            new Actions(Browser).SendKeys(Keys.Control).Perform();
+
+            foreach (var productId in productIds)
+            {
+                IWebElement rowWithProduct =
+                 productsGrid.FindElement(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
+
+                rowWithProduct.Click();
+            }
+
+            IWebElement deleteSelectedButton =
+                productsGrid.FindElement(By.XPath("//a[contains(@class, 'k-button') and @id='deleteSelected']"));
+
+            new Actions(Browser).SendKeys(Keys.Control).Release();
+
+            deleteSelectedButton.Click();
+            Browser.SwitchTo().Alert().Accept();
+        }
+
+        [Then(@"The grid should not contain the '(.*)' products")]
+        public void ThenTheGridShouldNotContainTheProducts(string productIdsString)
+        {
+            string[] productIds = productIdsString.Split(',');
+
+            IWebElement productsGrid = Browser.FindElement(By.XPath("//div[@id ='productsGrid']"));
+
+            foreach (var productId in productIds)
+            {
+                ReadOnlyCollection<IWebElement> rowsWithProduct =
+                 productsGrid.FindElements(By.XPath(string.Format("//tr[@role='row' and @data-id='{0}']", productId.ToLower())));
+
+                Assert.AreEqual(0, rowsWithProduct.Count);
+            }
         }
 
 
@@ -100,7 +142,7 @@ namespace MVCSkeleton.Requirements.Steps
         private IEnumerable<Product> GetProductsFromGrid()
         {
             List<Product> products = new List<Product>();
-            foreach (var gridRow in Browser.FindElements(By.XPath("//div[@id ='ProductsGrid']//tr[@role ='row']")))
+            foreach (var gridRow in Browser.FindElements(By.XPath("//div[@id ='productsGrid']//tr[@role ='row']")))
             {
                 Product product = new Product();
                 product.Name = GetPropertyValue(gridRow, "Name");

@@ -7,11 +7,11 @@
 
 <h2>Products</h2>
 
-<label for="ProductsGrid">Products:</label>
+<label for="productsGrid">Products:</label>
     @Html.ValidationSummary()
 
     @(Html.Controls().Grid(Model)    
-      .Name("ProductsGrid")
+      .Name("productsGrid")
       .Columns(columns =>
           {
               columns.Bound(p => p.Name).ClientTemplate("<a href='" + Url.Action("Edit", "Product", new {id = "#=Id#"}) + " '>#=Name#</a>");
@@ -23,7 +23,10 @@
       .ToolBar(toolbar =>
           {
               toolbar.Custom().Action("Edit", "Product").Text("Create New");
-              toolbar.Custom().Text("Delete Selected").HtmlAttributes(new Dictionary<string, object>{{"id", "deleteSelected"}});
+              toolbar.Custom().Text("Delete Selected").HtmlAttributes(new Dictionary<string, object>{{"id", "deleteSelected"}, 
+                                                                                                     {"href", "javascript:void(0);"},
+                                                                                                     {"class", "k-button k-button-icontext k-state-disabled"},
+                                                                                                     {"disabled", "disabled"}});
           })
       .Groupable()
       .Pageable()
@@ -31,7 +34,7 @@
       .Scrollable()
       .Selectable(selectable => selectable.Mode(GridSelectionMode.Multiple))
       .Filterable()
-      .Events(config => config.DataBound("onDataBound"))
+      .Events(config => config.DataBound("onDataBound").Change("onChange"))
       .DataSource(ds => ds.Ajax()
                           .Read(read => read.Action("Read", "Product"))
                           .Events(events => events.Error("onError"))

@@ -185,6 +185,52 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete selected products")]
+        public virtual void DeleteSelectedProducts()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete selected products", ((string[])(null)));
+#line 37
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name",
+                        "Code",
+                        "Unit Price",
+                        "Units In Stock"});
+            table5.AddRow(new string[] {
+                        "362D6764-07A3-4A03-A430-00E21FFB4998",
+                        "Bread",
+                        "1345",
+                        "3.2",
+                        "400"});
+            table5.AddRow(new string[] {
+                        "E244995A-BFDA-452D-A6DF-A2C8D24BAEAB",
+                        "Onions",
+                        "1245",
+                        "1.2",
+                        "100"});
+            table5.AddRow(new string[] {
+                        "07C11B77-97F6-406B-B45B-D32213E9F338",
+                        "Garlic",
+                        "5441",
+                        "2.7",
+                        "1000"});
+#line 38
+ testRunner.Given("I have the products", ((string)(null)), table5, "Given ");
+#line 43
+    testRunner.And("I navigate to the \'Product/List\' page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+ testRunner.When("I select products \'362D6764-07A3-4A03-A430-00E21FFB4998,07C11B77-97F6-406B-B45B-D" +
+                    "32213E9F338\' and click the Delete Selected button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 45
+ testRunner.Then("The grid should not contain the \'362D6764-07A3-4A03-A430-00E21FFB4998,07C11B77-97" +
+                    "F6-406B-B45B-D32213E9F338\' products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

@@ -31,11 +31,13 @@ namespace MVCSkeleton.Presentation.Controllers
             return View(productModels);
         }
 
+        [HttpPost]
         public ActionResult Read([DataSourceRequest] DataSourceRequest dsRequest)
         {
             return Json(service.GetAll().ToDataSourceResult(dsRequest));
         }
 
+        [HttpPost]
         public JsonResult Delete(ProductModel product)
         {
             service.Delete(product.Id);
@@ -72,10 +74,13 @@ namespace MVCSkeleton.Presentation.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteSelected(IEnumerable<ProductModel> selectedProducts)
+        public JsonResult DeleteSelected(IEnumerable<ProductModel> selectedProducts)
         {
             service.Delete(selectedProducts.Select((p, index) => p.Id));
-            return RedirectToAction("List");
+
+            //ModelState.AddModelError("Product", "Product could not be deleted!");
+
+            return ModelState.IsValid ? null : Json(ModelState.ToDataSourceResult());
         }
     }
 }
